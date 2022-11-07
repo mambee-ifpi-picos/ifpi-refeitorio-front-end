@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import styles from '../styles/Home.module.css'
 import MainLayoutProps from './MainLayoutProps'
+import Sidebar from '../components/Sidebar'
 
 export default function MainLayout(props: MainLayoutProps) {
   console.log(props)
@@ -15,10 +16,15 @@ export default function MainLayout(props: MainLayoutProps) {
           content="Sistema de gerenciamento de refeitórios do IFPI"
         />
         <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+        ></link>
       </Head>
 
       <div className={styles.page}>
         <Navbar />
+        <Sidebar />
 
         <main className="container">{props.children}</main>
 
