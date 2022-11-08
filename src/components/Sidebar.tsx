@@ -6,45 +6,44 @@ function Sidebar() {
   return (
     <nav className="">
       <div
-        className="offcanvas offcanvas-start "
+        className="offcanvas  offcanvas-start w-auto  "
         data-bs-scroll="true"
         data-bs-backdrop="false"
         // tabIndex="-1"
         id="offcanvasScrolling"
         aria-labelledby="offcanvasScrollingLabel"
       >
-        <div className="offcanvas-header  text-white text-bg-dark justify-content-evenly">
+        <div className="offcanvas-header text-white text-bg-dark justify-content-evenly">
           <h4 className="offcanvas-title " id="offcanvasScrollingLabel">
             Menu do Refeitório
           </h4>
           <button
             type="button"
-            className="btn-close btn-close-white"
+            className="btn-close btn-close-white m-0"
             data-bs-dismiss="offcanvas"
             aria-label="Close"
           ></button>
         </div>
-
-        <div className="offcanvas-body">
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item ">
+            <Link href="./">
+              <button className="accordion-button  gap-2" type="button">
+                <i className="bi bi-columns fs-4 m-1"></i>
+                Painel de Controle
+              </button>
+            </Link>
+          </li>
+        </ul>
+        <div className="offcanvas-body p-0">
           <div className="accordion">
-            <div className="accordion-item">
-              <h2 className="accordion-header">
-                <Link href="./">
-                  <button className="accordion-button gap-2" type="button">
-                    <i className="bi bi-columns fs-4"></i>
-                    Painel de Controle
-                  </button>
-                </Link>
-              </h2>
-            </div>
             <div className="accordion-item">
               <h2 className="accordion-header" id="panelsStayOpen-headingOne">
                 <button
-                  className="accordion-button gap-2"
+                  className="accordion-button collapsed gap-2"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#panelsStayOpen-collapseOne"
-                  aria-expanded="false"
+                  aria-expanded="true"
                   aria-controls="panelsStayOpen-collapseOne"
                 >
                   <i className="bi bi-book fs-4"></i>
@@ -53,12 +52,18 @@ function Sidebar() {
               </h2>
               <div
                 id="panelsStayOpen-collapseOne"
-                className="accordion-collapse collapse show"
+                className="accordion-collapse collapse"
                 aria-labelledby="panelsStayOpen-headingOne"
               >
-                <div className="accordion-body">Items</div>
+                <div className="accordion-body">
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item">A second item</li>
+                    <li className="list-group-item">A third item</li>
+                  </ul>
+                </div>
               </div>
             </div>
+
             <div className="accordion-item">
               <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
                 <button
@@ -78,7 +83,12 @@ function Sidebar() {
                 className="accordion-collapse collapse"
                 aria-labelledby="panelsStayOpen-headingTwo"
               >
-                <div className="accordion-body">Items</div>
+                <div className="accordion-body">
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item">A second item</li>
+                    <li className="list-group-item">A third item</li>
+                  </ul>
+                </div>
               </div>
             </div>
             <div className="accordion-item">
@@ -100,11 +110,17 @@ function Sidebar() {
                 className="accordion-collapse collapse"
                 aria-labelledby="panelsStayOpen-headingThree"
               >
-                <div className="accordion-body d-flex gap-2 ">
-                  <i className="bi bi-menu-button"></i>
-                  <Link href="/menu">
-                    <a className="nav-link">Cardápio</a>
-                  </Link>
+                <div className="accordion-body  ">
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item d-flex gap-2">
+                      <i className="bi bi-menu-button"></i>
+                      <Link href="/menu">
+                        <a className="nav-link">Cardápio</a>
+                      </Link>
+                    </li>
+                    <li className="list-group-item">A second item</li>
+                    <li className="list-group-item">A third item</li>
+                  </ul>
                 </div>
               </div>
             </div>
