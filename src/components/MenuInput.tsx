@@ -14,7 +14,7 @@ export default function MenuInput() {
       <textarea
         className="form-control"
         id="exampleFormControlTextarea1"
-        // rows="8"
+        rows={8}
       ></textarea>
     </div>
   )
