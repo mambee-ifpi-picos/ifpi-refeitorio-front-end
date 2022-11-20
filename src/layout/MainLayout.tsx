@@ -20,13 +20,23 @@ export default function MainLayout(props: MainLayoutProps) {
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
         ></link>
+        <link
+          href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+          rel="stylesheet"
+        ></link>
       </Head>
 
       <div className={styles.page}>
         <Navbar />
         <Sidebar />
-
-        <main className="container">{props.children}</main>
+        <div className="row">
+          <div className="col-lg-3" />
+          <div className="col  text-center">
+            <main className="container pb-4 text-center ">
+              {props.children}
+            </main>
+          </div>
+        </div>
 
         <Footer />
       </div>

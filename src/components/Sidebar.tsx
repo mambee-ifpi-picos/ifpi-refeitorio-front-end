@@ -6,23 +6,33 @@ function Sidebar() {
   return (
     <nav className="">
       <div
-        className="offcanvas  offcanvas-start w-auto  "
+        className="offcanvas show  offcanvas-start w-auto  "
         data-bs-scroll="true"
         data-bs-backdrop="false"
         // tabIndex="-1"
         id="offcanvasScrolling"
         aria-labelledby="offcanvasScrollingLabel"
       >
-        <div className="offcanvas-header text-white text-bg-dark justify-content-evenly">
+        <div className="offcanvas-header text-white text-bg-dark align-items-center justify-content-evenly">
+          <i className="bi bi-r-square-fill h2 m-0"></i>
           <h4 className="offcanvas-title " id="offcanvasScrollingLabel">
-            Menu do Refeitório
+            Menu
           </h4>
           <button
+            className="btn border btn-close align-items-center  text-white text-bg-dark d-flex gap-2"
             type="button"
-            className="btn-close btn-close-white m-0"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasScrolling"
+            aria-controls="offcanvasScrolling"
+          >
+            <i className="bi bi-list "></i>
+          </button>
+          {/* <button
+            type="button"
+            className="btn-close  btn-close-white m-0"
             data-bs-dismiss="offcanvas"
             aria-label="Close"
-          ></button>
+          ></button> */}
         </div>
         <ul className="list-group list-group-flush">
           <li className="list-group-item ">
@@ -113,7 +123,6 @@ function Sidebar() {
                 <div className="accordion-body  ">
                   <ul className="list-group list-group-flush">
                     <li className="list-group-item d-flex gap-2">
-                      <i className="bi bi-menu-button"></i>
                       <Link href="/menu">
                         <a className="nav-link">Cardápio</a>
                       </Link>

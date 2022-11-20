@@ -6,19 +6,19 @@ function Navbar() {
     <nav className="border-bottom shadow-sm fixed-top ">
       <div className="container   ">
         <div className="d-flex flex-wrap align-items-center justify-content-between p-2 ">
+          <button
+            className="btn border align-items-center  text-white text-bg-dark d-flex gap-2"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasScrolling"
+            aria-controls="offcanvasScrolling"
+          >
+            <i className="bi bi-list "></i>
+          </button>
           <div className="d-flex gap-4 align-items-center">
             <Link href="/">
               <a className="navbar-brand fs-2">Refeitório</a>
             </Link>
-            <button
-              className="btn border align-items-center  text-white text-bg-dark d-flex gap-2"
-              type="button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasScrolling"
-              aria-controls="offcanvasScrolling"
-            >
-              <i className="bi bi-arrow-right fs-2 pl-2"></i>
-            </button>
           </div>
 
           <div className="dropdown text-end ">
@@ -38,12 +38,12 @@ function Navbar() {
               </li>
               <li>
                 <a className="dropdown-item" href="#">
-                  Settings
+                  Ajustes
                 </a>
               </li>
               <li>
                 <Link href="/about">
-                  <a className="dropdown-item">About</a>
+                  <a className="dropdown-item">Sobre</a>
                 </Link>
               </li>
               <li>
@@ -55,7 +55,7 @@ function Navbar() {
               <li>
                 <Link href="/">
                   <a className="dropdown-item" href="#">
-                    Sign out
+                    Sair
                   </a>
                 </Link>
               </li>
