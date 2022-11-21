@@ -1,21 +1,20 @@
-// interface MenuInputProps {
-//     text: string
-//     value: string
-// }
-export default function MenuInput() {
+interface MenuInputProps {
+  text: string
+  value: string
+  onChance?: (value: string) => void
+}
+export default function MenuInput(props: MenuInputProps) {
   return (
     <div className="mb-3">
-      <label
-        htmlFor="exampleFormControlTextarea1"
-        className="d-flex form-label"
-      >
-        Descrição
-      </label>
+      <label className="d-flex form-label">{props.text}</label>
       <textarea
+        onChange={(e) => props.onChance?.(e.target.value)}
         className="form-control"
         id="exampleFormControlTextarea1"
         rows={8}
-      ></textarea>
+      >
+        {props.value}
+      </textarea>
     </div>
   )
 }

@@ -1,20 +1,26 @@
+import DishMenu from '../core/DishMenu'
 import Menuday from './Menuday'
 import MenuInput from './MenuInput'
 import Title from './Title'
+import { useState } from 'react'
 
 interface AddDishProps {
   cancel: () => void
+  dish?: DishMenu
 }
 export default function AddDish(props: AddDishProps) {
+  const [menuInput, setMenuInput] = useState(props.dish?.dish || '')
+  const [menuDay, setMenuDay] = useState(props.dish?.day || '')
+
   return (
     <div>
       <Title subTitle="Novo Cardápio" />
-      <Menuday />
-      <MenuInput />
+      <Menuday text="Dia" value={menuDay} onChance={setMenuDay} />
+      <MenuInput value={menuInput} text="Descrição" onChance={setMenuInput} />
       <div className="d-flex justify-content-around">
         <div className="col-auto">
           <button type="submit" className="btn btn-success mb-3">
-            Salvar
+            {props.dish ? 'Alterar' : 'Salvar'}
           </button>
         </div>
         <div className="col-auto">
