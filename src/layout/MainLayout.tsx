@@ -36,10 +36,10 @@ export default function MainLayout(props: MainLayoutProps) {
               {props.children}
             </main>
           </div>
+          <div className="col-xl-2 col-lg-1"></div>
         </div>
-
-        <Footer />
       </div>
+      <Footer />
     </div>
   )
 }

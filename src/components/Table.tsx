@@ -124,7 +124,7 @@ function Table(props: TableProps) {
           </tr>
         </tbody>
       </table>
-      <div className="col d-flex justify-content-end ">
+      <div className="col  d-flex justify-content-end ">
         <button
           type="button"
           onClick={props.onClick}
