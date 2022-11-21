@@ -2,6 +2,7 @@ import DishMenu from '../core/DishMenu'
 
 interface TableProps {
   dish: DishMenu[]
+  onClick: () => void
 }
 
 function Table(props: TableProps) {
@@ -124,7 +125,11 @@ function Table(props: TableProps) {
         </tbody>
       </table>
       <div className="col d-flex justify-content-end ">
-        <button type="button" className="btn btn-primary shadow-sm ">
+        <button
+          type="button"
+          onClick={props.onClick}
+          className="btn btn-primary shadow-sm "
+        >
           <i className="bi bi-plus-lg h6"> Adicionar</i>
         </button>
       </div>

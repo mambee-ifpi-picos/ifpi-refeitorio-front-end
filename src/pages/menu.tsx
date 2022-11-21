@@ -5,18 +5,25 @@ import Table from '../components/Table'
 import AddDish from '../components/AddDish'
 import Title from '../components/Title'
 import DishMenu from '../core/DishMenu'
+import { useState } from 'react'
 
 const Menu: NextPage = () => {
   const dishes = [
     new DishMenu('Segunda-feira', 'arroz, feijao, carne, salada'),
     // new DishMenu('Terça-feira', 'arroz, galinha, salada')
   ]
+  const [visible, setVisible] = useState<'table' | 'form'>('table')
 
   return (
     <MainLayout title="Cardápio">
-      <Title>Cardápio</Title>
-      <Table dish={dishes} />
-      <AddDish />
+      {visible === 'table' ? (
+        <>
+          <Title>Cardápio</Title>
+          <Table onClick={() => setVisible('form')} dish={dishes} />
+        </>
+      ) : (
+        <AddDish cancel={() => setVisible('table')} />
+      )}
     </MainLayout>
   )
 }
