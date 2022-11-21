@@ -1,5 +1,6 @@
 import Menuday from './Menuday'
 import MenuInput from './MenuInput'
+import Title from './Title'
 
 interface AddDishProps {
   cancel: () => void
@@ -7,7 +8,7 @@ interface AddDishProps {
 export default function AddDish(props: AddDishProps) {
   return (
     <div>
-      <h3 className="text-start pb-4">Novo Cardápio</h3>
+      <Title subTitle="Novo Cardápio" />
       <Menuday />
       <MenuInput />
       <div className="d-flex justify-content-around">

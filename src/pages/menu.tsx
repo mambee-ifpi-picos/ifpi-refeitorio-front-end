@@ -18,7 +18,7 @@ const Menu: NextPage = () => {
     <MainLayout title="Cardápio">
       {visible === 'table' ? (
         <>
-          <Title>Cardápio</Title>
+          <Title subTitle="Cardápio" />
           <Table onClick={() => setVisible('form')} dish={dishes} />
         </>
       ) : (
