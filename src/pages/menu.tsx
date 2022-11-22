@@ -8,6 +8,8 @@ import DishMenu from '../core/DishMenu'
 import { useState } from 'react'
 
 const Menu: NextPage = () => {
+  const [visible, setVisible] = useState<'table' | 'form'>('table')
+
   const dishes = [
     new DishMenu('arroz, feijao, carne, salada'),
     new DishMenu('arroz, galinha, salada crua'),
@@ -15,18 +17,30 @@ const Menu: NextPage = () => {
     new DishMenu('arroz, galinha, colve, salada'),
     new DishMenu('arroz, assado, salada de batata'),
   ]
-  const [visible, setVisible] = useState<'table' | 'form'>('table')
+
+  function dishSelected(dishes: DishMenu) {
+    console.log(dishes.dish)
+  }
+  function deleted(dishes: DishMenu) {
+    console.log(`Deletando ... ${dishes.dish}`)
+  }
 
   return (
     <MainLayout title="Cardápio">
       {visible === 'table' ? (
         <>
           <Title subTitle="Cardápio" />
-          <Table onClick={() => setVisible('form')} dish={dishes} />
+          <Table
+            onClick={() => setVisible('form')}
+            dish={dishes}
+            editedDish={dishSelected}
+            deletedDish={deleted}
+          />
         </>
       ) : (
         <AddDish cancel={() => setVisible('table')} />
       )}
+      {/* <EditDish  /> */}
     </MainLayout>
   )
 }
