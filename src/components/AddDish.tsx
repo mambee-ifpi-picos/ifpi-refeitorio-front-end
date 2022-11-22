@@ -10,12 +10,15 @@ interface AddDishProps {
 }
 export default function AddDish(props: AddDishProps) {
   const [menuInput, setMenuInput] = useState(props.dish?.dish || '')
-  const [menuDay, setMenuDay] = useState(props.dish?.day || '')
 
   return (
     <div>
       <Title subTitle="Novo Cardápio" />
-      <Menuday text="Dia" value={menuDay} onChance={setMenuDay} />
+      <Menuday
+        text="Dia"
+        // value={menuDay}
+        // onChance={setMenuDay}
+      />
       <MenuInput value={menuInput} text="Descrição" onChance={setMenuInput} />
       <div className="d-flex justify-content-around">
         <div className="col-auto">

@@ -9,8 +9,11 @@ import { useState } from 'react'
 
 const Menu: NextPage = () => {
   const dishes = [
-    new DishMenu('Segunda-feira', 'arroz, feijao, carne, salada'),
-    // new DishMenu('Terça-feira', 'arroz, galinha, salada')
+    new DishMenu('arroz, feijao, carne, salada'),
+    new DishMenu('arroz, galinha, salada crua'),
+    new DishMenu('arroz Branco, galinha Assada, salada'),
+    new DishMenu('arroz, galinha, colve, salada'),
+    new DishMenu('arroz, assado, salada de batata'),
   ]
   const [visible, setVisible] = useState<'table' | 'form'>('table')
 

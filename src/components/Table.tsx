@@ -15,15 +15,15 @@ function Table(props: TableProps) {
       )
     })
   }
-  function renderDays() {
-    return props.dish?.map((dish) => {
-      return (
-        <>
-          <span>{dish.day}</span>
-        </>
-      )
-    })
-  }
+  // function renderDays() {
+  //   return props.dish?.map((dish) => {
+  //     return (
+  //       <>
+  //         <span>{dish.day}</span>
+  //       </>
+  //     )
+  //   })
+  // }
 
   return (
     <div className="table-responsive rounded">
@@ -33,7 +33,7 @@ function Table(props: TableProps) {
             <th scope="col" className="col-2 ">
               Dia
             </th>
-            <th scope="col" className="col-8">
+            <th scope="col" className="col-8 text-center">
               Prato
             </th>
             <th scope="col" className="text-center">
@@ -44,9 +44,9 @@ function Table(props: TableProps) {
         <tbody className="">
           <tr>
             <th className="bg-primary text-dark bg-opacity-10" scope="row">
-              {renderDays()}
+              Segunda-Feira
             </th>
-            <td>{renderDishes()}</td>
+            <td>{renderDishes()[0]}</td>
             <td>
               <div className="col d-flex justify-content-evenly">
                 <button type="button" className="btn btn-info btn-sm">
@@ -62,7 +62,7 @@ function Table(props: TableProps) {
             <th className="bg-primary text-dark bg-opacity-10" scope="row">
               Terça-feira
             </th>
-            <td>Vazio</td>
+            <td>{renderDishes()[1]}</td>
             <td>
               <div className="col d-flex justify-content-evenly">
                 <button type="button" className="btn btn-info btn-sm">
@@ -78,7 +78,7 @@ function Table(props: TableProps) {
             <th className="bg-primary text-dark bg-opacity-10" scope="row">
               Quarta-feira
             </th>
-            <td>Vazio</td>
+            <td>{renderDishes()[2]}</td>
             <td>
               <div className="col d-flex justify-content-evenly">
                 <button type="button" className="btn btn-info btn-sm">
@@ -94,7 +94,7 @@ function Table(props: TableProps) {
             <th className="bg-primary text-dark bg-opacity-10" scope="row">
               Quinta-feira
             </th>
-            <td>Vazio</td>
+            <td>{renderDishes()[3]}</td>
             <td>
               <div className="col d-flex justify-content-evenly">
                 <button type="button" className="btn btn-info btn-sm">
@@ -110,7 +110,7 @@ function Table(props: TableProps) {
             <th className="bg-primary text-dark bg-opacity-10" scope="row">
               Sexta-feira
             </th>
-            <td>Vazio</td>
+            <td>{renderDishes()[4]}</td>
             <td>
               <div className="col d-flex justify-content-evenly">
                 <button type="button" className="btn btn-info btn-sm">
