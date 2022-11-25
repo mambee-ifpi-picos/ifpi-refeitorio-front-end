@@ -10,6 +10,7 @@ import EditDish from '../components/EditDish'
 
 const Menu: NextPage = () => {
   const [visible, setVisible] = useState<'table' | 'form'>('table')
+  const [dish, setDish] = useState<DishMenu>(DishMenu.empty())
 
   const dishes = [
     new DishMenu('Segunda-feira', 'arroz, feijao, carne, salada'),
@@ -22,6 +23,7 @@ const Menu: NextPage = () => {
   // const [dish, setDish] = useState<DishMenu>(DishMenu.empty())
 
   function dishSelected(dishes: DishMenu) {
+    setDish(dishes)
     console.log(dishes.dish)
     console.log(dishes.day)
   }
@@ -50,7 +52,7 @@ const Menu: NextPage = () => {
       <EditDish
         // valueChanged={dishSelected}
         plateChanged={savePlate}
-        dish={dishes[0]}
+        dish={dish}
       />
     </MainLayout>
   )

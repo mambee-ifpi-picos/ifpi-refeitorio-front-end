@@ -57,7 +57,9 @@ export default function EditDish(props: EditDisheProps) {
                 data-bs-dismiss="modal"
                 id="btnSave"
                 onClick={() =>
-                  props.plateChanged?.(new DishMenu(props.dish.day, dish))
+                  props.plateChanged?.(
+                    new DishMenu(props.dish.day, props.dish.dish)
+                  )
                 }
               >
                 {Id ? 'Alterar' : 'Salvar'}
