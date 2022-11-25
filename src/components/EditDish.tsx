@@ -5,6 +5,7 @@ import InputDish from './InputDish'
 interface EditDisheProps {
   dish: DishMenu
   children?: unknown
+  plateChanged?: (dish: DishMenu) => void
 }
 
 export default function EditDish(props: EditDisheProps) {
@@ -55,6 +56,9 @@ export default function EditDish(props: EditDisheProps) {
                 className="btn btn-success"
                 data-bs-dismiss="modal"
                 id="btnSave"
+                onClick={() =>
+                  props.plateChanged?.(new DishMenu(props.dish.day, dish))
+                }
               >
                 {Id ? 'Alterar' : 'Salvar'}
               </button>

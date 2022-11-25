@@ -28,6 +28,9 @@ const Menu: NextPage = () => {
   function deleted(dishes: DishMenu) {
     console.log(`Deletando ... ${dishes.dish}`)
   }
+  function savePlate(dishes: DishMenu) {
+    console.log(dishes)
+  }
 
   return (
     <MainLayout title="Cardápio">
@@ -46,6 +49,7 @@ const Menu: NextPage = () => {
       )}
       <EditDish
         // valueChanged={dishSelected}
+        plateChanged={savePlate}
         dish={dishes[0]}
       />
     </MainLayout>
