@@ -6,20 +6,24 @@ import AddDish from '../components/AddDish'
 import Title from '../components/Title'
 import DishMenu from '../core/DishMenu'
 import { useState } from 'react'
+import EditDish from '../components/EditDish'
 
 const Menu: NextPage = () => {
   const [visible, setVisible] = useState<'table' | 'form'>('table')
 
   const dishes = [
-    new DishMenu('arroz, feijao, carne, salada'),
-    new DishMenu('arroz, galinha, salada crua'),
-    new DishMenu('arroz Branco, galinha Assada, salada'),
-    new DishMenu('arroz, galinha, colve, salada'),
-    new DishMenu('arroz, assado, salada de batata'),
+    new DishMenu('Segunda-feira', 'arroz, feijao, carne, salada'),
+    new DishMenu('Terça-feira', 'arroz, galinha, salada crua'),
+    new DishMenu('Quarta-feira', 'arroz Branco, galinha Assada, salada'),
+    new DishMenu('Quinta-feira', 'arroz, galinha, colve, salada'),
+    new DishMenu('Sexta-feira', 'arroz, assado, salada de batata'),
   ]
+
+  // const [dish, setDish] = useState<DishMenu>(DishMenu.empty())
 
   function dishSelected(dishes: DishMenu) {
     console.log(dishes.dish)
+    console.log(dishes.day)
   }
   function deleted(dishes: DishMenu) {
     console.log(`Deletando ... ${dishes.dish}`)
@@ -32,7 +36,7 @@ const Menu: NextPage = () => {
           <Title subTitle="Cardápio" />
           <Table
             onClick={() => setVisible('form')}
-            dish={dishes}
+            dish={dishes[0]}
             editedDish={dishSelected}
             deletedDish={deleted}
           />
@@ -40,7 +44,10 @@ const Menu: NextPage = () => {
       ) : (
         <AddDish cancel={() => setVisible('table')} />
       )}
-      {/* <EditDish  /> */}
+      <EditDish
+        // valueChanged={dishSelected}
+        dish={dishes[0]}
+      />
     </MainLayout>
   )
 }

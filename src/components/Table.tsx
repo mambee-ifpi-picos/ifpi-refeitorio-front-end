@@ -1,7 +1,7 @@
 import DishMenu from '../core/DishMenu'
 
 interface TableProps {
-  dish: DishMenu[]
+  dish: DishMenu
 
   onClick: () => void
   editedDish?: (dish: DishMenu) => void
@@ -9,25 +9,6 @@ interface TableProps {
 }
 
 function Table(props: TableProps) {
-  function renderDishes() {
-    return props.dish?.map((dish) => {
-      return (
-        <>
-          <span>{dish.dish}</span>
-        </>
-      )
-    })
-  }
-  // function renderDays() {
-  //   return props.dish?.map((dish) => {
-  //     return (
-  //       <>
-  //         <span>{dish.day}</span>
-  //       </>
-  //     )
-  //   })
-  // }
-
   return (
     <div className="table-responsive rounded ">
       <table className="table border border-2 caption-top shadow-sm text-nowrap table-bordered text-start table-hover ">
@@ -47,20 +28,27 @@ function Table(props: TableProps) {
         <tbody className="">
           <tr>
             <th className="bg-primary text-dark bg-opacity-10" scope="row">
-              Segunda-Feira
+              Segunda-feira
             </th>
-            <td>{renderDishes()[0]}</td>
+            <td>{props.dish.dish}</td>
             <td>
               <div className="col d-flex justify-content-evenly">
                 <button
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  // value={props.dish[1].dish}
+
+                  data-bs-whatever="@mdo"
+                  // data-bs-toggle="modal"
+                  // data-bs-target="#staticBackdrop"
                   type="button"
                   className="btn shadow-sm border btn-info btn-sm"
-                  onClick={() => props.editedDish?.(props.dish[0])}
+                  onClick={() => props.editedDish?.(props.dish)}
                 >
                   <i className="bi bi-pencil-square"></i>
                 </button>
                 <button
-                  onClick={() => props.deletedDish?.(props.dish[0])}
+                  onClick={() => props.deletedDish?.(props.dish)}
                   type="button"
                   className="btn shadow-sm border btn-danger btn-sm"
                 >
@@ -73,20 +61,27 @@ function Table(props: TableProps) {
             <th className="bg-primary text-dark bg-opacity-10" scope="row">
               Terça-feira
             </th>
-            <td>{renderDishes()[1]}</td>
+            <td>{props.dish.dish}</td>
             <td>
               <div className="col d-flex justify-content-evenly">
                 <button
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  // value={props.dish[1].dish}
+
+                  data-bs-whatever="@mdo"
+                  // data-bs-toggle="modal"
+                  // data-bs-target="#staticBackdrop"
                   type="button"
                   className="btn shadow-sm border btn-info btn-sm"
-                  onClick={() => props.editedDish?.(props.dish[1])}
+                  onClick={() => props.editedDish?.(props.dish)}
                 >
                   <i className="bi bi-pencil-square"></i>
                 </button>
                 <button
+                  onClick={() => props.deletedDish?.(props.dish)}
                   type="button"
                   className="btn shadow-sm border btn-danger btn-sm"
-                  onClick={() => props.deletedDish?.(props.dish[1])}
                 >
                   <i className="bi bi-trash3"></i>
                 </button>
@@ -97,20 +92,27 @@ function Table(props: TableProps) {
             <th className="bg-primary text-dark bg-opacity-10" scope="row">
               Quarta-feira
             </th>
-            <td>{renderDishes()[2]}</td>
+            <td>{props.dish.dish}</td>
             <td>
               <div className="col d-flex justify-content-evenly">
                 <button
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  // value={props.dish[1].dish}
+
+                  data-bs-whatever="@mdo"
+                  // data-bs-toggle="modal"
+                  // data-bs-target="#staticBackdrop"
                   type="button"
                   className="btn shadow-sm border btn-info btn-sm"
-                  onClick={() => props.editedDish?.(props.dish[2])}
+                  onClick={() => props.editedDish?.(props.dish)}
                 >
                   <i className="bi bi-pencil-square"></i>
                 </button>
                 <button
+                  onClick={() => props.deletedDish?.(props.dish)}
                   type="button"
                   className="btn shadow-sm border btn-danger btn-sm"
-                  onClick={() => props.deletedDish?.(props.dish[2])}
                 >
                   <i className="bi bi-trash3"></i>
                 </button>
@@ -121,20 +123,27 @@ function Table(props: TableProps) {
             <th className="bg-primary text-dark bg-opacity-10" scope="row">
               Quinta-feira
             </th>
-            <td>{renderDishes()[3]}</td>
+            <td>{props.dish.dish}</td>
             <td>
               <div className="col d-flex justify-content-evenly">
                 <button
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  // value={props.dish[1].dish}
+
+                  data-bs-whatever="@mdo"
+                  // data-bs-toggle="modal"
+                  // data-bs-target="#staticBackdrop"
                   type="button"
                   className="btn shadow-sm border btn-info btn-sm"
-                  onClick={() => props.editedDish?.(props.dish[3])}
+                  onClick={() => props.editedDish?.(props.dish)}
                 >
                   <i className="bi bi-pencil-square"></i>
                 </button>
                 <button
+                  onClick={() => props.deletedDish?.(props.dish)}
                   type="button"
                   className="btn shadow-sm border btn-danger btn-sm"
-                  onClick={() => props.deletedDish?.(props.dish[3])}
                 >
                   <i className="bi bi-trash3"></i>
                 </button>
@@ -145,20 +154,27 @@ function Table(props: TableProps) {
             <th className="bg-primary text-dark bg-opacity-10" scope="row">
               Sexta-feira
             </th>
-            <td>{renderDishes()[4]}</td>
+            <td>{props.dish.dish}</td>
             <td>
               <div className="col d-flex justify-content-evenly">
                 <button
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  // value={props.dish[1].dish}
+
+                  data-bs-whatever="@mdo"
+                  // data-bs-toggle="modal"
+                  // data-bs-target="#staticBackdrop"
                   type="button"
                   className="btn shadow-sm border btn-info btn-sm"
-                  onClick={() => props.editedDish?.(props.dish[4])}
+                  onClick={() => props.editedDish?.(props.dish)}
                 >
                   <i className="bi bi-pencil-square"></i>
                 </button>
                 <button
+                  onClick={() => props.deletedDish?.(props.dish)}
                   type="button"
                   className="btn shadow-sm border btn-danger btn-sm"
-                  onClick={() => props.deletedDish?.(props.dish[4])}
                 >
                   <i className="bi bi-trash3"></i>
                 </button>
