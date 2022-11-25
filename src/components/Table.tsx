@@ -9,22 +9,28 @@ interface TableProps {
 }
 
 function Table(props: TableProps) {
+  function renderHeader() {
+    return (
+      <thead>
+        <tr className="table-dark ">
+          <th scope="col" className="col-2 ">
+            Dia
+          </th>
+          <th scope="col" className="col-8 text-center">
+            Prato
+          </th>
+          <th scope="col" className="text-center">
+            Ação
+          </th>
+        </tr>
+      </thead>
+    )
+  }
+
   return (
     <div className="table-responsive rounded ">
       <table className="table border border-2 caption-top shadow-sm text-nowrap table-bordered text-start table-hover ">
-        <thead>
-          <tr className="table-dark ">
-            <th scope="col" className="col-2 ">
-              Dia
-            </th>
-            <th scope="col" className="col-8 text-center">
-              Prato
-            </th>
-            <th scope="col" className="text-center">
-              Ação
-            </th>
-          </tr>
-        </thead>
+        {renderHeader()}
         <tbody className="">
           <tr>
             <th className="bg-primary text-dark bg-opacity-10" scope="row">
@@ -36,9 +42,9 @@ function Table(props: TableProps) {
                 <button
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
-                  // value={props.dish[1].dish}
+                  // value={props.dish.dish}
 
-                  data-bs-whatever="@mdo"
+                  // data-bs-whatever="@mdo"
                   // data-bs-toggle="modal"
                   // data-bs-target="#staticBackdrop"
                   type="button"
