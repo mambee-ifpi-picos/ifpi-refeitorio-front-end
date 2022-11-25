@@ -41,7 +41,7 @@ const Menu: NextPage = () => {
           <Title subTitle="Cardápio" />
           <Table
             onClick={() => setVisible('form')}
-            dish={dishes[0]}
+            dish={dishes}
             editedDish={dishSelected}
             deletedDish={deleted}
           />
