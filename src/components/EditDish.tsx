@@ -1,16 +1,17 @@
 import DishMenu from '../core/DishMenu'
 import { useState } from 'react'
 import InputDish from './InputDish'
+// import Button from "./Button"
 
 interface EditDisheProps {
-  dish: DishMenu
+  text?: unknown
+  plate: DishMenu
   children?: unknown
-  plateChanged?: (dish: DishMenu) => void
+  plateChanged?: (plate: DishMenu) => void
 }
 
 export default function EditDish(props: EditDisheProps) {
-  const Id = props.dish?.dish
-  const [dish, setDishe] = useState(props.dish.dish ?? '')
+  const [snack, setSnack] = useState(props.plate?.dish ?? '')
 
   return (
     <div>
@@ -21,13 +22,12 @@ export default function EditDish(props: EditDisheProps) {
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
         data-bs-backdrop="static"
-        // data-bs-whatever={props.dish[1].dish}
       >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-                {props.dish.day}
+                {props.plate?.day}
               </h1>
               <button
                 type="button"
@@ -39,11 +39,15 @@ export default function EditDish(props: EditDisheProps) {
             <div className="modal-body">
               <form>
                 <div className="mb-3">
-                  <InputDish value={dish} valueChanged={setDishe} />
+                  <InputDish
+                    text="Informe:"
+                    value={snack}
+                    valueChanged={setSnack}
+                  />
                 </div>
               </form>
             </div>
-            <div className="modal-footer">
+            <div className="modal-footer  d-flex justify-content-between">
               <button
                 type="button"
                 className="btn btn-outline-danger"
@@ -52,15 +56,14 @@ export default function EditDish(props: EditDisheProps) {
                 Cancelar
               </button>
               <button
-                type="button"
                 className="btn btn-success"
                 data-bs-dismiss="modal"
-                id="btnSave"
+                // id="btnSave"
                 onClick={() =>
-                  props.plateChanged?.(new DishMenu(props.dish.day, dish))
+                  props.plateChanged?.(new DishMenu('', props.plate.dish))
                 }
               >
-                {Id ? 'Alterar' : 'Salvar'}
+                Alterar
               </button>
             </div>
           </div>

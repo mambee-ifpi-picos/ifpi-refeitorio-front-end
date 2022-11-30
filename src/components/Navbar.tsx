@@ -17,7 +17,7 @@ function Navbar() {
           </button>
           <div className="d-flex gap-4 align-items-center">
             <Link href="/">
-              <a className="navbar-brand fs-2">Refeitório</a>
+              <a className="navbar-brand fw-bold fs-2">Refeitório</a>
             </Link>
           </div>
 
@@ -30,7 +30,7 @@ function Navbar() {
             >
               <i className="bi bi-person h4"></i>
             </a>
-            <ul className="dropdown-menu text-small">
+            <ul className="dropdown-menu shadow text-small">
               <li>
                 <a className="dropdown-item" href="#">
                   Perfil
