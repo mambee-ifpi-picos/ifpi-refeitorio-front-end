@@ -1,5 +1,5 @@
 import DishMenu from '../core/DishMenu'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import InputDish from './InputDish'
 // import Button from "./Button"
 
@@ -11,7 +11,11 @@ interface EditDisheProps {
 }
 
 export default function EditDish(props: EditDisheProps) {
-  const [snack, setSnack] = useState(props.plate?.dish ?? '')
+  const [snack, setSnack] = useState(props.plate?.dish)
+
+  useEffect(() => {
+    setSnack(props.plate?.dish)
+  }, [props.plate?.dish])
 
   return (
     <div>
@@ -43,6 +47,7 @@ export default function EditDish(props: EditDisheProps) {
                     text="Informe:"
                     value={snack}
                     valueChanged={setSnack}
+                    onlyReading={false}
                   />
                 </div>
               </form>
@@ -60,7 +65,7 @@ export default function EditDish(props: EditDisheProps) {
                 data-bs-dismiss="modal"
                 // id="btnSave"
                 onClick={() =>
-                  props.plateChanged?.(new DishMenu('', props.plate.dish))
+                  props.plateChanged?.(new DishMenu(props.plate.day, snack))
                 }
               >
                 Alterar

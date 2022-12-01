@@ -17,4 +17,8 @@ export default class DishMenu {
   get dish() {
     return this.#dish
   }
+
+  set dish(dish) {
+    this.#dish = dish
+  }
 }
