@@ -1,11 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css' // Import bootstrap CSS
 import Link from 'next/link'
+import style from '../styles/Home.module.css'
 
 function Navbar() {
   return (
-    <nav className="border-bottom shadow-sm fixed-top ">
+    <nav className={`border-bottom shadow-sm fixed-top ${style.BG}`}>
       <div className="container   ">
-        <div className="d-flex flex-wrap align-items-center justify-content-between p-2 ">
+        <div className="d-flex flex-wrap align-items-center justify-content-between p-1 ">
           <button
             className="btn border align-items-center  text-white text-bg-dark d-flex gap-2"
             type="button"

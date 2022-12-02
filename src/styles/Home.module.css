@@ -10,3 +10,15 @@
 .description {
   font-size: 1rem;
 }
+.BG {
+  background-image: linear-gradient(to top, #e5f8f8 20%, #6bb395 100%);
+}
+.BgAcordion {
+  background-image: linear-gradient(to top, #d5d8d8 20%, #c5e2d6 100%);
+}
+.linkFooter{
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  border: none;
+}

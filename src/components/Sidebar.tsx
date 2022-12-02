@@ -1,19 +1,22 @@
 import 'bootstrap/dist/css/bootstrap.min.css' // Import bootstrap CSS
 import Link from 'next/link'
-import '../styles/Home.module.css'
+import style from '../styles/Home.module.css'
 
 function Sidebar() {
   return (
     <nav className="">
       <div
-        className="offcanvas show  offcanvas-start w-auto  "
+        className="offcanvas show bg-dark bg-gradient offcanvas-start w-auto  "
+        tabIndex={-1}
         data-bs-scroll="true"
         data-bs-backdrop="false"
         // tabIndex="-1"
         id="offcanvasScrolling"
         aria-labelledby="offcanvasScrollingLabel"
       >
-        <div className="offcanvas-header text-white text-bg-dark align-items-center justify-content-evenly">
+        <div
+          className={`offcanvas-header ${style.BG} align-items-center p-2 justify-content-evenly`}
+        >
           <i className="bi bi-r-square-fill h2 m-0"></i>
           <h4 className="offcanvas-title " id="offcanvasScrollingLabel">
             Menu
@@ -34,8 +37,8 @@ function Sidebar() {
             aria-label="Close"
           ></button> */}
         </div>
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item ">
+        <ul className="list-group  list-group-flush">
+          <li className="list-group-item bg-dark bg-gradient text-white">
             <Link href="./">
               <button className="accordion-button  gap-2" type="button">
                 <i className="bi bi-columns fs-4 m-1"></i>

@@ -48,7 +48,10 @@ const Menu: NextPage = () => {
             editedDish={dishSelected}
             deletedDish={deleted}
           />
-          <Button className="float-end" onClick={() => setVisible('form')}>
+          <Button
+            className="float-end bg-primary bg-gradient"
+            onClick={() => setVisible('form')}
+          >
             Adicionar
           </Button>
         </>

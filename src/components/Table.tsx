@@ -9,7 +9,7 @@ interface TableProps {
 function Table(props: TableProps) {
   function renderHeader() {
     return (
-      <tr className="table-dark shadow-sm">
+      <tr className="bg-dark bg-gradient text-light shadow-sm">
         <th scope="col" className="col-2">
           Dia
         </th>
@@ -37,7 +37,7 @@ function Table(props: TableProps) {
 
   function renderActions(dish: DishMenu) {
     return (
-      <td className="d-flex justify-content-center">
+      <td className="d-flex justify-content-center ">
         <button
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"

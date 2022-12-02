@@ -1,6 +1,7 @@
 import DishMenu from '../core/DishMenu'
 import { useState, useEffect } from 'react'
 import InputDish from './InputDish'
+import style from '../styles/Home.module.css'
 // import Button from "./Button"
 
 interface EditDisheProps {
@@ -29,7 +30,7 @@ export default function EditDish(props: EditDisheProps) {
       >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
-            <div className="modal-header">
+            <div className={`modal-header ${style.BG}`}>
               <h1 className="modal-title fs-5" id="exampleModalLabel">
                 {props.plate?.day}
               </h1>
