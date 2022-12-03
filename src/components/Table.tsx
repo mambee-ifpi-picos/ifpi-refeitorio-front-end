@@ -9,17 +9,24 @@ interface TableProps {
 function Table(props: TableProps) {
   function renderHeader() {
     return (
-      <tr className="bg-dark bg-gradient text-light shadow-sm">
-        <th scope="col" className="col-2 text-center">
-          Dia
-        </th>
-        <th scope="col" className="col-8 text-center">
-          Prato
-        </th>
-        <th scope="col" className="text-center">
-          Ações
-        </th>
-      </tr>
+      <>
+        <tr className="bg-dark bg-gradient text-light shadow-sm">
+          <th scope="col" className="text-center" colSpan={3}>
+            <span className="fs-4">Jantar</span>
+          </th>
+        </tr>
+        <tr className="bg-dark bg-gradient text-light shadow-sm">
+          <th scope="col" className="col-2 text-center">
+            Dia
+          </th>
+          <th scope="col" className="col-8 text-center">
+            Prato
+          </th>
+          <th scope="col" className="text-center">
+            Ações
+          </th>
+        </tr>
+      </>
     )
   }
 

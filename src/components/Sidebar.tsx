@@ -6,7 +6,7 @@ function Sidebar() {
   return (
     <nav className="">
       <div
-        className="offcanvas show bg-dark bg-gradient offcanvas-start w-auto  "
+        className="offcanvas  show bg-dark bg-gradient offcanvas-start w-auto  "
         tabIndex={-1}
         data-bs-scroll="true"
         data-bs-backdrop="false"
@@ -47,9 +47,9 @@ function Sidebar() {
             </Link>
           </li>
         </ul>
-        <div className="offcanvas-body p-0">
+        <div className="offcanvas-body p-0 ">
           <div className="accordion">
-            <div className="accordion-item">
+            <div className="accordion-item ">
               <h2 className="accordion-header" id="panelsStayOpen-headingOne">
                 <button
                   className="accordion-button collapsed gap-2"

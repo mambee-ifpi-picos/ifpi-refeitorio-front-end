@@ -42,7 +42,7 @@ const Menu: NextPage = () => {
     <MainLayout title="Cardápio">
       {visible === 'table' ? (
         <>
-          <Title subTitle="Cardápio" />
+          <Title subTitle="Cardápios" />
           <Table
             plates={dishes}
             editedDish={dishSelected}
