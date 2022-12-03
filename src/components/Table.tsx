@@ -10,7 +10,7 @@ function Table(props: TableProps) {
   function renderHeader() {
     return (
       <tr className="bg-dark bg-gradient text-light shadow-sm">
-        <th scope="col" className="col-2">
+        <th scope="col" className="col-2 text-center">
           Dia
         </th>
         <th scope="col" className="col-8 text-center">

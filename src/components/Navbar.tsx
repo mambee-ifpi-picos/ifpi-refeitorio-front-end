@@ -18,7 +18,9 @@ function Navbar() {
           </button>
           <div className="d-flex gap-4 align-items-center">
             <Link href="/">
-              <a className="navbar-brand fw-bold fs-2">Refeitório</a>
+              <a className={`navbar-brand ${style.linkRefectory} fw-bold fs-2`}>
+                Refeitório
+              </a>
             </Link>
           </div>
 
