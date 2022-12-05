@@ -4,46 +4,47 @@ import 'bootstrap/dist/css/bootstrap.min.css' // Import bootstrap CSS
 import Table from '../components/Table'
 import AddDish from '../components/AddDish'
 import Title from '../components/Title'
-
-import DishMenu from '../core/DishMenu'
-import { useState } from 'react'
 import EditDish from '../components/EditDish'
 import Button from '../components/Button'
-
-const dishesDefault = [
-  new DishMenu('Segunda-feira', 'arroz, feijao, carne, salada'),
-  new DishMenu('Terça-feira', 'arroz, galinha, salada crua'),
-  new DishMenu('Quarta-feira', 'arroz Branco, galinha Assada, salada'),
-  new DishMenu('Quinta-feira', 'arroz, galinha, colve, salada'),
-  new DishMenu('Sexta-feira', 'arroz, assado, salada de batata'),
-]
+import useDishesDinner from '../hooks/useDishesDinner'
+import useDishesLunch from '../hooks/useDishesLunch'
+import EditDishLunch from '../components/EditDishLunch'
+import TableLunch from '../components/TableLunch'
 
 const Menu: NextPage = () => {
-  const [visible, setVisible] = useState<'table' | 'form'>('table')
-  const [selectedDish, setSelectedDish] = useState<DishMenu>(DishMenu.empty())
-  const [dishes, setDishes] = useState(dishesDefault)
+  // Tabela da Janta
+  const {
+    visible,
+    setVisible,
+    selectedDish,
+    dishes,
+    dishSelected,
+    deleted,
+    updatePlate,
+  } = useDishesDinner()
 
-  function dishSelected(dish: DishMenu) {
-    setSelectedDish(dish)
-    console.log(dish.dish)
-    console.log(dish.day)
-  }
-  function deleted(dish: DishMenu) {
-    console.log(`Deletando ... ${dish.dish}`)
-    console.log(`Deletando ... ${dish.day}`)
-  }
-  function updatePlate(dish: DishMenu) {
-    console.log('savePlate', dish.dish)
-    dishes.filter((d) => d.day === dish.day).map((d) => (d.dish = dish.dish))
-    setDishes([...dishes])
-  }
+  // Tabela do Almoço
+  const {
+    selectedDishLunch,
+    dishesLunch,
+    dishSelectedLunch,
+    deletedLunch,
+    updatePlateLunch,
+  } = useDishesLunch()
 
   return (
     <MainLayout title="Cardápio">
       {visible === 'table' ? (
         <>
           <Title subTitle="Cardápios" />
+          <TableLunch
+            title="Almoço"
+            plates={dishesLunch}
+            editedDish={dishSelectedLunch}
+            deletedDish={deletedLunch}
+          />
           <Table
+            title="Jantar"
             plates={dishes}
             editedDish={dishSelected}
             deletedDish={deleted}
@@ -58,11 +59,18 @@ const Menu: NextPage = () => {
       ) : (
         <AddDish cancel={() => setVisible('table')} />
       )}
-      <EditDish
-        plateChanged={updatePlate}
-        plate={selectedDish}
-        text={dishSelected}
-      />
+      <>
+        <EditDish
+          plateChanged={updatePlate}
+          plate={selectedDish}
+          text={dishSelected}
+        />
+        <EditDishLunch
+          plateChanged={updatePlateLunch}
+          plate={selectedDishLunch}
+          text={dishSelectedLunch}
+        />
+      </>
     </MainLayout>
   )
 }

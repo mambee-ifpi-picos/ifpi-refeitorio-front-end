@@ -1,14 +1,14 @@
 import DishMenu from '../core/DishMenu'
 import style from '../styles/Home.module.css'
 
-interface TableProps {
+interface TableLunchProps {
   plates: DishMenu[]
   title: string
   editedDish?: (dish: DishMenu) => void
   deletedDish?: (dish: DishMenu) => void
 }
 
-function Table(props: TableProps) {
+function TableLunch(props: TableLunchProps) {
   function renderHeader() {
     return (
       <>
@@ -35,13 +35,11 @@ function Table(props: TableProps) {
   function renderData() {
     return props.plates?.map((dish) => {
       return (
-        <tr key={dish.day} className="shadow-sm ">
+        <tr key={dish.day} className="shadow-sm">
           <td className="fw-bold d-flex border border-dark border-opacity-50 align-items-center p-3">
             {dish.day}
           </td>
-          <td className="p-3 border-end border-dark border-opacity-50">
-            {dish.dish}
-          </td>
+          <td className="p-3">{dish.dish}</td>
           {renderActions(dish)}
         </tr>
       )
@@ -53,7 +51,7 @@ function Table(props: TableProps) {
       <td className="d-flex justify-content-center ">
         <button
           data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
+          data-bs-target="#exampleModalLunch"
           onClick={() => props.editedDish?.(dish)}
           className="btn shadow-sm mx-2 border btn-info btn-sm"
         >
@@ -79,4 +77,4 @@ function Table(props: TableProps) {
   )
 }
 
-export default Table
+export default TableLunch
