@@ -31,7 +31,7 @@ function Navbar() {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <i className="bi bi-person h4"></i>
+              <i className="bi bi-person h4 text-light"></i>
             </a>
             <ul className="dropdown-menu shadow text-small">
               <li>
