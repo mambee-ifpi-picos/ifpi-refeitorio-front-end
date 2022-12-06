@@ -31,7 +31,7 @@ export default function MainLayout(props: MainLayoutProps) {
         <Sidebar />
         <div className="row">
           <div className="col-lg-3" />
-          <div className="col text-center">
+          <div className="col pb-5 text-center">
             <main className="container pb-4 text-center ">
               {props.children}
             </main>

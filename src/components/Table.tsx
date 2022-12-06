@@ -35,13 +35,11 @@ function Table(props: TableProps) {
   function renderData() {
     return props.plates?.map((dish) => {
       return (
-        <tr key={dish.day} className="shadow-sm ">
-          <td className="fw-bold d-flex border border-dark border-opacity-50 align-items-center p-3">
+        <tr key={dish.day} className="shadow border border-secondary  ">
+          <td className="fw-bold border border-opacity-50  border-dark p-3 ">
             {dish.day}
           </td>
-          <td className="p-3 border-end border-dark border-opacity-50">
-            {dish.dish}
-          </td>
+          <td className="p-3 ">{dish.dish}</td>
           {renderActions(dish)}
         </tr>
       )
@@ -50,20 +48,20 @@ function Table(props: TableProps) {
 
   function renderActions(dish: DishMenu) {
     return (
-      <td className="d-flex justify-content-center ">
+      <td className="d-flex p-3 justify-content-center ">
         <button
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
           onClick={() => props.editedDish?.(dish)}
           className="btn shadow-sm mx-2 border btn-info btn-sm"
         >
-          <i className="bi bi-pencil-square"></i>
+          <i className="bi bi-pencil-square h6"></i>
         </button>
         <button
           onClick={() => props.deletedDish?.(dish)}
           className="btn shadow-sm border btn-danger btn-sm"
         >
-          <i className="bi bi-trash3"></i>
+          <i className="bi bi-trash3 h6"></i>
         </button>
       </td>
     )
@@ -71,7 +69,7 @@ function Table(props: TableProps) {
 
   return (
     <div className="table-responsive rounded ">
-      <table className="table border border-2 caption-top shadow-sm text-nowrap table-bordered text-start table-hover ">
+      <table className="table border overflow-hidden rounded-top caption-top shadow text-nowrap table-bordered text-start table-hover ">
         <thead>{renderHeader()}</thead>
         <tbody>{renderData()}</tbody>
       </table>
