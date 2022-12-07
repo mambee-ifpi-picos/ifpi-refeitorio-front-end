@@ -31,8 +31,11 @@ export default function EditDish(props: EditDisheProps) {
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className={`modal-header ${style.BG}`}>
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
-                {props.plate?.day}
+              <h1
+                className="modal-title fw-semibold text-dark fs-5"
+                id="exampleModalLabel"
+              >
+                Jantar
               </h1>
               <button
                 type="button"
@@ -45,7 +48,7 @@ export default function EditDish(props: EditDisheProps) {
               <form>
                 <div className="mb-3">
                   <InputDish
-                    text="Informe:"
+                    text={props.plate?.day}
                     value={snack}
                     valueChanged={setSnack}
                     onlyReading={false}
@@ -53,10 +56,10 @@ export default function EditDish(props: EditDisheProps) {
                 </div>
               </form>
             </div>
-            <div className="modal-footer  d-flex justify-content-between">
+            <div className="modal-footer d-flex justify-content-between">
               <button
                 type="button"
-                className="btn btn-outline-danger"
+                className="btn  btn-sm btn-outline-danger"
                 data-bs-dismiss="modal"
               >
                 Cancelar

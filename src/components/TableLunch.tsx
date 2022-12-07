@@ -13,18 +13,18 @@ function TableLunch(props: TableLunchProps) {
     return (
       <>
         <tr className={`${style.BG} border border-light shadow-sm`}>
-          <th scope="col" className="text-center" colSpan={3}>
+          <th scope="row" className="text-center" colSpan={6}>
             <span className="fs-4">{props.title}</span>
           </th>
         </tr>
         <tr className="bg-dark bg-gradient text-light shadow-sm">
-          <th scope="col" className="col-2 text-center">
+          <th className="text-center" colSpan={1}>
             Dia
           </th>
-          <th scope="col" className="col-8 text-center">
+          <th className="text-center" colSpan={4}>
             Prato
           </th>
-          <th scope="col" className="text-center">
+          <th className="text-center" colSpan={1}>
             Ações
           </th>
         </tr>
@@ -35,11 +35,17 @@ function TableLunch(props: TableLunchProps) {
   function renderData() {
     return props.plates?.map((dish) => {
       return (
-        <tr key={dish.day} className="shadow border border-secondary ">
-          <td className="fw-bold border border-dark border-opacity-50 p-3">
+        <tr key={dish.day} className="shadow border  border-secondary ">
+          <th
+            scope="row"
+            colSpan={1}
+            className="fw-bold border  border-dark text-center border-opacity-50 p-3"
+          >
             {dish.day}
+          </th>
+          <td colSpan={4} className="p-3  lh-base text-wrap">
+            {dish.dish}
           </td>
-          <td className="p-3">{dish.dish}</td>
           {renderActions(dish)}
         </tr>
       )
@@ -48,7 +54,7 @@ function TableLunch(props: TableLunchProps) {
 
   function renderActions(dish: DishMenu) {
     return (
-      <td className="d-flex p-3  justify-content-center ">
+      <td colSpan={1} className="p-3 text-center">
         <button
           data-bs-toggle="modal"
           data-bs-target="#exampleModalLunch"
@@ -59,7 +65,7 @@ function TableLunch(props: TableLunchProps) {
         </button>
         <button
           onClick={() => props.deletedDish?.(dish)}
-          className="btn shadow-sm border btn-danger btn-sm"
+          className="btn shadow-sm border btn-outline-danger btn-sm"
         >
           <i className="bi bi-trash3 h6"></i>
         </button>
@@ -68,8 +74,8 @@ function TableLunch(props: TableLunchProps) {
   }
 
   return (
-    <div className="table-responsive rounded">
-      <table className="table border overflow-hidden rounded-top caption-top shadow text-nowrap table-bordered text-start table-hover ">
+    <div className="table-responsive  rounded">
+      <table className="table align-middle border overflow-hidden rounded-top caption-top shadow text-nowrap table-bordered text-start table-hover ">
         <thead>{renderHeader()}</thead>
         <tbody>{renderData()}</tbody>
       </table>

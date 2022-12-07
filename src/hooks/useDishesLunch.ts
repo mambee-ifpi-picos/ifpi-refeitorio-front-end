@@ -3,7 +3,7 @@ import DishMenu from '../core/DishMenu'
 
 const dishesLunchDefault = [
   new DishMenu('Segunda-feira', 'arroz test, feijao, carne, salada'),
-  new DishMenu('Terça-feira', 'arroz test, galinha, salada crua'),
+  new DishMenu('Terça-feira', 'arroz test, galinha, salada crua, '),
   new DishMenu('Quarta-feira', 'arroz Branco test, galinha Assada, salada'),
   new DishMenu('Quinta-feira', 'arroz test, galinha, colve, salada'),
   new DishMenu('Sexta-feira', 'arroz, assado, salada de batata'),
