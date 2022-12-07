@@ -10,7 +10,6 @@ function Sidebar() {
         tabIndex={-1}
         data-bs-scroll="true"
         data-bs-backdrop="false"
-        // tabIndex="-1"
         id="offcanvasScrolling"
         aria-labelledby="offcanvasScrollingLabel"
       >
@@ -22,7 +21,7 @@ function Sidebar() {
             Menu
           </h4>
           <button
-            className="btn border btn-close align-items-center  text-white text-bg-dark d-flex gap-2"
+            className="btn border align-items-center  text-white text-bg-dark d-flex gap-2"
             type="button"
             data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasScrolling"

@@ -73,7 +73,7 @@ function Table(props: TableProps) {
   }
 
   return (
-    <div className="table-responsive  rounded">
+    <div className=" rounded">
       <table className="table align-middle border overflow-hidden rounded-top caption-top shadow text-nowrap table-bordered text-start table-hover ">
         <thead>{renderHeader()}</thead>
         <tbody>{renderData()}</tbody>
