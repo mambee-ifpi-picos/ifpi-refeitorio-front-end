@@ -92,7 +92,7 @@ export default function EditDish(props: EditDisheProps) {
         >
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
-              <div className="modal-header">
+              <div className={`modal-header ${style.BgDanger}`}>
                 <h1
                   className="modal-title fw-semibold text-dark fs-5"
                   id="exampleModalToggleLabel2"
