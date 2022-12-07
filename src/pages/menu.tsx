@@ -10,6 +10,7 @@ import useDishesDinner from '../hooks/useDishesDinner'
 import useDishesLunch from '../hooks/useDishesLunch'
 import EditDishLunch from '../components/EditDishLunch'
 import TableLunch from '../components/TableLunch'
+import ModalCancel from '../components/ModalCancel'
 
 const Menu: NextPage = () => {
   // Tabela da Janta
@@ -70,6 +71,7 @@ const Menu: NextPage = () => {
           plate={selectedDishLunch}
           text={dishSelectedLunch}
         />
+        <ModalCancel />
       </>
     </MainLayout>
   )

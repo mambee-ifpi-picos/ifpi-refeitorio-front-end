@@ -12,7 +12,7 @@ function Table(props: TableProps) {
   function renderHeader() {
     return (
       <>
-        <tr className={`${style.BG} border border-light shadow-sm`}>
+        <tr className={`${style.BG}  shadow-sm`}>
           <th scope="row" className="text-center" colSpan={6}>
             <span className="fs-4">{props.title}</span>
           </th>

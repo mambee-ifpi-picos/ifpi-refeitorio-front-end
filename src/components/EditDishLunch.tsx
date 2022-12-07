@@ -60,7 +60,8 @@ export default function EditDish(props: EditDisheProps) {
               <button
                 type="button"
                 className="btn btn-sm btn-outline-danger"
-                data-bs-dismiss="modal"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"
               >
                 Cancelar
               </button>
