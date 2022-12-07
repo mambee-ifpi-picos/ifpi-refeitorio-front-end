@@ -35,7 +35,7 @@ function TableLunch(props: TableLunchProps) {
   function renderData() {
     return props.plates?.map((dish) => {
       return (
-        <tr key={dish.day} className="shadow border  border-secondary ">
+        <tr key={dish.day} className="shadow border border-secondary ">
           <th
             scope="row"
             colSpan={1}
@@ -54,7 +54,7 @@ function TableLunch(props: TableLunchProps) {
 
   function renderActions(dish: DishMenu) {
     return (
-      <td colSpan={1} className="p-2 text-center">
+      <td colSpan={1} className="p-2  text-center">
         <button
           data-bs-toggle="modal"
           data-bs-target="#exampleModalToggleLunch"
@@ -74,12 +74,11 @@ function TableLunch(props: TableLunchProps) {
   }
 
   return (
-    <div className=" pb-5 rounded">
+    <div className="pb-5 rounded">
       <table className="table align-middle border overflow-hidden rounded-top caption-top shadow text-nowrap table-bordered text-start table-hover ">
         <thead>{renderHeader()}</thead>
         <tbody>{renderData()}</tbody>
       </table>
-      <div id="liveAlertPlaceholder"></div>
     </div>
   )
 }
