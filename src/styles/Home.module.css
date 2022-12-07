@@ -14,6 +14,10 @@
   background: linear-gradient(to right, #99f2c8, #2f6154);
   color: #fff;
 }
+.BgDanger{
+  background: linear-gradient(to right, #ffffff, #b65b44);
+  
+}
 .BgAcordion {
   background-image: linear-gradient(to top, #d5d8d8 20%, #c5e2d6 100%);
 }

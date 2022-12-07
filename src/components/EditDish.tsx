@@ -20,61 +20,112 @@ export default function EditDish(props: EditDisheProps) {
 
   return (
     <div>
-      <div
-        className="modal fade"
-        id="exampleModal"
-        tabIndex={-1}
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-        data-bs-backdrop="static"
-      >
-        <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content">
-            <div className={`modal-header ${style.BG}`}>
-              <h1
-                className="modal-title fw-semibold text-dark fs-5"
-                id="exampleModalLabel"
-              >
-                Jantar
-              </h1>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+      <div>
+        <div
+          className="modal fade"
+          id="exampleModalToggle"
+          aria-hidden="true"
+          aria-labelledby="exampleModalToggleLabel"
+          tabIndex={-1}
+          data-bs-backdrop="static"
+        >
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className={`modal-header ${style.BG}`}>
+                <h1
+                  className="modal-title fs-5 fw-semibold text-dark "
+                  id="exampleModalToggleLabel"
+                >
+                  Jantar
+                </h1>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body">
+                <form>
+                  <div className="mb-3">
+                    <InputDish
+                      text={props.plate?.day}
+                      value={snack}
+                      valueChanged={setSnack}
+                      onlyReading={false}
+                    />
+                  </div>
+                </form>
+              </div>
+              <div className="modal-footer d-flex justify-content-between">
+                <button
+                  className="btn  btn-sm btn-outline-danger"
+                  data-bs-target="#exampleModalToggle2"
+                  data-bs-toggle="modal"
+                >
+                  Cancelar
+                </button>
+                <button
+                  className="btn btn-success"
+                  data-bs-dismiss="modal"
+                  // id="btnSave"
+                  onClick={() =>
+                    props.plateChanged?.(new DishMenu(props.plate.day, snack))
+                  }
+                >
+                  Alterar
+                </button>
+              </div>
             </div>
-            <div className="modal-body">
-              <form>
-                <div className="mb-3">
-                  <InputDish
-                    text={props.plate?.day}
-                    value={snack}
-                    valueChanged={setSnack}
-                    onlyReading={false}
-                  />
-                </div>
-              </form>
-            </div>
-            <div className="modal-footer d-flex justify-content-between">
-              <button
-                type="button"
-                className="btn  btn-sm btn-outline-danger"
-                data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop"
-              >
-                Cancelar
-              </button>
-              <button
-                className="btn btn-success"
-                data-bs-dismiss="modal"
-                // id="btnSave"
-                onClick={() =>
-                  props.plateChanged?.(new DishMenu(props.plate.day, snack))
-                }
-              >
-                Alterar
-              </button>
+          </div>
+        </div>
+
+        {/* Modal-2 */}
+
+        <div
+          className="modal fade"
+          id="exampleModalToggle2"
+          aria-hidden="true"
+          aria-labelledby="exampleModalToggleLabel2"
+          tabIndex={-1}
+          data-bs-backdrop="static"
+        >
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1
+                  className="modal-title fw-semibold text-dark fs-5"
+                  id="exampleModalToggleLabel2"
+                >
+                  Atenção
+                </h1>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body fs-5">
+                Deseja cancelar as Alterações?
+              </div>
+              <div className="modal-footer">
+                <button
+                  className="btn btn-warning"
+                  data-bs-target="#exampleModalToggle"
+                  data-bs-toggle="modal"
+                >
+                  Retorna
+                </button>
+                <button
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  type="button"
+                  className="btn btn-outline-danger"
+                >
+                  Confirmar
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -56,7 +56,7 @@ function Table(props: TableProps) {
       <td colSpan={1} className="p-2 text-center">
         <button
           data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
+          data-bs-target="#exampleModalToggle"
           onClick={() => props.editedDish?.(dish)}
           className="btn shadow-sm border btn-info btn-sm"
         >

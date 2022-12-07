@@ -6,7 +6,7 @@ function Sidebar() {
   return (
     <nav className="">
       <div
-        className={`offcanvas  show ${style.BGSidebar} border border-0 offcanvas-start w-auto  `}
+        className={`offcanvas show ${style.BGSidebar} border border-0 offcanvas-start w-auto  `}
         tabIndex={-1}
         data-bs-scroll="true"
         data-bs-backdrop="false"
