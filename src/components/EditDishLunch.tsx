@@ -64,6 +64,7 @@ export default function EditDish(props: EditDisheProps) {
               >
                 Cancelar
               </button>
+
               <button
                 className="btn btn-success"
                 data-bs-dismiss="modal"

@@ -39,7 +39,7 @@ function TableLunch(props: TableLunchProps) {
           <th
             scope="row"
             colSpan={1}
-            className="fw-bold border  border-dark text-center border-opacity-50 p-3"
+            className="fw-bold border  border-dark text-center border-opacity-50 p-1"
           >
             {dish.day}
           </th>
@@ -54,18 +54,18 @@ function TableLunch(props: TableLunchProps) {
 
   function renderActions(dish: DishMenu) {
     return (
-      <td colSpan={1} className="p-3 text-center">
+      <td colSpan={1} className="p-2 text-center">
         <button
           data-bs-toggle="modal"
           data-bs-target="#exampleModalLunch"
           onClick={() => props.editedDish?.(dish)}
-          className="btn shadow-sm mx-2 border btn-info btn-sm"
+          className="btn shadow-sm border btn-info btn-sm"
         >
           <i className="bi bi-pencil-square h6"></i>
         </button>
         <button
           onClick={() => props.deletedDish?.(dish)}
-          className="btn shadow-sm border btn-outline-danger btn-sm"
+          className="btn shadow-sm border ms-3 btn-outline-danger btn-sm"
         >
           <i className="bi bi-trash3 h6"></i>
         </button>
@@ -74,11 +74,12 @@ function TableLunch(props: TableLunchProps) {
   }
 
   return (
-    <div className="table-responsive  rounded">
+    <div className="table-responsive pb-5 rounded">
       <table className="table align-middle border overflow-hidden rounded-top caption-top shadow text-nowrap table-bordered text-start table-hover ">
         <thead>{renderHeader()}</thead>
         <tbody>{renderData()}</tbody>
       </table>
+      <div id="liveAlertPlaceholder"></div>
     </div>
   )
 }

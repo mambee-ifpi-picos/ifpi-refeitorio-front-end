@@ -4,7 +4,7 @@ import DishMenu from '../core/DishMenu'
 const dishesDinnerDefault = [
   new DishMenu('Segunda-feira', 'arroz, feijao, carne, salada'),
   new DishMenu('Terça-feira', 'arroz, galinha, salada crua'),
-  new DishMenu('Quarta-feira', 'arroz Branco test, galinha Assada, sala'),
+  new DishMenu('Quarta-feira', 'arroz Branco test, galinha Assada, salada'),
   new DishMenu('Quinta-feira', 'arroz, galinha, colve, salada'),
   new DishMenu('Sexta-feira', 'arroz, assado, salada de batata'),
 ]
