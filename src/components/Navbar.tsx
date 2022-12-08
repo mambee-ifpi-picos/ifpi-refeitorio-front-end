@@ -5,14 +5,14 @@ import style from '../styles/Home.module.css'
 function Navbar() {
   return (
     <nav className={`border-bottom shadow-sm fixed-top ${style.BG}`}>
-      <div className="container   ">
+      <div className="px-5">
         <div className="d-flex flex-wrap align-items-center justify-content-between p-1 ">
           <button
             className="btn border align-items-center  text-white text-bg-dark d-flex gap-2"
-            type="button"
             data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasScrolling"
-            aria-controls="offcanvasScrolling"
+            data-bs-target="#offcanvasResponsive"
+            aria-controls="offcanvasResponsive"
+            type="button"
           >
             <i className="bi bi-list "></i>
           </button>
