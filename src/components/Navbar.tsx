@@ -4,27 +4,38 @@ import style from '../styles/Home.module.css'
 
 function Navbar() {
   return (
-    <nav className={`border-bottom shadow-sm fixed-top ${style.BG}`}>
-      <div className="px-5">
-        <div className="d-flex flex-wrap align-items-center justify-content-between p-1 ">
-          <button
-            className="btn border align-items-center  text-white text-bg-dark d-flex gap-2"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasResponsive"
-            aria-controls="offcanvasResponsive"
-            type="button"
-          >
-            <i className="bi bi-list "></i>
-          </button>
-          <div className="d-flex gap-4 align-items-center">
-            <Link href="/">
-              <a className={`navbar-brand ${style.linkRefectory} fw-bold fs-2`}>
-                Refeitório
-              </a>
-            </Link>
+    <nav className={`border-bottom shadow-sm px-3 fixed-top  ${style.BG}`}>
+      <div className="">
+        <div className="d-flex flex-row align-items-center justify-content-between ">
+          <div className="d-flex gap-3">
+            <h4
+              className="offcanvas-title  align-self-center"
+              id="offcanvasResponsiveLabel"
+            >
+              <div className="d-flex align-items-center">
+                <Link href="/">
+                  <a
+                    className={`navbar-brand ${style.linkRefectory} fw-bold fs-2`}
+                  >
+                    Refeitório
+                  </a>
+                </Link>
+              </div>
+            </h4>
+            <div className="align-self-center my-2">
+              <button
+                className="btn border align-items-center text-white text-bg-dark d-flex"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasResponsive"
+                aria-controls="offcanvasResponsive"
+              >
+                <i className="bi bi-list fs-6  align-self-center"></i>
+              </button>
+            </div>
           </div>
 
-          <div className="dropdown text-end ">
+          <div className="dropdown text-end px-3">
             <a
               href="#"
               className="d-block link-dark text-decoration-none dropdown-toggle "

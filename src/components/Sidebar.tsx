@@ -4,34 +4,15 @@ import style from '../styles/Home.module.css'
 
 function Sidebar() {
   return (
-    <nav className="  ">
+    <nav className="">
       <div
-        className={`offcanvas show d-lg-block ${style.BGSidebar} border border-0 offcanvas-start w-auto  `}
+        className={`offcanvas show ${style.BGSidebar} border border-0 offcanvas-start w-auto  `}
         tabIndex={-1}
         data-bs-scroll="true"
         data-bs-backdrop="false"
         id="offcanvasResponsive"
         aria-labelledby="offcanvasResponsiveLabel"
       >
-        <div
-          className={`offcanvas-header ${style.BG} align-items-center p-2 justify-content-evenly `}
-        >
-          <i className="bi bi-r-square-fill h2 m-0"></i>
-          <h4 className="offcanvas-title " id="offcanvasResponsiveLabel">
-            Menu
-          </h4>
-          <div className="">
-            <button
-              className="btn border d-lg-none  align-items-center  text-white text-bg-dark d-flex gap-2"
-              type="button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasResponsive"
-              aria-controls="offcanvasResponsive"
-            >
-              <i className="bi bi-list "></i>
-            </button>
-          </div>
-        </div>
         <ul className="list-group  list-group-flush">
           <li className="list-group-item bg-dark bg-gradient text-white">
             <Link href="./">
