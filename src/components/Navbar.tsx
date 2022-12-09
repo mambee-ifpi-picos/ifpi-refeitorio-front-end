@@ -15,7 +15,7 @@ function Navbar() {
               <div className="d-flex align-items-center">
                 <Link href="/">
                   <a
-                    className={`navbar-brand ${style.linkRefectory} fw-bold fs-2`}
+                    className={`navbar-brand ${style.linkRefectory} text-black fw-bold fs-2`}
                   >
                     Refeitório
                   </a>
@@ -24,7 +24,7 @@ function Navbar() {
             </h4>
             <div className="align-self-center my-2">
               <button
-                className="btn border align-items-center text-white text-bg-dark d-flex"
+                className={`btn border align-items-center text-white btn-dark d-flex`}
                 type="button"
                 data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasResponsive"

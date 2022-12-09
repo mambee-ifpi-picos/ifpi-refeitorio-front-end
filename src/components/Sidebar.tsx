@@ -1,12 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css' // Import bootstrap CSS
 import Link from 'next/link'
 import style from '../styles/Home.module.css'
+import Profile from './Profile'
 
 function Sidebar() {
   return (
     <nav className="">
       <div
-        className={`offcanvas show ${style.BGSidebar} border border-0 offcanvas-start w-auto  `}
+        className={`offcanvas  show ${style.BGSidebar} border border-0 offcanvas-start w-auto  `}
         tabIndex={-1}
         data-bs-scroll="true"
         data-bs-backdrop="false"
@@ -14,6 +15,9 @@ function Sidebar() {
         aria-labelledby="offcanvasResponsiveLabel"
       >
         <ul className="list-group  list-group-flush">
+          <li className="list-group-item  border-end shadow-sm ">
+            <Profile />
+          </li>
           <li className="list-group-item bg-dark bg-gradient text-white">
             <Link href="./">
               <button className="accordion-button  gap-2" type="button">
