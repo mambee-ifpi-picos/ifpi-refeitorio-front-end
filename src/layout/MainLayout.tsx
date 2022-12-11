@@ -27,16 +27,20 @@ export default function MainLayout(props: MainLayoutProps) {
       </Head>
 
       <div className={styles.page}>
-        <Navbar />
-        <Sidebar />
-        <div className="row">
-          <div className="col-lg-3" />
-          <div className="col pb-5 text-center">
-            <main className="container pb-4 text-center ">
-              {props.children}
-            </main>
+        <div className="container text-center ">
+          <div className="row">
+            <div className="col">
+              <Navbar />
+            </div>
           </div>
-          <div className="col-xl-2 col-lg-1"></div>
+          <div className="row">
+            <div className="col-lg-3 col-xl-2">
+              <Sidebar />
+            </div>
+            <div className=" col-lg-9 col-xl-10">
+              <main className="text-center ">{props.children}</main>
+            </div>
+          </div>
         </div>
       </div>
       <Footer />
