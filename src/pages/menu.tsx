@@ -36,7 +36,7 @@ const Menu: NextPage = () => {
     <MainLayout title="Cardápio">
       {visible === 'table' ? (
         <>
-          <Title subTitle="Cardápios" />
+          <Title subTitle="Cardápio Semanal" />
           <TableLunch
             title="Almoço"
             plates={dishesLunch}

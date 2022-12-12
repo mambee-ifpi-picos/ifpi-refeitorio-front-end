@@ -32,12 +32,12 @@ export default function EditDish(props: EditDisheProps) {
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <div className={`modal-header ${style.BG}`}>
-                <h1
-                  className="modal-title fs-5 fw-semibold text-dark "
+                <h4
+                  className="modal-title fw-semibold text-dark "
                   id="exampleModalToggleLabel"
                 >
                   Jantar
-                </h1>
+                </h4>
                 <button
                   type="button"
                   className="btn-close"
@@ -47,6 +47,69 @@ export default function EditDish(props: EditDisheProps) {
               </div>
               <div className="modal-body">
                 <form>
+                  <div className="pb-3">
+                    <h4 className="">Selecione o(s) Dia(s)</h4>
+                    <input
+                      type="checkbox"
+                      className="btn-check"
+                      id="segunda-jantar"
+                      autoComplete="off"
+                    />
+                    <label
+                      className="btn m-2 btn-outline-success"
+                      htmlFor="segunda-jantar"
+                    >
+                      Segunda-feira
+                    </label>
+                    <input
+                      type="checkbox"
+                      className="btn-check"
+                      id="terca-jantar"
+                      autoComplete="off"
+                    />
+                    <label
+                      className="btn m-2 btn-outline-success"
+                      htmlFor="terca-jantar"
+                    >
+                      Terça-feira
+                    </label>
+                    <input
+                      type="checkbox"
+                      className="btn-check"
+                      id="quarta-jantar"
+                      autoComplete="off"
+                    />
+                    <label
+                      className="btn m-2 btn-outline-success"
+                      htmlFor="quarta-jantar"
+                    >
+                      Quarta-feira
+                    </label>
+                    <input
+                      type="checkbox"
+                      className="btn-check"
+                      id="quinta-jantar"
+                      autoComplete="off"
+                    />
+                    <label
+                      className="btn m-2 btn-outline-success"
+                      htmlFor="quinta-jantar"
+                    >
+                      Quinta-feira
+                    </label>
+                    <input
+                      type="checkbox"
+                      className="btn-check"
+                      id="sexta-jantar"
+                      autoComplete="off"
+                    />
+                    <label
+                      className="btn m-2 btn-outline-success"
+                      htmlFor="sexta-jantar"
+                    >
+                      Sexta-feira
+                    </label>
+                  </div>
                   <div className="mb-3">
                     <InputDish
                       text={props.plate?.day}

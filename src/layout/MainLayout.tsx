@@ -34,10 +34,10 @@ export default function MainLayout(props: MainLayoutProps) {
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-3 col-xl-2">
+            <div className="col-lg-2 col-xl-2">
               <Sidebar />
             </div>
-            <div className=" col-lg-9 col-xl-10">
+            <div className=" col-lg-10 px-4 col-xl-10">
               <main className="text-center ">{props.children}</main>
             </div>
           </div>
