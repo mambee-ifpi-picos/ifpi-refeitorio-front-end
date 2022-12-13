@@ -17,6 +17,14 @@ export default function EditDish(props: EditDisheProps) {
   useEffect(() => {
     setSnack(props.plate?.dish)
   }, [props.plate?.dish])
+  function selectingDays() {
+    const days = ['segunda', 'terca', 'quarta', 'quinta', 'sexta']
+    const daysSelected = days.filter((day) => {
+      const input = document.getElementById(day) as HTMLInputElement
+      return input.checked
+    })
+    return daysSelected
+  }
 
   return (
     <div>
@@ -132,9 +140,15 @@ export default function EditDish(props: EditDisheProps) {
                   className="btn btn-success"
                   data-bs-dismiss="modal"
                   // id="btnSave"
-                  onClick={() =>
-                    props.plateChanged?.(new DishMenu(props.plate.day, snack))
-                  }
+                  onClick={() => {
+                    if (selectingDays().length === 0) {
+                      alert('Selecione um dia')
+                    } else {
+                      return props.plateChanged?.(
+                        new DishMenu(props.plate.day, snack)
+                      )
+                    }
+                  }}
                 >
                   Alterar
                 </button>
