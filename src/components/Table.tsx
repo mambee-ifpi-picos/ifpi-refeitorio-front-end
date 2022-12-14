@@ -1,11 +1,23 @@
 import DishMenu from '../core/DishMenu'
 import style from '../styles/Home.module.css'
+import { daysAll, days } from './TableLunch'
 
 interface TableProps {
   plates: DishMenu[]
   title: string
   editedDish?: (dish: DishMenu) => void
   deletedDish?: (dish: DishMenu) => void
+}
+
+function renderdateDays() {
+  return daysAll().map((day, i) => {
+    return (
+      // eslint-disable-next-line react/jsx-key
+      <th className="text-center" colSpan={1}>
+        {days[i]} {day.toLocaleDateString('pt-BR')}
+      </th>
+    )
+  })
 }
 
 function Table(props: TableProps) {
@@ -21,21 +33,7 @@ function Table(props: TableProps) {
           <th className="text-center" colSpan={1}>
             Composiçao
           </th>
-          <th className="text-center" colSpan={1}>
-            Segunda (01/12/2022)
-          </th>
-          <th className="text-center" colSpan={1}>
-            Terça-feira (02/12/2022)
-          </th>
-          <th className="text-center" colSpan={1}>
-            Quarta (03/12/2022)
-          </th>
-          <th className="text-center" colSpan={1}>
-            Quinta (04/12/2022)
-          </th>
-          <th className="text-center" colSpan={1}>
-            Sexta (05/12/2022)
-          </th>
+          {renderdateDays()}
           <th className="text-center" colSpan={1}>
             Ação
           </th>

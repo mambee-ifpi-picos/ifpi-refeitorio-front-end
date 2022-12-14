@@ -1,11 +1,35 @@
 import DishMenu from '../core/DishMenu'
 import style from '../styles/Home.module.css'
+import { addDays, eachDayOfInterval, startOfWeek } from 'date-fns'
 
 interface TableLunchProps {
   plates: DishMenu[]
   title: string
   editedDish?: (dish: DishMenu) => void
   deletedDish?: (dish: DishMenu) => void
+}
+
+export const days = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta']
+
+export function daysAll() {
+  const today = startOfWeek(new Date(), { weekStartsOn: 1 })
+  const aWeekFromNow = addDays(today, 4)
+  const thisWeek = eachDayOfInterval({
+    start: today,
+    end: aWeekFromNow,
+  })
+  return thisWeek
+}
+
+function renderdateDays() {
+  return daysAll().map((day, i) => {
+    return (
+      // eslint-disable-next-line react/jsx-key
+      <th className="text-center" colSpan={1}>
+        {days[i]} {day.toLocaleDateString('pt-BR')}
+      </th>
+    )
+  })
 }
 
 function TableLunch(props: TableLunchProps) {
@@ -21,21 +45,7 @@ function TableLunch(props: TableLunchProps) {
           <th className="text-center" colSpan={1}>
             Composiçao
           </th>
-          <th className="text-center" colSpan={1}>
-            Segunda (01/12/2022)
-          </th>
-          <th className="text-center" colSpan={1}>
-            Terça-feira (02/12/2022)
-          </th>
-          <th className="text-center" colSpan={1}>
-            Quarta (03/12/2022)
-          </th>
-          <th className="text-center" colSpan={1}>
-            Quinta (04/12/2022)
-          </th>
-          <th className="text-center" colSpan={1}>
-            Sexta (05/12/2022)
-          </th>
+          {renderdateDays()}
           <th className="text-center" colSpan={1}>
             Ação
           </th>
