@@ -26,7 +26,9 @@ function renderdateDays() {
     return (
       // eslint-disable-next-line react/jsx-key
       <th className="text-center" colSpan={1}>
-        {days[i]} {day.toLocaleDateString('pt-BR')}
+        {days[i]}
+        <br />
+        {day.toLocaleDateString('pt-BR')}
       </th>
     )
   })
