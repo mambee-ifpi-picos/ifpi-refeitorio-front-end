@@ -110,7 +110,11 @@ function Sidebar() {
                         <a className="nav-link">Cardápio</a>
                       </Link>
                     </li>
-                    <li className="list-group-item">A second item</li>
+                    <li className="list-group-item d-flex">
+                      <Link href="/itens">
+                        <a className="nav-link">Itens</a>
+                      </Link>
+                    </li>
                     <li className="list-group-item">A third item</li>
                   </ul>
                 </div>
