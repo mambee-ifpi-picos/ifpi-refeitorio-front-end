@@ -1,6 +1,6 @@
 import DishMenu from '../core/DishMenu'
 import style from '../styles/Home.module.css'
-import { daysAll, days } from './TableLunch'
+import { daysAll } from './TableLunch'
 
 interface TableProps {
   plates: DishMenu[]
@@ -10,14 +10,14 @@ interface TableProps {
 }
 
 function renderdateDays() {
-  return daysAll().map((day, i) => {
+  return daysAll().map((day) => {
     return (
       // eslint-disable-next-line react/jsx-key
-      <th className="text-center" colSpan={1}>
-        {days[i]}
+      <>
+        {/* {days[i]} */}
         <br />
         {day.toLocaleDateString('pt-BR')}
-      </th>
+      </>
     )
   })
 }
@@ -27,12 +27,18 @@ function Table(props: TableProps) {
     return (
       <>
         <tr className={`${style.BG}  shadow-sm`}>
-          <th scope="row" className="text-center" colSpan={7}>
+          <th scope="row" className="text-center" colSpan={6}>
             <span className="fs-4">{props.title}</span>
           </th>
         </tr>
         <tr className="bg-dark h6 text-wrap bg-gradient align-middle text-light shadow-sm">
-          {renderdateDays()}
+          <th className="text-center" colSpan={1}>
+            Dia
+          </th>
+          <th className="text-center" colSpan={4}>
+            Prato
+          </th>
+          {/* {renderdateDays()} */}
           <th className="text-center" colSpan={1}>
             Ação
           </th>
@@ -46,19 +52,15 @@ function Table(props: TableProps) {
       return (
         <>
           <tr key={dish.day} className="shadow border  border-secondary ">
-            <td colSpan={1} className="text-center text-wrap">
-              {dish.dish}
-            </td>
-            <td colSpan={1} className="text-center text-wrap">
-              {dish.dish}
-            </td>
-            <td colSpan={1} className="text-center text-wrap">
-              {dish.dish}
-            </td>
-            <td colSpan={1} className="text-center text-wrap">
-              {dish.dish}
-            </td>
-            <td colSpan={1} className="text-center text-wrap">
+            <th
+              scope="row"
+              colSpan={1}
+              className="fw-bold border border-dark  text-center border-opacity-50"
+            >
+              {dish.day}
+              {renderdateDays()[0]}
+            </th>
+            <td colSpan={4} className="text-center text-wrap">
               {dish.dish}
             </td>
             {renderActions(dish)}
@@ -70,14 +72,14 @@ function Table(props: TableProps) {
 
   function renderActions(dish: DishMenu) {
     return (
-      <td scope="col" colSpan={1} className="p-3 text-center">
+      <td scope="col" colSpan={1} className="px-3 text-center">
         <button
           data-bs-toggle="modal"
           data-bs-target="#exampleModalToggle"
           onClick={() => props.editedDish?.(dish)}
           className="btn shadow-sm border btn-success btn-sm"
         >
-          <i className="bi bi-pencil-square h6"></i>
+          <i className="bi bi-pencil-square h5"></i>
         </button>
         {/* <button
           onClick={() => props.deletedDish?.(dish)}

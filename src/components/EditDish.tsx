@@ -17,20 +17,6 @@ export default function EditDish(props: EditDisheProps) {
   useEffect(() => {
     setSnack(props.plate?.dish)
   }, [props.plate?.dish])
-  function selectingDays() {
-    const days = [
-      'segunda-jantar',
-      'terca-jantar',
-      'quarta-jantar',
-      'quinta-jantar',
-      'sexta-jantar',
-    ]
-    const daysSelected = days.filter((day) => {
-      const input = document.getElementById(day) as HTMLInputElement
-      return input.checked
-    })
-    return daysSelected
-  }
 
   return (
     <div>
@@ -61,69 +47,6 @@ export default function EditDish(props: EditDisheProps) {
               </div>
               <div className="modal-body">
                 <form>
-                  <div className="pb-3">
-                    <h4 className="">Selecione o(s) Dia(s)</h4>
-                    <input
-                      type="checkbox"
-                      className="btn-check"
-                      id="segunda-jantar"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn m-2 btn-outline-success"
-                      htmlFor="segunda-jantar"
-                    >
-                      Segunda-feira
-                    </label>
-                    <input
-                      type="checkbox"
-                      className="btn-check"
-                      id="terca-jantar"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn m-2 btn-outline-success"
-                      htmlFor="terca-jantar"
-                    >
-                      Terça-feira
-                    </label>
-                    <input
-                      type="checkbox"
-                      className="btn-check"
-                      id="quarta-jantar"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn m-2 btn-outline-success"
-                      htmlFor="quarta-jantar"
-                    >
-                      Quarta-feira
-                    </label>
-                    <input
-                      type="checkbox"
-                      className="btn-check"
-                      id="quinta-jantar"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn m-2 btn-outline-success"
-                      htmlFor="quinta-jantar"
-                    >
-                      Quinta-feira
-                    </label>
-                    <input
-                      type="checkbox"
-                      className="btn-check"
-                      id="sexta-jantar"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn m-2 btn-outline-success"
-                      htmlFor="sexta-jantar"
-                    >
-                      Sexta-feira
-                    </label>
-                  </div>
                   <div className="mb-3">
                     <InputDish
                       text={props.plate?.day}
@@ -147,13 +70,7 @@ export default function EditDish(props: EditDisheProps) {
                   data-bs-dismiss="modal"
                   // id="btnSave"
                   onClick={() => {
-                    if (selectingDays().length === 0) {
-                      alert('Selecione um dia')
-                    } else {
-                      return props.plateChanged?.(
-                        new DishMenu(props.plate.day, snack)
-                      )
-                    }
+                    props.plateChanged?.(new DishMenu(props.plate.day, snack))
                   }}
                 >
                   Alterar

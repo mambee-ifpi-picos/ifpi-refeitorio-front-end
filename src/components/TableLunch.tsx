@@ -22,14 +22,14 @@ export function daysAll() {
 }
 
 function renderdateDays() {
-  return daysAll().map((day, i) => {
+  return daysAll().map((day) => {
     return (
       // eslint-disable-next-line react/jsx-key
-      <th className="text-center" colSpan={1}>
-        {days[i]}
+      <>
+        {/* {days[i]} */}
         <br />
         {day.toLocaleDateString('pt-BR')}
-      </th>
+      </>
     )
   })
 }
@@ -39,7 +39,7 @@ function TableLunch(props: TableLunchProps) {
     return (
       <>
         <tr className={`${style.BG}  shadow-sm`}>
-          <th scope="row" className="text-center" colSpan={7}>
+          <th scope="row" className="text-center" colSpan={6}>
             <span className="fs-4">{props.title}</span>
           </th>
         </tr>
@@ -47,7 +47,7 @@ function TableLunch(props: TableLunchProps) {
           <th className="text-center" colSpan={1}>
             Dia
           </th>
-          <th className="text-center" colSpan={5}>
+          <th className="text-center" colSpan={4}>
             Prato
           </th>
           {/* {renderdateDays()} */}
@@ -67,23 +67,12 @@ function TableLunch(props: TableLunchProps) {
             <th
               scope="row"
               colSpan={1}
-              className="fw-bold border  border-dark  text-center border-opacity-50"
+              className="fw-bold border border-dark  text-center border-opacity-50"
             >
+              {dish.day}
               {renderdateDays()[0]}
             </th>
-            <td colSpan={1} className="lh-base text-center text-wrap">
-              {dish.dish}
-            </td>
-            <td colSpan={1} className="lh-base text-center text-wrap">
-              {dish.dish}
-            </td>
-            <td colSpan={1} className="lh-base text-center text-wrap">
-              {dish.dish}
-            </td>
-            <td colSpan={1} className="lh-base text-center text-wrap">
-              {dish.dish}
-            </td>
-            <td colSpan={1} className="lh-base text-center text-wrap">
+            <td colSpan={4} className="text-center text-wrap">
               {dish.dish}
             </td>
             {renderActions(dish)}
@@ -95,14 +84,14 @@ function TableLunch(props: TableLunchProps) {
 
   function renderActions(dish: DishMenu) {
     return (
-      <td scope="col" colSpan={1} className="px-4 text-center">
+      <td scope="col" colSpan={1} className="px-3 text-center">
         <button
           data-bs-toggle="modal"
           data-bs-target="#exampleModalToggleLunch"
           onClick={() => props.editedDish?.(dish)}
           className="btn shadow-sm border btn-success btn-sm"
         >
-          <i className="bi bi-pencil-square h6"></i>
+          <i className="bi bi-pencil-square h5"></i>
         </button>
         {/* <button
           onClick={() => props.deletedDish?.(dish)}

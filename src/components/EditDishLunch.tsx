@@ -17,14 +17,15 @@ export default function EditDish(props: EditDisheProps) {
   useEffect(() => {
     setSnack(props.plate?.dish)
   }, [props.plate?.dish])
-  function selectingDays() {
-    const days = ['segunda', 'terca', 'quarta', 'quinta', 'sexta']
-    const daysSelected = days.filter((day) => {
-      const input = document.getElementById(day) as HTMLInputElement
-      return input.checked
-    })
-    return daysSelected
-  }
+
+  // function selectingDays() {
+  //   const days = ['segunda', 'terca', 'quarta', 'quinta', 'sexta']
+  //   const daysSelected = days.filter((day) => {
+  //     const input = document.getElementById(day) as HTMLInputElement
+  //     return input.checked
+  //   })
+  //   return daysSelected
+  // }
 
   return (
     <div>
@@ -55,7 +56,7 @@ export default function EditDish(props: EditDisheProps) {
               </div>
               <div className="modal-body">
                 <form>
-                  <div className="pb-3">
+                  {/* <div className="pb-3">
                     <h4 className="">Selecione o(s) Dia(s)</h4>
                     <input
                       type="checkbox"
@@ -117,7 +118,8 @@ export default function EditDish(props: EditDisheProps) {
                     >
                       Sexta-feira
                     </label>
-                  </div>
+                  </div> */}
+
                   <div className="mb-3">
                     <InputDish
                       text={props.plate?.day}
@@ -141,14 +143,15 @@ export default function EditDish(props: EditDisheProps) {
                   data-bs-dismiss="modal"
                   // id="btnSave"
                   onClick={() => {
-                    if (selectingDays().length === 0) {
-                      alert('Selecione um dia')
-                    } else {
-                      return props.plateChanged?.(
-                        new DishMenu(props.plate.day, snack)
-                      )
-                    }
+                    // if (selectingDays().length === 0) {
+                    //   alert('Selecione um dia')
+                    // } else {
+                    //   return
+
+                    props.plateChanged?.(new DishMenu(props.plate.day, snack))
                   }}
+
+                  // }
                 >
                   Alterar
                 </button>

@@ -10,6 +10,7 @@ import useDishesDinner from '../hooks/useDishesDinner'
 import useDishesLunch from '../hooks/useDishesLunch'
 import EditDishLunch from '../components/EditDishLunch'
 import TableLunch from '../components/TableLunch'
+import WeeklyDate from '../components/WeeklyDate'
 
 const Menu: NextPage = () => {
   // Tabela da Janta
@@ -37,6 +38,7 @@ const Menu: NextPage = () => {
       {visible === 'table' ? (
         <>
           <Title subTitle="Cardápio Semanal" />
+          <WeeklyDate />
           <TableLunch
             title="Almoço"
             plates={dishesLunch}

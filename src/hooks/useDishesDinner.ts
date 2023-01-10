@@ -2,11 +2,26 @@ import { useState } from 'react'
 import DishMenu from '../core/DishMenu'
 
 const dishesDinnerDefault = [
-  new DishMenu('Acompanhamentos', 'arroz, feijao, macarrao'),
-  new DishMenu('Prato Principal', 'carne de figado'),
-  new DishMenu('Salada', 'repolho, cenoura'),
-  new DishMenu('Sopa', 'batata'),
-  new DishMenu('Sobremesa', 'melancia'),
+  new DishMenu(
+    'Segunda',
+    'arroz, feijao, macarrao, carne de figado, repolho, cenoura, fruta'
+  ),
+  new DishMenu(
+    'Terça',
+    'carroz, feijao, macarrao, carne de figado, repolho, cenoura, fruta'
+  ),
+  new DishMenu(
+    'Quarta',
+    'arroz, feijao, macarrao, carne de figado, repolho, cenoura, fruta'
+  ),
+  new DishMenu(
+    'Quinta',
+    'arroz, feijao, macarrao, carne de figado, repolho, cenoura, fruta'
+  ),
+  new DishMenu(
+    'Sexta',
+    'arroz, feijao, macarrao, carne de figado, repolho, cenoura, fruta'
+  ),
 ]
 export default function useDishesDinner() {
   const [visible, setVisible] = useState<'table' | 'form'>('table')
