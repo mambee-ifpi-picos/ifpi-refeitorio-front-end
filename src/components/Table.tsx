@@ -32,9 +32,6 @@ function Table(props: TableProps) {
           </th>
         </tr>
         <tr className="bg-dark h6 text-wrap bg-gradient align-middle text-light shadow-sm">
-          <th className="text-center" colSpan={1}>
-            Composiçao
-          </th>
           {renderdateDays()}
           <th className="text-center" colSpan={1}>
             Ação
@@ -49,26 +46,19 @@ function Table(props: TableProps) {
       return (
         <>
           <tr key={dish.day} className="shadow border  border-secondary ">
-            <th
-              scope="row"
-              colSpan={1}
-              className="fw-bold border  border-dark  text-center border-opacity-50"
-            >
-              <small>{dish.day}</small>
-            </th>
-            <td colSpan={1} className="lh-base text-center text-wrap">
+            <td colSpan={1} className="text-center text-wrap">
               {dish.dish}
             </td>
-            <td colSpan={1} className="lh-base text-center text-wrap">
+            <td colSpan={1} className="text-center text-wrap">
               {dish.dish}
             </td>
-            <td colSpan={1} className="lh-base text-center text-wrap">
+            <td colSpan={1} className="text-center text-wrap">
               {dish.dish}
             </td>
-            <td colSpan={1} className="lh-base text-center text-wrap">
+            <td colSpan={1} className="text-center text-wrap">
               {dish.dish}
             </td>
-            <td colSpan={1} className="lh-base text-center text-wrap">
+            <td colSpan={1} className="text-center text-wrap">
               {dish.dish}
             </td>
             {renderActions(dish)}

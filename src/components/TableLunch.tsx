@@ -45,9 +45,12 @@ function TableLunch(props: TableLunchProps) {
         </tr>
         <tr className="bg-dark h6 text-wrap bg-gradient align-middle text-light shadow-sm">
           <th className="text-center" colSpan={1}>
-            Composiçao
+            Dia
           </th>
-          {renderdateDays()}
+          <th className="text-center" colSpan={5}>
+            Prato
+          </th>
+          {/* {renderdateDays()} */}
           <th className="text-center" colSpan={1}>
             Ação
           </th>
@@ -66,7 +69,7 @@ function TableLunch(props: TableLunchProps) {
               colSpan={1}
               className="fw-bold border  border-dark  text-center border-opacity-50"
             >
-              <small>{dish.day}</small>
+              {renderdateDays()[0]}
             </th>
             <td colSpan={1} className="lh-base text-center text-wrap">
               {dish.dish}
@@ -92,7 +95,7 @@ function TableLunch(props: TableLunchProps) {
 
   function renderActions(dish: DishMenu) {
     return (
-      <td scope="col" colSpan={1} className="p-3 text-center">
+      <td scope="col" colSpan={1} className="px-4 text-center">
         <button
           data-bs-toggle="modal"
           data-bs-target="#exampleModalToggleLunch"
