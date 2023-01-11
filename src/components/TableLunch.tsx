@@ -33,6 +33,13 @@ function renderdateDays() {
     )
   })
 }
+// function chekboxHolidays() {
+//   const CheckSwitch = () => {
+//     const input = document.getElementById('flexSwitchCheckReverse') as HTMLInputElement
+//     return input.checked
+//   }
+//   return CheckSwitch()
+// }
 
 function TableLunch(props: TableLunchProps) {
   function renderHeader() {
@@ -78,7 +85,7 @@ function TableLunch(props: TableLunchProps) {
             <td
               scope="col"
               colSpan={1}
-              className="d-md-flex text-center py-3 justify-content-between align-items-center"
+              className="d-md-flex text-center py-2 justify-content-evenly align-items-center"
             >
               {renderActions(dish)}
             </td>
@@ -105,31 +112,70 @@ function TableLunch(props: TableLunchProps) {
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
-          ></button>
-          <ul className="dropdown-menu">
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="radio"
-                name="flexRadioDefault"
-                id="flexRadioDefault1"
-              />
-              <label className="form-check-label" htmlFor="flexRadioDefault1">
-                Default radio
-              </label>
-            </div>
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="radio"
-                name="flexRadioDefault"
-                id="flexRadioDefault2"
-                checked
-              />
-              <label className="form-check-label" htmlFor="flexRadioDefault2">
-                Default checked radio
-              </label>
-            </div>
+          >
+            <i className="bi bi-slash-circle h5"></i>
+          </button>
+
+          <ul className="dropdown-menu px-3">
+            <li className="">
+              <div className="form-check form-switch form-check-reverse">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="flexSwitchCheckReverse"
+                />
+                <label
+                  className="form-check-label text-nowrap  text-start"
+                  htmlFor="flexSwitchCheckReverse"
+                >
+                  Desativa Dia:
+                </label>
+              </div>
+            </li>
+            <li>
+              <hr className="dropdown-divider" />
+            </li>
+            <li>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault1"
+                />
+                <label className="form-check-label" htmlFor="flexRadioDefault1">
+                  Feriado
+                </label>
+              </div>
+            </li>
+            <li>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault2"
+                  checked
+                />
+                <label className="form-check-label" htmlFor="flexRadioDefault2">
+                  Facultativo
+                </label>
+              </div>
+            </li>
+            <li>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault3"
+                  checked
+                />
+                <label className="form-check-label" htmlFor="flexRadioDefault3">
+                  Feriado Prolongado
+                </label>
+              </div>
+            </li>
           </ul>
         </div>
         {/* <button
