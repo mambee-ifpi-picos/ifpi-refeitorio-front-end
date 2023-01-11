@@ -54,6 +54,7 @@ export default function SingleModal(props: SingleModalProps) {
             <button
               type="button"
               className="btn btn-success"
+              data-bs-dismiss="modal"
               onClick={props.onClickSuccess}
             >
               {props.action}

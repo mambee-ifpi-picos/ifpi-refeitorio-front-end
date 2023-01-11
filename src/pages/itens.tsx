@@ -83,17 +83,13 @@ const Items: NextPage = () => {
     setInputEditItem('')
   }
 
-  function cancelEditItem() {
-    setInputEditItem('')
-  }
-
   return (
     <MainLayout title="Cardápio">
       <Title subTitle="Itens do cardápio" />
       <form onSubmit={addItem}>
         <div className="mb-3 d-flex flex-column gap-3">
           <label
-            className="d-flex fw-semibold col-form-label"
+            className="d-flex fw-semibold col-form-label fs-4"
             htmlFor="inputAddItem"
           >
             Adicione um novo item
@@ -123,7 +119,7 @@ const Items: NextPage = () => {
               <ul className="dropdown-menu">
                 <li>
                   <a className="dropdown-item" href="#">
-                    Ordem alfabética
+                    Nome &#40;A-Z&#41;
                   </a>
                 </li>
                 <li>
@@ -183,7 +179,7 @@ const Items: NextPage = () => {
         modalTitle="Editar item"
         action="Editar"
         onClickSuccess={editItem}
-        onClickCancel={cancelEditItem}
+        onClickCancel={() => setInputEditItem('')}
       >
         <label className="d-flex col-form-label" htmlFor="inputEditItem">
           Editar item &lt; {selectedItem?.item} &gt; para:
