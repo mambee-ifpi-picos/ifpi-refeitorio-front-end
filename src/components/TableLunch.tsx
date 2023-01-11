@@ -63,11 +63,11 @@ function TableLunch(props: TableLunchProps) {
     return props.plates?.map((dish) => {
       return (
         <>
-          <tr key={dish.day} className="shadow border  border-secondary ">
+          <tr key={dish.day} className="shadow border border-secondary ">
             <th
               scope="row"
               colSpan={1}
-              className="fw-bold border border-dark  text-center border-opacity-50"
+              className="fw-bold border border-dark text-center border-opacity-50"
             >
               {dish.day}
               {renderdateDays()[0]}
@@ -75,7 +75,13 @@ function TableLunch(props: TableLunchProps) {
             <td colSpan={4} className="text-center text-wrap">
               {dish.dish}
             </td>
-            {renderActions(dish)}
+            <td
+              scope="col"
+              colSpan={1}
+              className="d-md-flex text-center py-3 justify-content-between align-items-center"
+            >
+              {renderActions(dish)}
+            </td>
           </tr>
         </>
       )
@@ -84,22 +90,54 @@ function TableLunch(props: TableLunchProps) {
 
   function renderActions(dish: DishMenu) {
     return (
-      <td scope="col" colSpan={1} className="px-3 text-center">
+      <>
         <button
           data-bs-toggle="modal"
           data-bs-target="#exampleModalToggleLunch"
           onClick={() => props.editedDish?.(dish)}
-          className="btn shadow-sm border btn-success btn-sm"
+          className="btn shadow-sm border btn-success"
         >
-          <i className="bi bi-pencil-square h5"></i>
+          <i className="bi bi-pencil-square"></i>
         </button>
+        <div className="dropdown py-1">
+          <button
+            className="btn shadow-sm border dropdown-toggle btn-light btn-sm"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          ></button>
+          <ul className="dropdown-menu">
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="flexRadioDefault1"
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault1">
+                Default radio
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="flexRadioDefault2"
+                checked
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault2">
+                Default checked radio
+              </label>
+            </div>
+          </ul>
+        </div>
         {/* <button
           onClick={() => props.deletedDish?.(dish)}
-          className="btn shadow-sm border ms-3 btn-outline-danger btn-sm"
+          className="btn shadow-sm border ms-2 btn-sm"
         >
-          <i className="bi bi-trash3 h6"></i>
         </button> */}
-      </td>
+      </>
     )
   }
 
