@@ -22,11 +22,11 @@ export function daysAll() {
 }
 
 function renderdateDays() {
-  return daysAll().map((day) => {
+  return daysAll().map((day, i) => {
     return (
       // eslint-disable-next-line react/jsx-key
       <>
-        {/* {days[i]} */}
+        {days[i]}
         <br />
         {day.toLocaleDateString('pt-BR')}
       </>
@@ -67,7 +67,7 @@ function TableLunch(props: TableLunchProps) {
   }
 
   function renderData() {
-    return props.plates?.map((dish) => {
+    return props.plates?.map((dish, i) => {
       return (
         <>
           <tr key={dish.day} className="shadow border border-secondary ">
@@ -76,8 +76,7 @@ function TableLunch(props: TableLunchProps) {
               colSpan={1}
               className="fw-bold border border-dark text-center border-opacity-50"
             >
-              {dish.day}
-              {renderdateDays()[0]}
+              {renderdateDays()[i]}
             </th>
             <td colSpan={4} className="text-center text-wrap">
               {dish.dish}
