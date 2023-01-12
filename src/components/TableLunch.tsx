@@ -117,7 +117,7 @@ function TableLunch(props: TableLunchProps) {
           </button>
 
           <ul className="dropdown-menu px-3">
-            <li className="">
+            <li>
               <div className="form-check form-switch form-check-reverse">
                 <input
                   className="form-check-input"
@@ -131,19 +131,31 @@ function TableLunch(props: TableLunchProps) {
                   Desativa Dia:
                 </label>
               </div>
-            </li>
-            <li>
               <hr className="dropdown-divider" />
             </li>
             <li>
               <div className="form-check">
                 <input
-                  className="form-check-input"
+                  className="form-check-input p-2"
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault1"
                 />
                 <label className="form-check-label" htmlFor="flexRadioDefault1">
+                  Vazio
+                </label>
+              </div>
+            </li>
+            <li>
+              <div className="form-check">
+                <input
+                  className="form-check-input p-2"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault2"
+                  checked
+                />
+                <label className="form-check-label" htmlFor="flexRadioDefault2">
                   Feriado
                 </label>
               </div>
@@ -151,27 +163,27 @@ function TableLunch(props: TableLunchProps) {
             <li>
               <div className="form-check">
                 <input
-                  className="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault2"
-                  checked
-                />
-                <label className="form-check-label" htmlFor="flexRadioDefault2">
-                  Facultativo
-                </label>
-              </div>
-            </li>
-            <li>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
+                  className="form-check-input p-2"
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault3"
                   checked
                 />
                 <label className="form-check-label" htmlFor="flexRadioDefault3">
+                  Facultativo
+                </label>
+              </div>
+            </li>
+            <li>
+              <div className="form-check ">
+                <input
+                  className="form-check-input p-2"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault4"
+                  checked
+                />
+                <label className="form-check-label" htmlFor="flexRadioDefault4">
                   Feriado Prolongado
                 </label>
               </div>
