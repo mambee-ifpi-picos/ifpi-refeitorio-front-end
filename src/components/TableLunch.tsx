@@ -10,7 +10,13 @@ interface TableLunchProps {
   deletedDish?: (dish: DishMenu) => void
 }
 
-export const days = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta']
+export const days = [
+  'Segunda-feira',
+  'Terça-feira',
+  'Quarta-feira',
+  'Quinta-feira',
+  'Sexta-feira',
+]
 
 export function daysAll() {
   const today = startOfWeek(new Date(), { weekStartsOn: 1 })
