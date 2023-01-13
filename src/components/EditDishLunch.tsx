@@ -2,6 +2,7 @@ import DishMenu from '../core/DishMenu'
 import { useState, useEffect } from 'react'
 import InputDish from './InputDish'
 import style from '../styles/Home.module.css'
+import DishItems from './DishItems'
 // import Button from "./Button"
 
 interface EditDisheProps {
@@ -120,7 +121,7 @@ export default function EditDish(props: EditDisheProps) {
                     </label>
                   </div> */}
 
-                  <div className="mb-3">
+                  <div className="mb-3 h5">
                     <InputDish
                       text={props.plate?.day}
                       value={snack}
@@ -128,20 +129,7 @@ export default function EditDish(props: EditDisheProps) {
                       onlyReading={false}
                     />
                   </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      className="btn-check"
-                      id="btn-check-outlined"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn btn-outline-primary"
-                      htmlFor="btn-check-outlined"
-                    >
-                      Single toggle
-                    </label>
-                  </div>
+                  {DishItems()}
                 </form>
               </div>
               <div className="modal-footer d-flex justify-content-between">

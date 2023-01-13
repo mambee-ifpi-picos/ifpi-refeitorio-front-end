@@ -35,6 +35,10 @@ export default function useItems() {
         id: 8,
         item: 'feijão',
       },
+      {
+        id: 9,
+        item: 'teste',
+      },
     ].sort()
   )
 
