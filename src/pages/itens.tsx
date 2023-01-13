@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css' // Import bootstrap CSS
 import Title from '../components/Title'
 import Button from '../components/Button'
 import SingleModal from '../components/SingleModal'
+import useItems from '../hooks/useItems'
 
 const Items: NextPage = () => {
   const [selectedItem, setSelectedItem] = useState<{
@@ -13,42 +14,8 @@ const Items: NextPage = () => {
   }>()
   const [inputItem, setInputItem] = useState<string>('')
   const [inputEditItem, setInputEditItem] = useState<string>('')
-  const [listItems, setListItems] = useState<{ id: number; item: string }[]>(
-    [
-      {
-        id: 1,
-        item: 'arroz',
-      },
-      {
-        id: 2,
-        item: 'fruta',
-      },
-      {
-        id: 3,
-        item: 'feijoada',
-      },
-      {
-        id: 4,
-        item: 'melancia',
-      },
-      {
-        id: 5,
-        item: 'salada cozida',
-      },
-      {
-        id: 6,
-        item: 'estrogonofe',
-      },
-      {
-        id: 7,
-        item: 'frango',
-      },
-      {
-        id: 8,
-        item: 'feijão',
-      },
-    ].sort()
-  )
+
+  const { listItems, setListItems } = useItems()
 
   function addItem(
     e: MouseEvent<HTMLButtonElement> | SyntheticEvent<HTMLFormElement>
