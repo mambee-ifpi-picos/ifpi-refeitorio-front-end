@@ -1,5 +1,6 @@
 import DishMenu from '../core/DishMenu'
 import style from '../styles/Home.module.css'
+import DisableDay from './DisableDay'
 import { days, daysAll } from './TableLunch'
 
 interface TableProps {
@@ -62,7 +63,13 @@ function Table(props: TableProps) {
             <td colSpan={4} className="text-center text-wrap">
               {dish.dish}
             </td>
-            {renderActions(dish)}
+            <td
+              scope="col"
+              colSpan={1}
+              className="d-md-flex text-center py-2 justify-content-evenly align-items-center"
+            >
+              {renderActions(dish)}
+            </td>
           </tr>
         </>
       )
@@ -71,22 +78,23 @@ function Table(props: TableProps) {
 
   function renderActions(dish: DishMenu) {
     return (
-      <td scope="col" colSpan={1} className="px-3 text-center">
+      <>
         <button
           data-bs-toggle="modal"
           data-bs-target="#exampleModalToggle"
           onClick={() => props.editedDish?.(dish)}
-          className="btn shadow-sm border btn-success btn-sm"
+          className="btn shadow-sm border btn-success"
         >
-          <i className="bi bi-pencil-square h5"></i>
+          <i className="bi bi-pencil-square"></i>
         </button>
+        {DisableDay()}
         {/* <button
           onClick={() => props.deletedDish?.(dish)}
           className="btn shadow-sm border ms-3 btn-outline-danger btn-sm"
         >
           <i className="bi bi-trash3 h6"></i>
         </button> */}
-      </td>
+      </>
     )
   }
 

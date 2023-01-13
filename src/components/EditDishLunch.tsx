@@ -128,6 +128,20 @@ export default function EditDish(props: EditDisheProps) {
                       onlyReading={false}
                     />
                   </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      className="btn-check"
+                      id="btn-check-outlined"
+                      autoComplete="off"
+                    />
+                    <label
+                      className="btn btn-outline-primary"
+                      htmlFor="btn-check-outlined"
+                    >
+                      Single toggle
+                    </label>
+                  </div>
                 </form>
               </div>
               <div className="modal-footer d-flex justify-content-between">

@@ -1,6 +1,7 @@
 import DishMenu from '../core/DishMenu'
 import style from '../styles/Home.module.css'
 import { addDays, eachDayOfInterval, startOfWeek } from 'date-fns'
+import DisableDay from './DisableDay'
 
 interface TableLunchProps {
   plates: DishMenu[]
@@ -105,90 +106,7 @@ function TableLunch(props: TableLunchProps) {
         >
           <i className="bi bi-pencil-square"></i>
         </button>
-        <div className="dropdown py-1">
-          <button
-            className="btn shadow-sm border dropdown-toggle btn-light btn-sm"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <i className="bi bi-slash-circle h5"></i>
-          </button>
-
-          <ul className="dropdown-menu px-3">
-            <li>
-              <div className="form-check form-switch form-check-reverse">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  id="flexSwitchCheckReverse"
-                />
-                <label
-                  className="form-check-label text-nowrap  text-start"
-                  htmlFor="flexSwitchCheckReverse"
-                >
-                  Desativa Dia:
-                </label>
-              </div>
-              <hr className="dropdown-divider" />
-            </li>
-            <li>
-              <div className="form-check">
-                <input
-                  className="form-check-input p-2"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault1"
-                />
-                <label className="form-check-label" htmlFor="flexRadioDefault1">
-                  Vazio
-                </label>
-              </div>
-            </li>
-            <li>
-              <div className="form-check">
-                <input
-                  className="form-check-input p-2"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault2"
-                  checked
-                />
-                <label className="form-check-label" htmlFor="flexRadioDefault2">
-                  Feriado
-                </label>
-              </div>
-            </li>
-            <li>
-              <div className="form-check">
-                <input
-                  className="form-check-input p-2"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault3"
-                  checked
-                />
-                <label className="form-check-label" htmlFor="flexRadioDefault3">
-                  Facultativo
-                </label>
-              </div>
-            </li>
-            <li>
-              <div className="form-check ">
-                <input
-                  className="form-check-input p-2"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault4"
-                  checked
-                />
-                <label className="form-check-label" htmlFor="flexRadioDefault4">
-                  Feriado Prolongado
-                </label>
-              </div>
-            </li>
-          </ul>
-        </div>
+        {DisableDay()}
         {/* <button
           onClick={() => props.deletedDish?.(dish)}
           className="btn shadow-sm border ms-2 btn-sm"
