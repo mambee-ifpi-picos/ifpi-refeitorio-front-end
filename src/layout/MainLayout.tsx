@@ -6,7 +6,7 @@ import MainLayoutProps from './MainLayoutProps'
 import Sidebar from '../components/Sidebar'
 
 export default function MainLayout(props: MainLayoutProps) {
-  console.log(props)
+  // console.log(props)
   return (
     <div>
       <Head>

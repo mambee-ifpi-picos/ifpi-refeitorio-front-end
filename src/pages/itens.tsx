@@ -1,4 +1,4 @@
-import { MouseEvent, SyntheticEvent, useState } from 'react'
+import { MouseEvent, SyntheticEvent, useEffect, useState } from 'react'
 import type { NextPage } from 'next'
 import MainLayout from '../layout/MainLayout'
 import 'bootstrap/dist/css/bootstrap.min.css' // Import bootstrap CSS
@@ -6,49 +6,79 @@ import Title from '../components/Title'
 import Button from '../components/Button'
 import SingleModal from '../components/SingleModal'
 import useItems from '../hooks/useItems'
+// import { link } from 'fs'
 
 const Items: NextPage = () => {
   const [selectedItem, setSelectedItem] = useState<{
     id: number
-    item: string
+    name: string
   }>()
   const [inputItem, setInputItem] = useState<string>('')
   const [inputEditItem, setInputEditItem] = useState<string>('')
 
   const { listItems, setListItems } = useItems()
+  const linkRoot = 'http://localhost:3000'
 
-  function addItem(
+  async function addItem(
     e: MouseEvent<HTMLButtonElement> | SyntheticEvent<HTMLFormElement>
   ) {
     e.preventDefault()
     const input: HTMLInputElement | null =
       document.querySelector('#inputAddItem')
     if (!input || !input.value) return
-    setListItems((list) => [...list, { item: input.value, id: 40 }])
-    setInputItem('')
+    const response = await fetch(`${linkRoot}/items`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: input.value,
+      }),
+    })
+    const json = await response.json()
+    console.log(json)
+    getItems()
   }
 
-  function deleteItem() {
-    listItems.forEach((element) => {
-      element === selectedItem
-        ? listItems.splice(listItems.indexOf(element), 1)
-        : null
-    })
-    setListItems([...listItems])
+  async function getItems() {
+    const response = await fetch(`${linkRoot}/items`)
+    const json = await response.json()
+    setListItems(json)
   }
 
-  function editItem() {
-    let itemEdited!: number
-    listItems.forEach((element) => {
-      element === selectedItem
-        ? (itemEdited = listItems.indexOf(selectedItem))
-        : null
+  async function deleteItem() {
+    if (!selectedItem) return
+    const response = await fetch(`${linkRoot}/items/${selectedItem.id}`, {
+      method: 'DELETE',
     })
-    console.log('item editado')
-    listItems[itemEdited].item = inputEditItem
-    setListItems([...listItems])
+    const json = await response.json()
+    console.log(json)
+    getItems()
+  }
+
+  async function editItem() {
+    if (!inputEditItem || !selectedItem) return
+    const response = await fetch(`${linkRoot}/items/${selectedItem.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: inputEditItem,
+      }),
+    })
+    const json = await response.json()
+    console.log(json)
     setInputEditItem('')
+    getItems()
   }
+
+  useEffect(() => {
+    async function asyncGetItems() {
+      await getItems()
+    }
+    asyncGetItems()
+  }, [getItems])
 
   return (
     <MainLayout title="Cardápio">
@@ -100,12 +130,12 @@ const Items: NextPage = () => {
         </div>
       </form>
       <div className="d-flex gap-3 flex-wrap">
-        {listItems.map((element, index) => (
+        {listItems?.map((element, index) => (
           <div
             key={element.id}
             className="btn text-success border-success d-flex gap-3 align-items-center"
           >
-            {element.item}
+            {element.name}
             <div className="d-flex gap-2">
               <button
                 className="btn shadow-sm border btn-danger btn-sm"
@@ -139,7 +169,7 @@ const Items: NextPage = () => {
         action="Deletar"
         onClickSuccess={deleteItem}
       >
-        Tem certeza que deseja deletar o item &lt; {selectedItem?.item} &gt;?
+        Tem certeza que deseja deletar o item &lt; {selectedItem?.name} &gt;?
       </SingleModal>
       <SingleModal
         id="idModalEditItem"
@@ -149,7 +179,7 @@ const Items: NextPage = () => {
         onClickCancel={() => setInputEditItem('')}
       >
         <label className="d-flex col-form-label" htmlFor="inputEditItem">
-          Editar item &lt; {selectedItem?.item} &gt; para:
+          Editar item &lt; {selectedItem?.name} &gt; para:
         </label>
         <input
           id="inputEditItem"
