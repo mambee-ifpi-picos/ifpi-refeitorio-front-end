@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css' // Import bootstrap CSS
 import Link from 'next/link'
 import style from '../styles/Home.module.css'
+import Image from 'next/image'
 
 function Navbar() {
   return (
@@ -15,9 +16,16 @@ function Navbar() {
               <div className="d-flex align-items-center">
                 <Link href="/">
                   <a
-                    className={`navbar-brand ${style.linkRefectory} text-black fw-bold fs-2`}
+                    className={`navbar-brand ${style.linkRefectory} fw-bold fs-2`}
                   >
-                    Refeitório
+                    <Image
+                      className="shadow-sm"
+                      src="/img/r.png"
+                      width={25}
+                      height={25}
+                      alt="Foto de Perfil"
+                    />
+                    efeitório
                   </a>
                 </Link>
               </div>
