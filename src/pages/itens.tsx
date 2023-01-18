@@ -84,16 +84,17 @@ const Items: NextPage = () => {
     <MainLayout title="Cardápio">
       <Title subTitle="Itens do cardápio" />
       <form onSubmit={addItem}>
-        <div className="mb-3 d-flex flex-column gap-3">
+        <div className="mb-3 d-flex flex-column gap-2">
           <label
-            className="d-flex fw-semibold col-form-label fs-4"
+            className="d-flex fw-semibold col-form-label fs-5"
             htmlFor="inputAddItem"
           >
-            Adicione um novo item
+            Adicione um novo item:
           </label>
           <div className="d-flex gap-3 justify-content-between flex-wrap">
             <div className="d-flex gap-2">
               <input
+                placeholder="Nome do item"
                 id="inputAddItem"
                 className="form-control "
                 type="text"
@@ -116,7 +117,7 @@ const Items: NextPage = () => {
               <ul className="dropdown-menu">
                 <li>
                   <a className="dropdown-item" href="#">
-                    Nome &#40;A-Z&#41;
+                    Nome &#40;A - Z&#41;
                   </a>
                 </li>
                 <li>
@@ -129,16 +130,20 @@ const Items: NextPage = () => {
           </div>
         </div>
       </form>
-      <div className="d-flex gap-3 flex-wrap">
+      <div className="d-flex pt-3 gap-3 flex-wrap">
         {listItems?.map((element, index) => (
           <div
             key={element.id}
-            className="btn text-success border-success d-flex gap-3 align-items-center"
+            className="text-success rounded ps-2 border border-success d-flex gap-2 align-items-center"
           >
             {element.name}
-            <div className="d-flex gap-2">
+            <div
+              className="btn-group"
+              role="group"
+              aria-label="Basic mixed styles example"
+            >
               <button
-                className="btn shadow-sm border btn-danger btn-sm"
+                className="btn shadow-sm btn-danger  btn-sm"
                 type="button"
                 data-bs-toggle="modal"
                 data-bs-target="#idModalDeleteItem"
@@ -149,7 +154,7 @@ const Items: NextPage = () => {
                 <i className="bi bi-trash"></i>
               </button>
               <button
-                className="btn shadow-sm border btn-success btn-sm"
+                className="btn shadow-sm btn-success btn-sm"
                 type="button"
                 data-bs-toggle="modal"
                 data-bs-target="#idModalEditItem"
@@ -169,7 +174,7 @@ const Items: NextPage = () => {
         action="Deletar"
         onClickSuccess={deleteItem}
       >
-        Tem certeza que deseja deletar o item &lt; {selectedItem?.name} &gt;?
+        Tem certeza que deseja deletar o item? <h5>{selectedItem?.name}</h5>
       </SingleModal>
       <SingleModal
         id="idModalEditItem"
@@ -179,7 +184,7 @@ const Items: NextPage = () => {
         onClickCancel={() => setInputEditItem('')}
       >
         <label className="d-flex col-form-label" htmlFor="inputEditItem">
-          Editar item &lt; {selectedItem?.name} &gt; para:
+          Editar item <h5 className="px-2">{selectedItem?.name}</h5> para:
         </label>
         <input
           id="inputEditItem"
