@@ -5,7 +5,7 @@ import Table from '../components/Table'
 import AddDish from '../components/AddDish'
 import Title from '../components/Title'
 import EditDish from '../components/EditDish'
-import Button from '../components/Button'
+// import Button from '../components/Button'
 import useDishesDinner from '../hooks/useDishesDinner'
 import useDishesLunch from '../hooks/useDishesLunch'
 import EditDishLunch from '../components/EditDishLunch'
@@ -51,12 +51,12 @@ const Menu: NextPage = () => {
             editedDish={dishSelected}
             deletedDish={deleted}
           />
-          <Button
+          {/* <Button
             className="float-end bg-primary bg-gradient"
             onClick={() => setVisible('form')}
           >
             Adicionar
-          </Button>
+          </Button> */}
         </>
       ) : (
         <AddDish cancel={() => setVisible('table')} />

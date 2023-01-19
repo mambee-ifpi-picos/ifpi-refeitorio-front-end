@@ -189,7 +189,7 @@ const Items: NextPage = () => {
                 Adicionar
               </Button>
             </div>
-            <div className="dropdown position-static">
+            {/* <div className="dropdown position-static">
               <button
                 className="btn btn-secondary dropdown-toggle"
                 type="button"
@@ -210,7 +210,7 @@ const Items: NextPage = () => {
                   </a>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
       </form>
