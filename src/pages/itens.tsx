@@ -6,6 +6,7 @@ import Title from '../components/Title'
 import Button from '../components/Button'
 import SingleModal from '../components/SingleModal'
 import useItems from '../hooks/useItems'
+import Loading from '../components/Loading'
 // import { link } from 'fs'
 
 const Items: NextPage = () => {
@@ -15,6 +16,7 @@ const Items: NextPage = () => {
   }>()
   const [inputItem, setInputItem] = useState<string>('')
   const [inputEditItem, setInputEditItem] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(false)
 
   const { listItems, setListItems } = useItems()
   const linkRoot = 'http://localhost:3000'
@@ -23,41 +25,48 @@ const Items: NextPage = () => {
     e: MouseEvent<HTMLButtonElement> | SyntheticEvent<HTMLFormElement>
   ) {
     e.preventDefault()
-    const input: HTMLInputElement | null =
-      document.querySelector('#inputAddItem')
-    if (!input || !input.value) return
+    if (!inputItem) return
+    setLoading(true)
+    setInputItem('')
     const response = await fetch(`${linkRoot}/items`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: input.value,
+        name: inputItem,
       }),
     })
     const json = await response.json()
+    setLoading(false)
     console.log(json)
     getItems()
   }
 
   async function getItems() {
+    setLoading(true)
     const response = await fetch(`${linkRoot}/items`)
     const json = await response.json()
+    setLoading(false)
     setListItems(json)
+    console.log(json)
   }
 
   async function deleteItem() {
     if (!selectedItem) return
+    setLoading(true)
     const response = await fetch(`${linkRoot}/items/${selectedItem.id}`, {
       method: 'DELETE',
     })
     const json = await response.json()
+    setLoading(false)
     console.log(json)
     getItems()
   }
 
   async function editItem() {
     if (!inputEditItem || !selectedItem) return
+    setLoading(true)
     const response = await fetch(`${linkRoot}/items/${selectedItem.id}`, {
       method: 'PUT',
       headers: {
@@ -68,6 +77,7 @@ const Items: NextPage = () => {
       }),
     })
     const json = await response.json()
+    setLoading(false)
     console.log(json)
     setInputEditItem('')
     getItems()
@@ -78,7 +88,81 @@ const Items: NextPage = () => {
       await getItems()
     }
     asyncGetItems()
-  }, [getItems])
+  }, [])
+
+  // function orderByName (e: MouseEventHandler<HTMLLIElement> | undefined) {
+  //   let listSortedByName = listItems
+  //   listSortedByName?.sort((a, b) => {
+  //     if (a.name < b.name)
+  //         return -1;
+  //     if (a.name > b.name)
+  //         return 1;
+  //     return 0;
+  //   })
+  //   setListItems(listSortedByName)
+  // }
+
+  // function orderByDate (/*e: MouseEventHandler<HTMLLIElement> | undefined*/) {
+  //   let listSortedByDate = listItems
+  //   listSortedByDate?.sort((a, b) => {
+  //     if (a.creationDate < b.creationDate)
+  //         return -1;
+  //     if (a.creationDate > b.creationDate)
+  //         return 1;
+  //     return 0;
+  //   })
+  //   setListItems(listSortedByDate)
+  // }
+
+  // useEffect(() => {
+  //   let listItemsSorted = [
+  //     {
+  //       id: 1,
+  //       item: 'arroz',
+  //     },
+  //     {
+  //       id: 3,
+  //       item: 'feijoada',
+  //     },
+  //     {
+  //       id: 4,
+  //       item: 'melancia',
+  //     },
+  //     {
+  //       id: 5,
+  //       item: 'salada cozida',
+  //     },
+  //     {
+  //       id: 2,
+  //       item: 'fruta',
+  //     },
+  //     {
+  //       id: 7,
+  //       item: 'frango',
+  //     },
+  //     {
+  //       id: 6,
+  //       item: 'estrogonofe',
+  //     },
+  //     {
+  //       id: 9,
+  //       item: 'teste',
+  //     },
+  //     {
+  //       id: 8,
+  //       item: 'feijão',
+  //     },
+  //   ]
+  //   listItemsSorted.sort((a, b) => {
+  //     if (a.id < b.id)
+  //         return -1;
+  //     if (a.id > b.id)
+  //         return 1;
+  //     return 0;
+  // })
+  //   console.log(listItemsSorted)
+  //   orderByName()
+  // }, [listItems])
 
   return (
     <MainLayout title="Cardápio">
@@ -105,7 +189,7 @@ const Items: NextPage = () => {
                 Adicionar
               </Button>
             </div>
-            <div className="dropdown position-static">
+            {/* <div className="dropdown position-static">
               <button
                 className="btn btn-secondary dropdown-toggle"
                 type="button"
@@ -126,47 +210,53 @@ const Items: NextPage = () => {
                   </a>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
       </form>
       <div className="d-flex pt-3 gap-3 flex-wrap">
-        {listItems?.map((element, index) => (
-          <div
-            key={element.id}
-            className="text-success rounded ps-2 border border-success d-flex gap-2 align-items-center"
-          >
-            {element.name}
-            <div
-              className="btn-group"
-              role="group"
-              aria-label="Basic mixed styles example"
-            >
-              <button
-                className="btn shadow-sm btn-danger  btn-sm"
-                type="button"
-                data-bs-toggle="modal"
-                data-bs-target="#idModalDeleteItem"
-                onClick={() => {
-                  setSelectedItem(listItems[index])
-                }}
+        {loading ? (
+          <Loading />
+        ) : (
+          listItems?.map((element, index) => {
+            return (
+              <div
+                key={element.id}
+                className="text-success rounded ps-2 border border-success d-flex gap-2 align-items-center"
               >
-                <i className="bi bi-trash"></i>
-              </button>
-              <button
-                className="btn shadow-sm btn-success btn-sm"
-                type="button"
-                data-bs-toggle="modal"
-                data-bs-target="#idModalEditItem"
-                onClick={() => {
-                  setSelectedItem(listItems[index])
-                }}
-              >
-                <i className="bi bi-pencil-square"></i>
-              </button>
-            </div>
-          </div>
-        ))}
+                {element.name}
+                <div
+                  className="btn-group"
+                  role="group"
+                  aria-label="Basic mixed styles example"
+                >
+                  <button
+                    className="btn shadow-sm btn-danger  btn-sm"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#idModalDeleteItem"
+                    onClick={() => {
+                      setSelectedItem(listItems[index])
+                    }}
+                  >
+                    <i className="bi bi-trash"></i>
+                  </button>
+                  <button
+                    className="btn shadow-sm btn-success btn-sm"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#idModalEditItem"
+                    onClick={() => {
+                      setSelectedItem(listItems[index])
+                    }}
+                  >
+                    <i className="bi bi-pencil-square"></i>
+                  </button>
+                </div>
+              </div>
+            )
+          })
+        )}
       </div>
       <SingleModal
         id="idModalDeleteItem"
