@@ -5,7 +5,10 @@ export default function DishItems() {
   // const { listItems } = useItems()
 
   function Items() {
-    const [users, setUsers] = useState([])
+    const [users, setUsers] = useState<
+      | { id: number; name: string; active: boolean; creationDate: string }[]
+      | null
+    >()
     const [isLoading, setLoading] = useState(false)
     const linkRoot = 'http://localhost:3000'
 
@@ -36,11 +39,11 @@ export default function DishItems() {
             <input
               type="checkbox"
               className="btn-check"
-              id={user}
+              id={user.name}
               autoComplete="off"
             />
-            <label className="btn m-2 btn-outline-success" htmlFor={user}>
-              {user}
+            <label className="btn m-2 btn-outline-success" htmlFor={user.name}>
+              {user.name}
             </label>
           </>
         ))}
