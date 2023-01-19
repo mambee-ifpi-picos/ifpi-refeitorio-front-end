@@ -2,6 +2,7 @@ import DishMenu from '../core/DishMenu'
 import { useState, useEffect } from 'react'
 import InputDish from './InputDish'
 import style from '../styles/Home.module.css'
+import DishItems from './DishItems'
 // import Button from "./Button"
 
 interface EditDisheProps {
@@ -55,6 +56,7 @@ export default function EditDish(props: EditDisheProps) {
                       onlyReading={false}
                     />
                   </div>
+                  {DishItems()}
                 </form>
               </div>
               <div className="modal-footer d-flex justify-content-between">
