@@ -1,5 +1,6 @@
 // import useItems from '../hooks/useItems'
 import { useState, useEffect } from 'react'
+import Loading from './Loading'
 
 export default function DishItems() {
   // const { listItems } = useItems()
@@ -24,12 +25,7 @@ export default function DishItems() {
         })
     }, [])
 
-    if (isLoading)
-      return (
-        <div className="spinner-grow text-success" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      )
+    if (isLoading) return Loading()
     if (!users) return <p>No profile data</p>
 
     return (

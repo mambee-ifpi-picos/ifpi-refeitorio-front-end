@@ -57,70 +57,6 @@ export default function EditDish(props: EditDisheProps) {
               </div>
               <div className="modal-body">
                 <form>
-                  {/* <div className="pb-3">
-                    <h4 className="">Selecione o(s) Dia(s)</h4>
-                    <input
-                      type="checkbox"
-                      className="btn-check"
-                      id="segunda"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn m-2 btn-outline-success"
-                      htmlFor="segunda"
-                    >
-                      Segunda-feira
-                    </label>
-                    <input
-                      type="checkbox"
-                      className="btn-check"
-                      id="terca"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn m-2 btn-outline-success"
-                      htmlFor="terca"
-                    >
-                      Terça-feira
-                    </label>
-                    <input
-                      type="checkbox"
-                      className="btn-check"
-                      id="quarta"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn m-2 btn-outline-success"
-                      htmlFor="quarta"
-                    >
-                      Quarta-feira
-                    </label>
-                    <input
-                      type="checkbox"
-                      className="btn-check"
-                      id="quinta"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn m-2 btn-outline-success"
-                      htmlFor="quinta"
-                    >
-                      Quinta-feira
-                    </label>
-                    <input
-                      type="checkbox"
-                      className="btn-check"
-                      id="sexta"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn m-2 btn-outline-success"
-                      htmlFor="sexta"
-                    >
-                      Sexta-feira
-                    </label>
-                  </div> */}
-
                   <div className="mb-3 h5">
                     <InputDish
                       text={props.plate?.day}
@@ -145,11 +81,6 @@ export default function EditDish(props: EditDisheProps) {
                   data-bs-dismiss="modal"
                   // id="btnSave"
                   onClick={() => {
-                    // if (selectingDays().length === 0) {
-                    //   alert('Selecione um dia')
-                    // } else {
-                    //   return
-
                     props.plateChanged?.(new DishMenu(props.plate.day, snack))
                   }}
 

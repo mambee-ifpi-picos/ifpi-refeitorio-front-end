@@ -35,6 +35,7 @@ export default function DisableDay() {
                 type="radio"
                 name="flexRadioDefault"
                 id="flexRadioDefault2"
+                disabled={false}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault2">
                 Feriado
@@ -48,6 +49,7 @@ export default function DisableDay() {
                 type="radio"
                 name="flexRadioDefault"
                 id="flexRadioDefault3"
+                disabled={false}
               />
               <label className="form-check-label" htmlFor="flexRadioDefault3">
                 Facultativo
@@ -62,6 +64,7 @@ export default function DisableDay() {
                 type="radio"
                 name="flexRadioDefault"
                 id="exampleDataList"
+                disabled={false}
               />
               <label htmlFor="exampleDataList" className="form-label mx-1">
                 Outro

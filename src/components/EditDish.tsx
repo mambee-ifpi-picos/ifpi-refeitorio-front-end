@@ -48,7 +48,7 @@ export default function EditDish(props: EditDisheProps) {
               </div>
               <div className="modal-body">
                 <form>
-                  <div className="mb-3">
+                  <div className="mb-3 h5">
                     <InputDish
                       text={props.plate?.day}
                       value={snack}
