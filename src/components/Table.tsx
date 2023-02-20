@@ -1,29 +1,38 @@
-import DishMenu from '../core/DishMenu'
 import style from '../styles/Home.module.css'
 import DisableDay from './DisableDay'
 import { days, daysAll } from './TableLunch'
 
 interface TableProps {
-  plates: DishMenu[]
+  plates: { day: string; dish: string; meal: string; id: number }[]
   title: string
-  editedDish?: (dish: DishMenu) => void
-  deletedDish?: (dish: DishMenu) => void
-}
-
-function renderdateDays() {
-  return daysAll().map((day, i) => {
-    return (
-      // eslint-disable-next-line react/jsx-key
-      <>
-        {days[i]}
-        <br />
-        {day.toLocaleDateString('pt-BR')}
-      </>
-    )
-  })
+  editedDish?: (dish: {
+    day: string
+    dish: string
+    meal: string
+    id: number
+  }) => void
+  deletedDish?: (dish: {
+    day: string
+    dish: string
+    meal: string
+    id: number
+  }) => void
 }
 
 function Table(props: TableProps) {
+  function renderdateDays() {
+    return daysAll().map((day, i) => {
+      return (
+        // eslint-disable-next-line react/jsx-key
+        <>
+          {days[i]}
+          <br />
+          {day.toLocaleDateString('pt-BR')}
+        </>
+      )
+    })
+  }
+
   function renderHeader() {
     return (
       <>
@@ -39,7 +48,6 @@ function Table(props: TableProps) {
           <th className="text-center" colSpan={4}>
             Prato
           </th>
-          {/* {renderdateDays()} */}
           <th className="text-center" colSpan={1}>
             Ação
           </th>
@@ -49,14 +57,15 @@ function Table(props: TableProps) {
   }
 
   function renderData() {
-    return props.plates?.map((dish, i) => {
-      return (
-        <>
-          <tr key={dish.day} className="shadow border  border-secondary ">
+    return props.plates
+      .filter((dish) => dish.meal === 'janta')
+      .map((dish, i) => {
+        return (
+          <tr key={dish.day} className="shadow border border-secondary">
             <th
               scope="row"
               colSpan={1}
-              className="fw-bold border border-dark  text-center border-opacity-50"
+              className="fw-bold border border-dark text-center border-opacity-50"
             >
               {renderdateDays()[i]}
             </th>
@@ -71,29 +80,27 @@ function Table(props: TableProps) {
               {renderActions(dish)}
             </td>
           </tr>
-        </>
-      )
-    })
+        )
+      })
   }
 
-  function renderActions(dish: DishMenu) {
+  function renderActions(dish: {
+    day: string
+    dish: string
+    meal: string
+    id: number
+  }) {
     return (
       <>
         <button
           data-bs-toggle="modal"
-          data-bs-target="#exampleModalToggle"
+          data-bs-target="#exampleModalToggleLunch"
           onClick={() => props.editedDish?.(dish)}
           className="btn shadow-sm border btn-success"
         >
           <i className="bi bi-pencil-square"></i>
         </button>
         {DisableDay()}
-        {/* <button
-          onClick={() => props.deletedDish?.(dish)}
-          className="btn shadow-sm border ms-3 btn-outline-danger btn-sm"
-        >
-          <i className="bi bi-trash3 h6"></i>
-        </button> */}
       </>
     )
   }

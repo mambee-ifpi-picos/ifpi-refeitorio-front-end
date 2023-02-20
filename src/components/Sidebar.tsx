@@ -115,7 +115,11 @@ function Sidebar() {
                         <a className="nav-link">Itens</a>
                       </Link>
                     </li>
-                    <li className="list-group-item">A third item</li>
+                    <li className="list-group-item d-flex">
+                      <Link href="/historicodemenus">
+                        <a className="nav-link">Histórico de menus</a>
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               </div>

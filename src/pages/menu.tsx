@@ -2,77 +2,57 @@ import type { NextPage } from 'next'
 import MainLayout from '../layout/MainLayout'
 import 'bootstrap/dist/css/bootstrap.min.css' // Import bootstrap CSS
 import Table from '../components/Table'
-import AddDish from '../components/AddDish'
 import Title from '../components/Title'
-import EditDish from '../components/EditDish'
 // import Button from '../components/Button'
-import useDishesDinner from '../hooks/useDishesDinner'
-import useDishesLunch from '../hooks/useDishesLunch'
 import EditDishLunch from '../components/EditDishLunch'
 import TableLunch from '../components/TableLunch'
 import WeeklyDate from '../components/WeeklyDate'
+import useDishes from '../hooks/useDishes'
 
 const Menu: NextPage = () => {
-  // Tabela da Janta
   const {
-    visible,
-    setVisible,
+    allDishes,
     selectedDish,
-    dishes,
-    dishSelected,
-    deleted,
+    setSelectedDish,
     updatePlate,
-  } = useDishesDinner()
+    // dishes,
+    // updatePlate,
+    // deleted,
 
-  // Tabela do Almoço
-  const {
-    selectedDishLunch,
-    dishesLunch,
-    dishSelectedLunch,
-    deletedLunch,
-    updatePlateLunch,
-  } = useDishesLunch()
+    // selectedDishLunch,
+    // setSelectedDishLunch,
+    // dishesLunch,
+    // updatePlateLunch,
+    // deletedLunch,
+  } = useDishes()
 
   return (
     <MainLayout title="Cardápio">
-      {visible === 'table' ? (
-        <>
-          <Title subTitle="Cardápio Semanal" />
-          <WeeklyDate />
-          <TableLunch
-            title="Almoço"
-            plates={dishesLunch}
-            editedDish={dishSelectedLunch}
-            deletedDish={deletedLunch}
-          />
-          <Table
-            title="Jantar"
-            plates={dishes}
-            editedDish={dishSelected}
-            deletedDish={deleted}
-          />
-          {/* <Button
-            className="float-end bg-primary bg-gradient"
-            onClick={() => setVisible('form')}
-          >
-            Adicionar
-          </Button> */}
-        </>
-      ) : (
-        <AddDish cancel={() => setVisible('table')} />
-      )}
-      <>
-        <EditDish
-          plateChanged={updatePlate}
-          plate={selectedDish}
-          text={dishSelected}
-        />
-        <EditDishLunch
-          plateChanged={updatePlateLunch}
-          plate={selectedDishLunch}
-          text={dishSelectedLunch}
-        />
-      </>
+      <Title subTitle="Cardápio Semanal" />
+      <WeeklyDate />
+      <TableLunch
+        title="Almoço"
+        plates={allDishes}
+        editedDish={setSelectedDish}
+        // deletedDish={deletedLunch}
+      />
+      <Table
+        title="Jantar"
+        plates={allDishes}
+        editedDish={setSelectedDish}
+        // deletedDish={deleted}
+      />
+      {}
+      {/* <EditDish
+        // plateChanged={updatePlate}
+        plate={selectedDish}
+        text={setSelectedDish}
+      /> */}
+      <EditDishLunch
+        plateChanged={updatePlate}
+        plate={selectedDish}
+        text={setSelectedDish}
+      />
     </MainLayout>
   )
 }

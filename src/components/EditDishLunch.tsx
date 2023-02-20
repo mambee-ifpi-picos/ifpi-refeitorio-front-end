@@ -1,4 +1,3 @@
-import DishMenu from '../core/DishMenu'
 import { useState, useEffect } from 'react'
 import InputDish from './InputDish'
 import style from '../styles/Home.module.css'
@@ -7,9 +6,12 @@ import DishItems from './DishItems'
 
 interface EditDisheProps {
   text?: unknown
-  plate: DishMenu
+  plate: { dish: string; day: string; meal: string; id: number }
   children?: unknown
-  plateChanged?: (plate: DishMenu) => void
+  plateChanged?: (
+    plate: { dish: string; day: string; meal: string; id: number },
+    snack: string
+  ) => void
 }
 
 export default function EditDish(props: EditDisheProps) {
@@ -70,7 +72,7 @@ export default function EditDish(props: EditDisheProps) {
               </div>
               <div className="modal-footer d-flex justify-content-between">
                 <button
-                  className="btn  btn-sm btn-outline-danger"
+                  className="btn btn-sm btn-outline-danger"
                   data-bs-target="#exampleModalToggle2Lunch"
                   data-bs-toggle="modal"
                 >
@@ -81,10 +83,8 @@ export default function EditDish(props: EditDisheProps) {
                   data-bs-dismiss="modal"
                   // id="btnSave"
                   onClick={() => {
-                    props.plateChanged?.(new DishMenu(props.plate.day, snack))
+                    props.plateChanged?.(props.plate, snack)
                   }}
-
-                  // }
                 >
                   Alterar
                 </button>

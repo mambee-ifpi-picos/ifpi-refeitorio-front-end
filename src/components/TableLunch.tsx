@@ -1,13 +1,22 @@
-import DishMenu from '../core/DishMenu'
 import style from '../styles/Home.module.css'
 import { addDays, eachDayOfInterval, startOfWeek } from 'date-fns'
 import DisableDay from './DisableDay'
 
 interface TableLunchProps {
-  plates: DishMenu[]
+  plates: { dish: string; day: string; meal: string; id: number }[]
   title: string
-  editedDish?: (dish: DishMenu) => void
-  deletedDish?: (dish: DishMenu) => void
+  editedDish?: (dish: {
+    dish: string
+    day: string
+    meal: string
+    id: number
+  }) => void
+  deletedDish?: (dish: {
+    dish: string
+    day: string
+    meal: string
+    id: number
+  }) => void
 }
 
 export const days = [
@@ -49,6 +58,8 @@ function renderdateDays() {
 // }
 
 function TableLunch(props: TableLunchProps) {
+  // const [dishes, setDishes] = useState(props.plates.filter(dish => dish.meal === 'almoço'))
+
   function renderHeader() {
     return (
       <>
@@ -73,35 +84,40 @@ function TableLunch(props: TableLunchProps) {
     )
   }
 
-  function renderData() {
-    return props.plates?.map((dish, i) => {
-      return (
-        <>
-          <tr key={dish.day} className="shadow border border-secondary ">
-            <th
-              scope="row"
-              colSpan={1}
-              className="fw-bold border border-dark text-center border-opacity-50"
-            >
-              {renderdateDays()[i]}
-            </th>
-            <td colSpan={4} className="text-center text-wrap">
-              {dish.dish}
-            </td>
-            <td
-              scope="col"
-              colSpan={1}
-              className="d-md-flex text-center py-2 justify-content-evenly align-items-center"
-            >
-              {renderActions(dish)}
-            </td>
-          </tr>
-        </>
-      )
-    })
-  }
+  // function renderData() {
+  //   return dishes.map((dish, i) => {
+  //     return (
+  //       <>
+  //         <tr key={dish.id} className="shadow border border-secondary ">
+  //           <th
+  //             scope="row"
+  //             colSpan={1}
+  //             className="fw-bold border border-dark text-center border-opacity-50"
+  //           >
+  //             {renderdateDays()[i]}
+  //           </th>
+  //           <td colSpan={4} className="text-center text-wrap">
+  //             {dish.dish}
+  //           </td>
+  //           <td
+  //             scope="col"
+  //             colSpan={1}
+  //             className="d-md-flex text-center py-2 justify-content-evenly align-items-center"
+  //           >
+  //             {renderActions(dish)}
+  //           </td>
+  //         </tr>
+  //       </>
+  //     )
+  //   })
+  // }
 
-  function renderActions(dish: DishMenu) {
+  function renderActions(dish: {
+    dish: string
+    day: string
+    meal: string
+    id: number
+  }) {
     return (
       <>
         <button
@@ -126,7 +142,36 @@ function TableLunch(props: TableLunchProps) {
     <div className="table-responsive-lg pb-4 rounded">
       <table className="table align-middle border overflow-hidden rounded-top caption-top shadow table-bordered text-start table-hover ">
         <thead>{renderHeader()}</thead>
-        <tbody>{renderData()}</tbody>
+        {/* <tbody>{renderData()}</tbody> */}
+        <tbody>
+          {props.plates
+            .filter((dish) => dish.meal === 'almoço')
+            .map((dish, i) => {
+              return (
+                <>
+                  <tr key={dish.id} className="shadow border border-secondary ">
+                    <th
+                      scope="row"
+                      colSpan={1}
+                      className="fw-bold border border-dark text-center border-opacity-50"
+                    >
+                      {renderdateDays()[i]}
+                    </th>
+                    <td colSpan={4} className="text-center text-wrap">
+                      {dish.dish}
+                    </td>
+                    <td
+                      scope="col"
+                      colSpan={1}
+                      className="d-md-flex text-center py-2 justify-content-evenly align-items-center"
+                    >
+                      {renderActions(dish)}
+                    </td>
+                  </tr>
+                </>
+              )
+            })}
+        </tbody>
       </table>
     </div>
   )
