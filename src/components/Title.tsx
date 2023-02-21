@@ -1,5 +1,3 @@
-// import { daysAll } from './TableLunch'
-
 interface TitleProps {
   className?: string
   subTitle: string

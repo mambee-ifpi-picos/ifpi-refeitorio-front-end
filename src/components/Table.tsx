@@ -1,10 +1,11 @@
 import style from '../styles/Home.module.css'
 import DisableDay from './DisableDay'
-import { days, daysAll } from './TableLunch'
+import { days, daysAll } from './Days'
 
 interface TableProps {
   plates: { day: string; dish: string; meal: string; id: number }[]
   title: string
+  meal: string
   editedDish?: (dish: {
     day: string
     dish: string
@@ -58,10 +59,10 @@ function Table(props: TableProps) {
 
   function renderData() {
     return props.plates
-      .filter((dish) => dish.meal === 'janta')
+      .filter((dish) => dish.meal === props.meal)
       .map((dish, i) => {
         return (
-          <tr key={dish.day} className="shadow border border-secondary">
+          <tr key={dish.id} className="shadow border border-secondary">
             <th
               scope="row"
               colSpan={1}

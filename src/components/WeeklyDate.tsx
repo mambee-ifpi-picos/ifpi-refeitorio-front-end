@@ -1,4 +1,4 @@
-import { daysAll } from './TableLunch'
+import { daysAll } from './Days'
 
 export default function WeeklyDate() {
   return (

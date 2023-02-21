@@ -4,51 +4,32 @@ import 'bootstrap/dist/css/bootstrap.min.css' // Import bootstrap CSS
 import Table from '../components/Table'
 import Title from '../components/Title'
 // import Button from '../components/Button'
-import EditDishLunch from '../components/EditDishLunch'
-import TableLunch from '../components/TableLunch'
+import EditDish from '../components/EditDish'
 import WeeklyDate from '../components/WeeklyDate'
 import useDishes from '../hooks/useDishes'
 
 const Menu: NextPage = () => {
-  const {
-    allDishes,
-    selectedDish,
-    setSelectedDish,
-    updatePlate,
-    // dishes,
-    // updatePlate,
-    // deleted,
-
-    // selectedDishLunch,
-    // setSelectedDishLunch,
-    // dishesLunch,
-    // updatePlateLunch,
-    // deletedLunch,
-  } = useDishes()
+  const { allDishes, selectedDish, setSelectedDish, updatePlate } = useDishes()
 
   return (
     <MainLayout title="Cardápio">
       <Title subTitle="Cardápio Semanal" />
       <WeeklyDate />
-      <TableLunch
+      <Table
         title="Almoço"
         plates={allDishes}
+        meal="almoço"
         editedDish={setSelectedDish}
-        // deletedDish={deletedLunch}
+        // deletedDish={deleted}
       />
       <Table
         title="Jantar"
         plates={allDishes}
+        meal="janta"
         editedDish={setSelectedDish}
         // deletedDish={deleted}
       />
-      {}
-      {/* <EditDish
-        // plateChanged={updatePlate}
-        plate={selectedDish}
-        text={setSelectedDish}
-      /> */}
-      <EditDishLunch
+      <EditDish
         plateChanged={updatePlate}
         plate={selectedDish}
         text={setSelectedDish}

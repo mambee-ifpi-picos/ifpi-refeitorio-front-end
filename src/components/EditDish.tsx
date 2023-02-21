@@ -6,9 +6,12 @@ import DishItems from './DishItems'
 
 interface EditDisheProps {
   text?: unknown
-  plate: { dish: string; day: string }
+  plate: { dish: string; day: string; meal: string; id: number }
   children?: unknown
-  plateChanged?: (plate: { dish: string; day: string }) => void
+  plateChanged?: (
+    plate: { dish: string; day: string; meal: string; id: number },
+    snack: string
+  ) => void
 }
 
 export default function EditDish(props: EditDisheProps) {
@@ -16,7 +19,6 @@ export default function EditDish(props: EditDisheProps) {
 
   useEffect(() => {
     setSnack(props.plate?.dish)
-    console.log('useEffect edit')
   }, [props.plate?.dish])
 
   return (
@@ -24,9 +26,9 @@ export default function EditDish(props: EditDisheProps) {
       <div>
         <div
           className="modal fade"
-          id="exampleModalToggle"
+          id="exampleModalToggleLunch"
           aria-hidden="true"
-          aria-labelledby="exampleModalToggleLabel"
+          aria-labelledby="exampleModalToggleLabelLunch"
           tabIndex={-1}
           data-bs-backdrop="static"
         >
@@ -37,7 +39,7 @@ export default function EditDish(props: EditDisheProps) {
                   className="modal-title fw-semibold text-dark "
                   id="exampleModalToggleLabel"
                 >
-                  Jantar
+                  {props.plate.meal == 'almoço' ? 'Almoço' : 'Jantar'}
                 </h4>
                 <button
                   type="button"
@@ -61,8 +63,8 @@ export default function EditDish(props: EditDisheProps) {
               </div>
               <div className="modal-footer d-flex justify-content-between">
                 <button
-                  className="btn  btn-sm btn-outline-danger"
-                  data-bs-target="#exampleModalToggle2"
+                  className="btn btn-sm btn-outline-danger"
+                  data-bs-target="#exampleModalToggle2Lunch"
                   data-bs-toggle="modal"
                 >
                   Cancelar
@@ -71,9 +73,9 @@ export default function EditDish(props: EditDisheProps) {
                   className="btn btn-success"
                   data-bs-dismiss="modal"
                   // id="btnSave"
-                  // onClick={() => {
-                  //   props.plateChanged?.(new DishMenu(props.plate.day, snack))
-                  // }}
+                  onClick={() => {
+                    props.plateChanged?.(props.plate, snack)
+                  }}
                 >
                   Alterar
                 </button>
@@ -86,17 +88,17 @@ export default function EditDish(props: EditDisheProps) {
 
         <div
           className="modal fade"
-          id="exampleModalToggle2"
+          id="exampleModalToggle2Lunch"
           aria-hidden="true"
-          aria-labelledby="exampleModalToggleLabel2"
+          aria-labelledby="exampleModalToggleLabel2Lunch"
           tabIndex={-1}
           data-bs-backdrop="static"
         >
           <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
+            <div className="modal-content ">
               <div className={`modal-header ${style.BgDanger}`}>
                 <h1
-                  className="modal-title fw-semibold text-dark fs-5"
+                  className={`modal-title fw-semibold text-dark fs-5 `}
                   id="exampleModalToggleLabel2"
                 >
                   Atenção
@@ -108,13 +110,13 @@ export default function EditDish(props: EditDisheProps) {
                   aria-label="Close"
                 ></button>
               </div>
-              <div className="modal-body fs-5">
+              <div className={`modal-body fs-5 fw-semibold`}>
                 Deseja cancelar as Alterações?
               </div>
               <div className="modal-footer">
                 <button
                   className="btn btn-warning"
-                  data-bs-target="#exampleModalToggle"
+                  data-bs-target="#exampleModalToggleLunch"
                   data-bs-toggle="modal"
                 >
                   Retorna
