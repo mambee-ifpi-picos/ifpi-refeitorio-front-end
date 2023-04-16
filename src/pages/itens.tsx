@@ -1,15 +1,18 @@
-import { MouseEvent, SyntheticEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { NextPage } from 'next'
-import MainLayout from '../layout/MainLayout'
 import 'bootstrap/dist/css/bootstrap.min.css' // Import bootstrap CSS
+import MainLayout from '../layout/MainLayout'
 import Title from '../components/Title'
 import Button from '../components/Button'
 import SingleModal from '../components/SingleModal'
-import useItems from '../hooks/useItems'
 import Loading from '../components/Loading'
-// import { link } from 'fs'
+
+import { useGlobalContext } from '../store'
 
 const Items: NextPage = () => {
+  const { listItems, setListItems, itemsFunctions } = useGlobalContext()
+
+  const [message, setMessage] = useState<string>('')
   const [selectedItem, setSelectedItem] = useState<{
     id: number
     name: string
@@ -18,68 +21,95 @@ const Items: NextPage = () => {
   const [inputEditItem, setInputEditItem] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
 
-  const { listItems, setListItems } = useItems()
-  const linkRoot = 'http://localhost:3000'
-
-  async function addItem(
-    e: MouseEvent<HTMLButtonElement> | SyntheticEvent<HTMLFormElement>
-  ) {
-    e.preventDefault()
-    if (!inputItem) return
-    setLoading(true)
-    setInputItem('')
-    const response = await fetch(`${linkRoot}/items`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: inputItem,
-      }),
-    })
-    const json = await response.json()
-    setLoading(false)
-    console.log(json)
-    getItems()
-  }
-
   async function getItems() {
-    setLoading(true)
-    const response = await fetch(`${linkRoot}/items`)
-    const json = await response.json()
-    setLoading(false)
-    setListItems(json)
-    console.log(json)
+    try {
+      setMessage('')
+      setLoading(true)
+      const { code, response } = await itemsFunctions.getItems()
+      // gambiarra
+      if (
+        code === 200 &&
+        response.length >= 1 &&
+        typeof response === 'object'
+      ) {
+        setListItems(response)
+      } else if (code === 200 && response.length === 0) {
+        setMessage('Não existem itens cadastrados.')
+      } else {
+        // mensagem do back
+      }
+    } catch (error) {
+      // mensagem de erro inesperado, tente mais tarde
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
   }
 
-  async function deleteItem() {
-    if (!selectedItem) return
-    setLoading(true)
-    const response = await fetch(`${linkRoot}/items/${selectedItem.id}`, {
-      method: 'DELETE',
-    })
-    const json = await response.json()
-    setLoading(false)
-    console.log(json)
+  async function addItem() {
+    if (!inputItem) return
+    try {
+      setLoading(true)
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { code, response } = await itemsFunctions.addItem(inputItem)
+      if (code === 201) {
+        // mensagem de sucesso
+      } else {
+        // mensagem do back
+      }
+    } catch (error) {
+      // mensagem de erro inesperado, tente mais tarde
+      console.log(error)
+    } finally {
+      setInputItem('')
+      setLoading(false)
+    }
     getItems()
   }
 
   async function editItem() {
     if (!inputEditItem || !selectedItem) return
-    setLoading(true)
-    const response = await fetch(`${linkRoot}/items/${selectedItem.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: inputEditItem,
-      }),
-    })
-    const json = await response.json()
-    setLoading(false)
-    console.log(json)
-    setInputEditItem('')
+    try {
+      setLoading(true)
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { code, response } = await itemsFunctions.editItem(
+        selectedItem.id,
+        inputEditItem
+      )
+      if (code === 200) {
+        // mensagem de sucesso
+      } else {
+        // mensagem do back
+      }
+    } catch (error) {
+      // mensagem de erro inesperado, tente mais tarde
+      console.log(error)
+    } finally {
+      setInputEditItem('')
+      setLoading(false)
+    }
+    getItems()
+  }
+
+  async function deleteItem() {
+    if (!selectedItem) return
+    try {
+      setLoading(true)
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { code, response } = await itemsFunctions.deleteItem(
+        selectedItem.id
+      )
+      if (code === 200) {
+        // mensagem de sucesso
+      } else {
+        // mensagem do back
+      }
+    } catch (error) {
+      // mensagem de erro inesperado, tente mais tarde
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
     getItems()
   }
 
@@ -90,84 +120,10 @@ const Items: NextPage = () => {
     asyncGetItems()
   }, [])
 
-  // function orderByName (e: MouseEventHandler<HTMLLIElement> | undefined) {
-  //   let listSortedByName = listItems
-  //   listSortedByName?.sort((a, b) => {
-  //     if (a.name < b.name)
-  //         return -1;
-  //     if (a.name > b.name)
-  //         return 1;
-  //     return 0;
-  //   })
-  //   setListItems(listSortedByName)
-  // }
-
-  // function orderByDate (/*e: MouseEventHandler<HTMLLIElement> | undefined*/) {
-  //   let listSortedByDate = listItems
-  //   listSortedByDate?.sort((a, b) => {
-  //     if (a.creationDate < b.creationDate)
-  //         return -1;
-  //     if (a.creationDate > b.creationDate)
-  //         return 1;
-  //     return 0;
-  //   })
-  //   setListItems(listSortedByDate)
-  // }
-
-  // useEffect(() => {
-  //   let listItemsSorted = [
-  //     {
-  //       id: 1,
-  //       item: 'arroz',
-  //     },
-  //     {
-  //       id: 3,
-  //       item: 'feijoada',
-  //     },
-  //     {
-  //       id: 4,
-  //       item: 'melancia',
-  //     },
-  //     {
-  //       id: 5,
-  //       item: 'salada cozida',
-  //     },
-  //     {
-  //       id: 2,
-  //       item: 'fruta',
-  //     },
-  //     {
-  //       id: 7,
-  //       item: 'frango',
-  //     },
-  //     {
-  //       id: 6,
-  //       item: 'estrogonofe',
-  //     },
-  //     {
-  //       id: 9,
-  //       item: 'teste',
-  //     },
-  //     {
-  //       id: 8,
-  //       item: 'feijão',
-  //     },
-  //   ]
-  //   listItemsSorted.sort((a, b) => {
-  //     if (a.id < b.id)
-  //         return -1;
-  //     if (a.id > b.id)
-  //         return 1;
-  //     return 0;
-  // })
-  //   console.log(listItemsSorted)
-  //   orderByName()
-  // }, [listItems])
-
   return (
     <MainLayout title="Cardápio">
       <Title subTitle="Itens do cardápio" />
-      <form onSubmit={addItem}>
+      <form>
         <div className="mb-3 d-flex flex-column gap-2">
           <label
             className="d-flex fw-semibold col-form-label fs-5"
@@ -215,9 +171,10 @@ const Items: NextPage = () => {
         </div>
       </form>
       <div className="d-flex pt-3 gap-3 flex-wrap">
-        {loading ? (
-          <Loading />
-        ) : (
+        {loading && <Loading />}
+        {!loading && message && <p>{message}</p>}
+        {!loading &&
+          !message &&
           listItems?.map((element, index) => {
             return (
               <div
@@ -255,8 +212,7 @@ const Items: NextPage = () => {
                 </div>
               </div>
             )
-          })
-        )}
+          })}
       </div>
       <SingleModal
         id="idModalDeleteItem"
