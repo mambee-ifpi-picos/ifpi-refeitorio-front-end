@@ -1,11 +1,14 @@
 import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import styles from '../styles/Home.module.css'
 import MainLayoutProps from './MainLayoutProps'
 import Sidebar from '../components/Sidebar'
+import TempMessage from '../components/TempMessage'
+import { useGlobalContext } from '../store'
 
 export default function MainLayout(props: MainLayoutProps) {
+  const { tempMessage } = useGlobalContext()
+
   // console.log(props)
   return (
     <div>
@@ -26,8 +29,9 @@ export default function MainLayout(props: MainLayoutProps) {
         ></link>
       </Head>
 
-      <div className={styles.page}>
-        <div className="container text-center ">
+      <div>
+        {tempMessage.message && <TempMessage />}
+        <div className="container text-center">
           <div className="row">
             <div className="col">
               <Navbar />

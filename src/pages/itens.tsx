@@ -12,7 +12,6 @@ import { useGlobalContext } from '../store'
 const Items: NextPage = () => {
   const { listItems, setListItems, itemsFunctions } = useGlobalContext()
 
-  const [message, setMessage] = useState<string>('')
   const [selectedItem, setSelectedItem] = useState<{
     id: number
     name: string
@@ -23,7 +22,7 @@ const Items: NextPage = () => {
 
   async function getItems() {
     try {
-      setMessage('')
+      setListItems('')
       setLoading(true)
       const { code, response } = await itemsFunctions.getItems()
       // gambiarra
@@ -34,7 +33,7 @@ const Items: NextPage = () => {
       ) {
         setListItems(response)
       } else if (code === 200 && response.length === 0) {
-        setMessage('Não existem itens cadastrados.')
+        setListItems('Não existem itens cadastrados.')
       } else {
         // mensagem do back
       }
@@ -172,9 +171,11 @@ const Items: NextPage = () => {
       </form>
       <div className="d-flex pt-3 gap-3 flex-wrap">
         {loading && <Loading />}
-        {!loading && message && <p>{message}</p>}
-        {!loading &&
-          !message &&
+        {typeof listItems === 'string' && !loading && (
+          <p className="fw-bold opacity-50">{listItems}</p>
+        )}
+        {typeof listItems === 'object' &&
+          !loading &&
           listItems?.map((element, index) => {
             return (
               <div
@@ -188,7 +189,7 @@ const Items: NextPage = () => {
                   aria-label="Basic mixed styles example"
                 >
                   <button
-                    className="btn shadow-sm btn-danger  btn-sm"
+                    className="btn shadow-sm btn-danger btn-sm"
                     type="button"
                     data-bs-toggle="modal"
                     data-bs-target="#idModalDeleteItem"
