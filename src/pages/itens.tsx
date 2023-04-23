@@ -10,7 +10,8 @@ import Loading from '../components/Loading'
 import { useGlobalContext } from '../store'
 
 const Items: NextPage = () => {
-  const { listItems, setListItems, itemsFunctions } = useGlobalContext()
+  const { setTempMessage, listItems, setListItems, itemsFunctions } =
+    useGlobalContext()
 
   const [selectedItem, setSelectedItem] = useState<{
     id: number
@@ -21,95 +22,62 @@ const Items: NextPage = () => {
   const [loading, setLoading] = useState<boolean>(false)
 
   async function getItems() {
-    try {
-      setListItems('')
-      setLoading(true)
-      const { code, response } = await itemsFunctions.getItems()
-      // gambiarra
-      if (
-        code === 200 &&
-        response.length >= 1 &&
-        typeof response === 'object'
-      ) {
-        setListItems(response)
-      } else if (code === 200 && response.length === 0) {
-        setListItems('Não existem itens cadastrados.')
-      } else {
-        // mensagem do back
-      }
-    } catch (error) {
-      // mensagem de erro inesperado, tente mais tarde
-      console.log(error)
-    } finally {
-      setLoading(false)
-    }
+    setListItems('')
+    const response = await itemsFunctions.getItems(setLoading, setTempMessage)
+    setListItems(response)
   }
 
   async function addItem() {
-    if (!inputItem) return
-    try {
-      setLoading(true)
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { code, response } = await itemsFunctions.addItem(inputItem)
-      if (code === 201) {
-        // mensagem de sucesso
-      } else {
-        // mensagem do back
-      }
-    } catch (error) {
-      // mensagem de erro inesperado, tente mais tarde
-      console.log(error)
-    } finally {
-      setInputItem('')
-      setLoading(false)
+    if (!inputItem) {
+      setTempMessage({
+        message: 'Preencha o campo do nome do item a ser adicionado.',
+        type: 'warning',
+      })
+      return
     }
-    getItems()
+    await itemsFunctions.addItem(inputItem, setLoading, setTempMessage)
+    await getItems()
   }
+
+  // async function editItem() {
+  //   if (!inputEditItem || !selectedItem) return
+  //   try {
+  //     setLoading(true)
+  //     // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  //     const { code, response } = await itemsFunctions.editItem(
+  //       selectedItem.id,
+  //       inputEditItem
+  //     )
+  //     if (code === 200) {
+  //       // mensagem de sucesso
+  //     } else {
+  //       // mensagem do back
+  //     }
+  //   } catch (error) {
+  //     // mensagem de erro inesperado, tente mais tarde
+  //     console.log(error)
+  //   } finally {
+  //     setInputEditItem('')
+  //     setLoading(false)
+  //   }
+  //   getItems()
+  // }
 
   async function editItem() {
     if (!inputEditItem || !selectedItem) return
-    try {
-      setLoading(true)
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { code, response } = await itemsFunctions.editItem(
-        selectedItem.id,
-        inputEditItem
-      )
-      if (code === 200) {
-        // mensagem de sucesso
-      } else {
-        // mensagem do back
-      }
-    } catch (error) {
-      // mensagem de erro inesperado, tente mais tarde
-      console.log(error)
-    } finally {
-      setInputEditItem('')
-      setLoading(false)
-    }
-    getItems()
+    await itemsFunctions.editItem(
+      selectedItem.id,
+      inputEditItem,
+      setLoading,
+      setTempMessage
+    )
+    await getItems()
   }
 
   async function deleteItem() {
     if (!selectedItem) return
-    try {
-      setLoading(true)
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { code, response } = await itemsFunctions.deleteItem(
-        selectedItem.id
-      )
-      if (code === 200) {
-        // mensagem de sucesso
-      } else {
-        // mensagem do back
-      }
-    } catch (error) {
-      // mensagem de erro inesperado, tente mais tarde
-      console.log(error)
-    } finally {
-      setLoading(false)
-    }
-    getItems()
+    await itemsFunctions.deleteItem(selectedItem.id, setLoading, setTempMessage)
+    await getItems()
   }
 
   useEffect(() => {

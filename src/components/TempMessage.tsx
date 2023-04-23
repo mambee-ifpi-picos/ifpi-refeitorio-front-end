@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { useGlobalContext } from '../store'
 
 export default function TempMessage() {
+  // falta pôr uma animação
+
   const alertType = [
     'primary',
     'secondary',
@@ -17,7 +19,7 @@ export default function TempMessage() {
   useEffect(() => {
     const removeTempMessage = setTimeout(() => {
       setTempMessage({ message: '', type: '' })
-    }, 7500)
+    }, 5000)
 
     return () => {
       clearTimeout(removeTempMessage)

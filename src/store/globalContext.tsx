@@ -7,8 +7,10 @@ interface IGlobalContextProps {
   setTempMessage:
     | Dispatch<SetStateAction<{ message: string; type: string }>>
     | (() => void)
-  listItems: Item[] | string
-  setListItems: Dispatch<SetStateAction<Item[] | string>> | (() => void)
+  listItems: Item[] | string | undefined
+  setListItems:
+    | Dispatch<SetStateAction<Item[] | string | undefined>>
+    | (() => void)
   itemsFunctions: ItemsFunctionsType
 }
 
@@ -36,7 +38,7 @@ export const GlobalContextProvider = ({
 
   // ITEMS
 
-  const [listItems, setListItems] = useState<Item[] | string>([])
+  const [listItems, setListItems] = useState<Item[] | string | undefined>([])
 
   // MENUS
 
