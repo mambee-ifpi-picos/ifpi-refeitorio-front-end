@@ -39,30 +39,6 @@ const Items: NextPage = () => {
     await getItems()
   }
 
-  // async function editItem() {
-  //   if (!inputEditItem || !selectedItem) return
-  //   try {
-  //     setLoading(true)
-  //     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  //     const { code, response } = await itemsFunctions.editItem(
-  //       selectedItem.id,
-  //       inputEditItem
-  //     )
-  //     if (code === 200) {
-  //       // mensagem de sucesso
-  //     } else {
-  //       // mensagem do back
-  //     }
-  //   } catch (error) {
-  //     // mensagem de erro inesperado, tente mais tarde
-  //     console.log(error)
-  //   } finally {
-  //     setInputEditItem('')
-  //     setLoading(false)
-  //   }
-  //   getItems()
-  // }
-
   async function editItem() {
     if (!inputEditItem || !selectedItem) return
     await itemsFunctions.editItem(
