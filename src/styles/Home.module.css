@@ -11,6 +11,7 @@
   font-size: 1rem;
 }
 .BG {
+  /* background: linear-gradient(180deg, #D9F7E8 0%, #38D78A 0.01%, #34AE73 56.75%, #318F62 100%); */
   background: linear-gradient(to right, #4ca179, #356e5f);
   color: #fff;
 }

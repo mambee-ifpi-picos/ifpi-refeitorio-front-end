@@ -42,7 +42,7 @@ export default function MainLayout(props: MainLayoutProps) {
               <Sidebar />
             </div>
             <div className=" col-lg-10 ps-4 col-xl-10">
-              <main className="text-center ">{props.children}</main>
+              <main className="text-center">{props.children}</main>
             </div>
           </div>
         </div>

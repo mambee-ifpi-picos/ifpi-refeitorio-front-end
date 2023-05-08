@@ -24,19 +24,17 @@ export default function TempMessage() {
     return () => {
       clearTimeout(removeTempMessage)
     }
-  })
+  }, [])
 
   return (
-    <>
-      <div
-        className={`alert alert-${
-          tempMessage.type && alertType.includes(tempMessage.type)
-            ? tempMessage.type
-            : `primary`
-        } tempMessage`}
-      >
-        <p>{tempMessage.message}</p>
-      </div>
-    </>
+    <div
+      className={`alert alert-${
+        tempMessage.type && alertType.includes(tempMessage.type)
+          ? tempMessage.type
+          : `primary`
+      } tempMessage`}
+    >
+      <p>{tempMessage.message}</p>
+    </div>
   )
 }
