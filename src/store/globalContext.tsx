@@ -7,6 +7,10 @@ import {
   Menu,
   SetListAllMenus,
   SetDesiredWeek,
+  selectedMenu,
+  setSelectedMenu,
+  selectedDayWithoutMenuSaved,
+  setSelectedDayWithoutMenuSaved,
 } from '../types/Menus'
 
 interface IGlobalContextProps {
@@ -26,6 +30,10 @@ interface IGlobalContextProps {
   menusFunctions: MenusFunctionsType
   desiredWeek: number
   setDesiredWeek: SetDesiredWeek
+  selectedMenu: selectedMenu
+  setSelectedMenu: setSelectedMenu
+  selectedDayWithoutMenuSaved: selectedDayWithoutMenuSaved
+  setSelectedDayWithoutMenuSaved: setSelectedDayWithoutMenuSaved
 }
 
 export const GlobalContext = React.createContext<IGlobalContextProps>({
@@ -49,6 +57,14 @@ export const GlobalContext = React.createContext<IGlobalContextProps>({
   menusFunctions: menusFunctions,
   desiredWeek: 0,
   setDesiredWeek: () => {
+    return
+  },
+  selectedMenu: undefined,
+  setSelectedMenu: () => {
+    return
+  },
+  selectedDayWithoutMenuSaved: '',
+  setSelectedDayWithoutMenuSaved: () => {
     return
   },
 })
@@ -79,6 +95,9 @@ export const GlobalContextProvider = ({
 
   const [listAllMenus, setListAllMenus] = useState<Menu[] | [] | undefined>([])
   const [desiredWeek, setDesiredWeek] = useState<number>(0)
+  const [selectedMenu, setSelectedMenu] = useState<Menu>()
+  const [selectedDayWithoutMenuSaved, setSelectedDayWithoutMenuSaved] =
+    useState<string>()
 
   return (
     <GlobalContext.Provider
@@ -97,6 +116,10 @@ export const GlobalContextProvider = ({
         menusFunctions,
         desiredWeek,
         setDesiredWeek,
+        selectedMenu,
+        setSelectedMenu,
+        selectedDayWithoutMenuSaved,
+        setSelectedDayWithoutMenuSaved,
       }}
     >
       {children}

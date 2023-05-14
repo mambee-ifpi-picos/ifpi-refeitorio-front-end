@@ -58,7 +58,7 @@ export default function EditDish(props: EditDisheProps) {
                       onlyReading={false}
                     />
                   </div>
-                  {DishItems()}
+                  <DishItems loading={true} />
                 </form>
               </div>
               <div className="modal-footer d-flex justify-content-between">

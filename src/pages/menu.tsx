@@ -4,20 +4,27 @@ import 'bootstrap/dist/css/bootstrap.min.css' // Import bootstrap CSS
 import Table from '../components/MenuTable'
 import Title from '../components/Title'
 // import Button from '../components/Button'
-import EditDish from '../components/EditDish'
+import SingleModal from '../components/SingleModal'
 import WeeklyDate from '../components/WeeklyDate'
-import useDishes from '../hooks/useDishes'
 import { useGlobalContext } from '../store'
 import { useEffect, useState } from 'react'
 // import { InitialAndFinalDays } from '../utils/dates'
 import initialAndFinalDaysOfWeek from '../utils/dates/initialAndFinalDaysOfWeek'
+import DishItems from '../components/DishItems'
 
 const Menu: NextPage = () => {
-  const { setTempMessage, setListAllMenus, menusFunctions, desiredWeek } =
-    useGlobalContext()
-  const { selectedDish, setSelectedDish, updatePlate } = useDishes()
+  const {
+    setTempMessage,
+    setListAllMenus,
+    menusFunctions,
+    desiredWeek,
+    setListItems,
+    itemsFunctions,
+    selectedMenu,
+  } = useGlobalContext()
 
-  const [loading, setLoading] = useState<boolean>(false)
+  const [loadingMenus, setLoadingMenus] = useState<boolean>(false)
+  const [loadingItems, setLoadingItems] = useState<boolean>(false)
 
   async function getMenus() {
     setListAllMenus([])
@@ -26,43 +33,67 @@ const Menu: NextPage = () => {
       setTempMessage,
       initialDate,
       finalDate,
-      setLoading
+      setLoadingMenus
     )
     setListAllMenus(response)
   }
 
+  async function getItems() {
+    setListItems('')
+    const response = await itemsFunctions.getItems(
+      setLoadingItems,
+      setTempMessage
+    )
+    setListItems(response)
+  }
+
   useEffect(() => {
-    async function getMenusFunction() {
+    async function getMenusAndItemsFunction() {
       await getMenus()
+      await getItems() // fazer com que ocorram ao mesmo tempo
     }
-    getMenusFunction()
+    getMenusAndItemsFunction()
   }, [])
 
   return (
     <MainLayout title="Cardápio">
       <Title subTitle="Cardápio Semanal" />
       <WeeklyDate />
-      {/* <Table
+      <Table
         title="Almoço"
-        plates={allDishes}
+        // plates={allDishes}
         meal="almoço"
-        editedDish={setSelectedDish}
+        editedDish={() => ''}
+        loading={loadingMenus}
         // deletedDish={deleted}
-      /> */}
+      />
       <Table
         title="Jantar"
         // plates={listMenus}
         meal="janta"
         // editedDish={setSelectedDish}
         editedDish={() => ''}
-        loading={loading}
+        loading={loadingMenus}
         // deletedDish={deleted}
       />
-      <EditDish
+      {/* <EditDish
         plateChanged={updatePlate}
         plate={selectedDish}
         text={setSelectedDish}
-      />
+      /> */}
+      <SingleModal
+        id="idModalEditMenu"
+        modalTitle={selectedMenu?.meal == 'almoço' ? 'Almoço' : 'Jantar'}
+        action="Editar"
+        onClickSuccess={() => ''}
+        onClickCancel={() => ''}
+      >
+        <form>
+          {/* <div className="mb-3 h5">
+          </div> */}
+          <DishItems loading={loadingItems} />
+        </form>
+      </SingleModal>
     </MainLayout>
   )
 }

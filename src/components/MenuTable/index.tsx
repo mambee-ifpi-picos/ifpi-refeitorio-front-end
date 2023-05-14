@@ -4,6 +4,7 @@ import { useGlobalContext } from '../../store'
 import Loading from '../Loading'
 import ButtonActions from './ButtonActions'
 import listDaysOfWeek from '../../utils/dates/listDaysOfWeek'
+import { format } from 'date-fns'
 
 type MenuTablePropsType = {
   title: string
@@ -14,7 +15,13 @@ type MenuTablePropsType = {
 }
 
 function Table({ title, meal, loading }: MenuTablePropsType) {
-  const { desiredWeek, listAllMenus, listNameDays } = useGlobalContext()
+  const {
+    desiredWeek,
+    listAllMenus,
+    listNameDays,
+    setSelectedMenu,
+    setSelectedDayWithoutMenuSaved,
+  } = useGlobalContext()
   const listDays = listDaysOfWeek({ desiredWeek })
   const menus = listAllMenus?.filter((dish) => dish.meal === meal)
 
@@ -22,9 +29,14 @@ function Table({ title, meal, loading }: MenuTablePropsType) {
     const existMenuInThisDate = menus?.find(
       (menu) => new Date(menu.date).getDay() === day.getDay()
     )
-    const response = existMenuInThisDate ?? null
+    const response = existMenuInThisDate ?? undefined
     return response
   })
+
+  // useEffect(() => {
+  //   console.log('selectedMenu:', selectedMenu)
+  //   console.log('selectedDayWithoutMenuSaved: ', selectedDayWithoutMenuSaved)
+  // }, [selectedMenu, selectedDayWithoutMenuSaved])
 
   // PAREI NA PARTE DE MOSTRAR OS ITENS / MENSAGEM DE QUE NÃO HÁ MENU PARA O DIA
 
@@ -65,13 +77,6 @@ function Table({ title, meal, loading }: MenuTablePropsType) {
                 </th>
                 <td colSpan={4} className="text-center text-wrap">
                   {loading && <Loading />}
-                  {/* {menus && menus.length > 0 && menus.map((menu) => {
-                    if(isEqual(new Date(listDays[index]), new Date(menu.date))) {
-                      return 'tem refeição esse dia'
-                    } else{
-                      return ''
-                    } 
-                  })} */}
                   {finalList[index]?.items.map((item) => `${item.name} `)}
                 </td>
                 <td
@@ -79,8 +84,20 @@ function Table({ title, meal, loading }: MenuTablePropsType) {
                   colSpan={1}
                   className="d-md-flex text-center py-2 justify-content-evenly align-items-center"
                 >
-                  {/* <ButtonActions editedDish={editedDish} /> */}
-                  <ButtonActions />
+                  {/* <ButtonActions setSelectedMenu={setSelectedMenu} menu={finalList[index] ? finalList[index] : format(listDays[index], 'uuuu-MM-dd')} /> */}
+                  <ButtonActions
+                    onClick={() => {
+                      if (finalList[index]) {
+                        setSelectedDayWithoutMenuSaved('')
+                        setSelectedMenu(finalList[index])
+                      } else {
+                        setSelectedDayWithoutMenuSaved(
+                          format(listDays[index], 'uuuu-MM-dd')
+                        )
+                        setSelectedMenu(undefined)
+                      }
+                    }}
+                  />
                 </td>
               </tr>
             )

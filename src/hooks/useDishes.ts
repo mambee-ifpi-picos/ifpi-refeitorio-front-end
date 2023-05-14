@@ -65,7 +65,7 @@ export default function useDishesDinner() {
     },
   ])
 
-  const [selectedDish, setSelectedDish] = useState<{
+  const [selectedMenu, setSelectedMenu] = useState<{
     dish: string
     day: string
     meal: string
@@ -93,8 +93,8 @@ export default function useDishesDinner() {
 
   return {
     allDishes,
-    selectedDish,
-    setSelectedDish,
+    selectedDish: selectedMenu,
+    setSelectedDish: setSelectedMenu,
     updatePlate,
     // deleted
   }

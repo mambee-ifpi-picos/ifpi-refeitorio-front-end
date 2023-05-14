@@ -1,21 +1,12 @@
 import DisableDay from './DisableDay'
 
-// type PropsButtonActionsType = {
-//   editedDish: any,
-//   dish?: any
-// }
-
-export default function ButtonActions() {
-  //   {
-  //   editedDish,
-  //   dish
-  // }: PropsButtonActionsType
+export default function ButtonActions({ onClick }: { onClick: () => void }) {
   return (
     <>
       <button
         data-bs-toggle="modal"
-        data-bs-target="#exampleModalToggleLunch"
-        // onClick={() => editedDish?.(dish)}
+        data-bs-target="#idModalEditMenu"
+        onClick={onClick}
         className="btn shadow-sm border btn-success"
       >
         <i className="bi bi-pencil-square"></i>

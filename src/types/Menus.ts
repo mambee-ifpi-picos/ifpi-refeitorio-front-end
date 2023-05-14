@@ -21,3 +21,11 @@ export type SetListAllMenus =
   | Dispatch<SetStateAction<Menu[] | [] | undefined>>
   | (() => void)
 export type SetDesiredWeek = Dispatch<SetStateAction<number>> | (() => void)
+export type selectedMenu = Menu | undefined
+export type setSelectedMenu =
+  | Dispatch<SetStateAction<Menu | undefined>>
+  | (() => void)
+export type selectedDayWithoutMenuSaved = string | undefined
+export type setSelectedDayWithoutMenuSaved =
+  | Dispatch<SetStateAction<string | undefined>>
+  | (() => void)
