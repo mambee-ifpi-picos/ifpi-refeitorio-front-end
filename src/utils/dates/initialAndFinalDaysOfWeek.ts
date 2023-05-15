@@ -12,7 +12,7 @@ export default function initialAndFinalDaysOfWeek({
       weekStartsOn: 1,
     })
   } else if (desiredWeek < 0) {
-    initialDay = startOfWeek(subDays(new Date(), desiredWeek * 7), {
+    initialDay = startOfWeek(subDays(new Date(), Math.abs(desiredWeek) * 7), {
       weekStartsOn: 1,
     })
   } else {
