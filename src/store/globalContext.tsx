@@ -9,8 +9,6 @@ import {
   SetDesiredWeek,
   selectedMenu,
   setSelectedMenu,
-  selectedDayWithoutMenuSaved,
-  setSelectedDayWithoutMenuSaved,
 } from '../types/Menus'
 
 interface IGlobalContextProps {
@@ -32,8 +30,11 @@ interface IGlobalContextProps {
   setDesiredWeek: SetDesiredWeek
   selectedMenu: selectedMenu
   setSelectedMenu: setSelectedMenu
-  selectedDayWithoutMenuSaved: selectedDayWithoutMenuSaved
-  setSelectedDayWithoutMenuSaved: setSelectedDayWithoutMenuSaved
+
+  listItemsToInterate: { checked: boolean; item: Item }[] | undefined
+  setListItemsToInterate:
+    | Dispatch<SetStateAction<{ checked: boolean; item: Item }[] | undefined>>
+    | (() => void)
 }
 
 export const GlobalContext = React.createContext<IGlobalContextProps>({
@@ -63,8 +64,9 @@ export const GlobalContext = React.createContext<IGlobalContextProps>({
   setSelectedMenu: () => {
     return
   },
-  selectedDayWithoutMenuSaved: '',
-  setSelectedDayWithoutMenuSaved: () => {
+
+  listItemsToInterate: undefined,
+  setListItemsToInterate: () => {
     return
   },
 })
@@ -89,15 +91,17 @@ export const GlobalContextProvider = ({
 
   // ITEMS
 
-  const [listItems, setListItems] = useState<Item[] | string | undefined>([])
+  const [listItems, setListItems] = useState<Item[] | undefined>([])
 
   // MENUS
 
-  const [listAllMenus, setListAllMenus] = useState<Menu[] | [] | undefined>([])
-  const [desiredWeek, setDesiredWeek] = useState<number>(0)
+  const [listAllMenus, setListAllMenus] = useState<Menu[] | undefined>([])
+  const [desiredWeek, setDesiredWeek] = useState<number>(-2)
   const [selectedMenu, setSelectedMenu] = useState<Menu>()
-  const [selectedDayWithoutMenuSaved, setSelectedDayWithoutMenuSaved] =
-    useState<string>()
+
+  const [listItemsToInterate, setListItemsToInterate] = useState<
+    { checked: boolean; item: Item }[] | undefined
+  >(undefined)
 
   return (
     <GlobalContext.Provider
@@ -118,8 +122,9 @@ export const GlobalContextProvider = ({
         setDesiredWeek,
         selectedMenu,
         setSelectedMenu,
-        selectedDayWithoutMenuSaved,
-        setSelectedDayWithoutMenuSaved,
+
+        listItemsToInterate,
+        setListItemsToInterate,
       }}
     >
       {children}

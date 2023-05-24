@@ -21,6 +21,7 @@ const Menu: NextPage = () => {
     setListItems,
     itemsFunctions,
     selectedMenu,
+    listItemsToInterate,
   } = useGlobalContext()
 
   const [loadingMenus, setLoadingMenus] = useState<boolean>(false)
@@ -38,8 +39,23 @@ const Menu: NextPage = () => {
     setListAllMenus(response)
   }
 
+  async function editMenu() {
+    // setListAllMenus([])
+    // const [initialDate, finalDate] = initialAndFinalDaysOfWeek({ desiredWeek })
+    await menusFunctions.editMenu(
+      selectedMenu,
+      listItemsToInterate
+        ?.filter((item) => item.checked && item.item.id)
+        .map((item) => item.item.id),
+      setLoadingMenus,
+      setTempMessage
+    )
+    await getMenus()
+    // setListAllMenus(response)
+  }
+
   async function getItems() {
-    setListItems('')
+    setListItems([])
     const response = await itemsFunctions.getItems(
       setLoadingItems,
       setTempMessage
@@ -49,8 +65,8 @@ const Menu: NextPage = () => {
 
   useEffect(() => {
     async function getMenusAndItemsFunction() {
-      await getMenus()
-      await getItems() // fazer com que ocorram ao mesmo tempo
+      getMenus()
+      getItems() // fazer com que ocorram ao mesmo tempo
     }
     getMenusAndItemsFunction()
   }, [])
@@ -76,23 +92,14 @@ const Menu: NextPage = () => {
         loading={loadingMenus}
         // deletedDish={deleted}
       />
-      {/* <EditDish
-        plateChanged={updatePlate}
-        plate={selectedDish}
-        text={setSelectedDish}
-      /> */}
       <SingleModal
         id="idModalEditMenu"
         modalTitle={selectedMenu?.meal == 'almoço' ? 'Almoço' : 'Jantar'}
         action="Editar"
-        onClickSuccess={() => ''}
+        onClickSuccess={editMenu}
         onClickCancel={() => ''}
       >
-        <form>
-          {/* <div className="mb-3 h5">
-          </div> */}
-          <DishItems loading={loadingItems} />
-        </form>
+        <DishItems loading={loadingItems} />
       </SingleModal>
     </MainLayout>
   )

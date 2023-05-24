@@ -10,18 +10,18 @@ export type MenusFunctionsType = {
     initialDate: string,
     finalDate: string,
     setLoading: Dispatch<SetStateAction<boolean>>
-  ) => Promise<Menu[] | [] | undefined>
+  ) => Promise<Menu[] | []>
   // addItem: (
   //   item: string,
   //   setLoading: Dispatch<SetStateAction<boolean>>,
   //   setTempMessage: Dispatch<SetStateAction<{ message: string; type: string }>>
   // ) => void
-  // editItem: (
-  //   id: number,
-  //   newName: string,
-  //   setLoading: Dispatch<SetStateAction<boolean>>,
-  //   setTempMessage: Dispatch<SetStateAction<{ message: string; type: string }>>
-  // ) => void
+  editMenu: (
+    menu: Menu | undefined,
+    ids: number[] | undefined,
+    setLoading: Dispatch<SetStateAction<boolean>>,
+    setTempMessage: Dispatch<SetStateAction<{ message: string; type: string }>>
+  ) => Promise<{ menu: Menu; msg: string } | void>
   // deleteItem: (
   //   id: number,
   //   setLoading: Dispatch<SetStateAction<boolean>>,
@@ -58,6 +58,39 @@ const MenusFunctions = () => {
         } else {
           typeof json === 'string' &&
             setTempMessage({ message: json, type: 'alert' })
+        }
+      } catch (error) {
+        console.log(error)
+        setTempMessage({
+          message:
+            'Ocorreu um erro interno no servidor, por favor tente novamente mais tarde',
+          type: 'danger',
+        })
+      } finally {
+        setLoading(false)
+      }
+    },
+    editMenu: async (menu, ids, setLoading, setTempMessage) => {
+      if (menu == undefined || ids == undefined) return
+      try {
+        setLoading(true)
+        const response: Response = await fetch(
+          `${API_URL}/${BASE_URL}/${menu.id}`,
+          {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              items: ids,
+            }),
+          }
+        )
+        const json = await response.json()
+        if (response.status === 200) {
+          return json
+        } else {
+          setTempMessage({ message: json, type: 'alert' })
         }
       } catch (error) {
         console.log(error)

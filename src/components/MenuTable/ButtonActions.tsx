@@ -15,3 +15,11 @@ export default function ButtonActions({ onClick }: { onClick: () => void }) {
     </>
   )
 }
+
+{
+  /* <div class="modal fade" style="display: none;" aria-hidden="true"> */
+}
+
+{
+  /* <div class="modal fade show" style="display: block;" aria-modal="true" role="dialog"> */
+}

@@ -7,7 +7,7 @@ export type Item = {
   name: string
 }
 
-export type ListItems = Item[] | string | undefined
+export type ListItems = Item[] | undefined
 export type SetListItems =
-  | Dispatch<SetStateAction<Item[] | string | undefined>>
+  | Dispatch<SetStateAction<Item[] | undefined>>
   | (() => void)

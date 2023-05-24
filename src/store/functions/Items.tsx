@@ -8,7 +8,7 @@ export type ItemsFunctionsType = {
   getItems: (
     setLoading: Dispatch<SetStateAction<boolean>>,
     setTempMessage: Dispatch<SetStateAction<{ message: string; type: string }>>
-  ) => Promise<Item[] | string | undefined>
+  ) => Promise<Item[] | undefined>
   addItem: (
     item: string,
     setLoading: Dispatch<SetStateAction<boolean>>,
@@ -33,7 +33,7 @@ const ItemsFunctions = () => {
       try {
         setLoading(true)
         const response: Response = await fetch(`${API_URL}/${BASE_URL}`)
-        const json: string | Item[] = await response.json()
+        const json: Item[] = await response.json()
         if (
           response.status === 200 &&
           json.length >= 1 &&
@@ -41,7 +41,7 @@ const ItemsFunctions = () => {
         ) {
           return json
         } else if (response.status === 200 && json.length === 0) {
-          return 'Não existem itens cadastrados.'
+          return json
         } else {
           typeof json === 'string' &&
             setTempMessage({ message: json, type: 'alert' })

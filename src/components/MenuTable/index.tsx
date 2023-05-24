@@ -5,6 +5,7 @@ import Loading from '../Loading'
 import ButtonActions from './ButtonActions'
 import listDaysOfWeek from '../../utils/dates/listDaysOfWeek'
 import { format } from 'date-fns'
+import { Menu } from '../../types/Menus'
 
 type MenuTablePropsType = {
   title: string
@@ -15,13 +16,8 @@ type MenuTablePropsType = {
 }
 
 function Table({ title, meal, loading }: MenuTablePropsType) {
-  const {
-    desiredWeek,
-    listAllMenus,
-    listNameDays,
-    setSelectedMenu,
-    setSelectedDayWithoutMenuSaved,
-  } = useGlobalContext()
+  const { desiredWeek, listAllMenus, listNameDays, setSelectedMenu } =
+    useGlobalContext()
   const listDays = listDaysOfWeek({ desiredWeek })
   const menus = listAllMenus?.filter((dish) => dish.meal === meal)
 
@@ -29,16 +25,16 @@ function Table({ title, meal, loading }: MenuTablePropsType) {
     const existMenuInThisDate = menus?.find(
       (menu) => new Date(menu.date).getDay() === day.getDay()
     )
-    const response = existMenuInThisDate ?? undefined
+    const menuStructure: Menu = {
+      date: format(day, 'uuuu-MM-dd'),
+      meal,
+      items: [],
+    }
+    const response = existMenuInThisDate ?? menuStructure
     return response
   })
 
-  // useEffect(() => {
-  //   console.log('selectedMenu:', selectedMenu)
-  //   console.log('selectedDayWithoutMenuSaved: ', selectedDayWithoutMenuSaved)
-  // }, [selectedMenu, selectedDayWithoutMenuSaved])
-
-  // PAREI NA PARTE DE MOSTRAR OS ITENS / MENSAGEM DE QUE NÃO HÁ MENU PARA O DIA
+  // MENSAGEM DE QUE NÃO HÁ MENU PARA O DIA
 
   return (
     <div className="table-responsive-lg pb-5 mb-4 rounded">
@@ -76,26 +72,20 @@ function Table({ title, meal, loading }: MenuTablePropsType) {
                   </p>
                 </th>
                 <td colSpan={4} className="text-center text-wrap">
-                  {loading && <Loading />}
-                  {finalList[index]?.items.map((item) => `${item.name} `)}
+                  {loading ? (
+                    <Loading />
+                  ) : (
+                    finalList[index].items?.map((item) => `${item.name} `)
+                  )}
                 </td>
                 <td
                   scope="col"
                   colSpan={1}
                   className="d-md-flex text-center py-2 justify-content-evenly align-items-center"
                 >
-                  {/* <ButtonActions setSelectedMenu={setSelectedMenu} menu={finalList[index] ? finalList[index] : format(listDays[index], 'uuuu-MM-dd')} /> */}
                   <ButtonActions
                     onClick={() => {
-                      if (finalList[index]) {
-                        setSelectedDayWithoutMenuSaved('')
-                        setSelectedMenu(finalList[index])
-                      } else {
-                        setSelectedDayWithoutMenuSaved(
-                          format(listDays[index], 'uuuu-MM-dd')
-                        )
-                        setSelectedMenu(undefined)
-                      }
+                      setSelectedMenu(finalList[index])
                     }}
                   />
                 </td>

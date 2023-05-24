@@ -22,7 +22,7 @@ const Items: NextPage = () => {
   const [loading, setLoading] = useState<boolean>(false)
 
   async function getItems() {
-    setListItems('')
+    setListItems([])
     const response = await itemsFunctions.getItems(setLoading, setTempMessage)
     setListItems(response)
   }
@@ -114,13 +114,10 @@ const Items: NextPage = () => {
         </div>
       </form>
       <div className="d-flex pt-3 gap-3 flex-wrap">
-        {loading && <Loading />}
-        {typeof listItems === 'string' && !loading && (
-          <p className="fw-bold opacity-50">{listItems}</p>
-        )}
-        {typeof listItems === 'object' &&
-          !loading &&
-          listItems?.map((element, index) => {
+        {loading ? (
+          <Loading />
+        ) : listItems?.length ? (
+          listItems.map((element, index) => {
             return (
               <div
                 key={element.id}
@@ -157,7 +154,10 @@ const Items: NextPage = () => {
                 </div>
               </div>
             )
-          })}
+          })
+        ) : (
+          <p className="fw-bold opacity-50">Não existem itens cadastrados</p>
+        )}
       </div>
       <SingleModal
         id="idModalDeleteItem"

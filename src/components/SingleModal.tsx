@@ -24,9 +24,8 @@ export default function SingleModal(props: SingleModalProps) {
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className={`modal-header ${style.BG}`}>
-            {/* <h1 className="modal-title fs-5" id="exampleModalLabel">{props.modalTitle}</h1> */}
             <h4
-              className="modal-title fw-semibold text-dark "
+              className="modal-title fw-semibold text-dark"
               id="exampleModalLabel"
             >
               {props.modalTitle}
@@ -38,10 +37,7 @@ export default function SingleModal(props: SingleModalProps) {
               aria-label="Close"
             ></button>
           </div>
-          <div className="modal-body">
-            {/* {props.modalBody} */}
-            {props.children}
-          </div>
+          <div className="modal-body">{props.children}</div>
           <div className="modal-footer d-flex justify-content-between">
             <button
               type="button"

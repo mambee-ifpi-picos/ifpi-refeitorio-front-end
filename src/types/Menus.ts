@@ -9,23 +9,19 @@ type ItemInMenu = {
 
 export type Menu = {
   date: string
-  description: string
-  id: number
+  description?: string
+  id?: number
   items: ItemInMenu[]
   meal: string
-  state: boolean
+  state?: boolean
 }
 
-export type ListAllMenus = Menu[] | [] | undefined
+export type ListAllMenus = Menu[] | undefined
 export type SetListAllMenus =
-  | Dispatch<SetStateAction<Menu[] | [] | undefined>>
+  | Dispatch<SetStateAction<Menu[] | undefined>>
   | (() => void)
 export type SetDesiredWeek = Dispatch<SetStateAction<number>> | (() => void)
 export type selectedMenu = Menu | undefined
 export type setSelectedMenu =
   | Dispatch<SetStateAction<Menu | undefined>>
-  | (() => void)
-export type selectedDayWithoutMenuSaved = string | undefined
-export type setSelectedDayWithoutMenuSaved =
-  | Dispatch<SetStateAction<string | undefined>>
   | (() => void)
