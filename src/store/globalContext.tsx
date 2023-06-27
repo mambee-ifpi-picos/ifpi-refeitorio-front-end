@@ -96,7 +96,7 @@ export const GlobalContextProvider = ({
   // MENUS
 
   const [listAllMenus, setListAllMenus] = useState<Menu[] | undefined>([])
-  const [desiredWeek, setDesiredWeek] = useState<number>(-2)
+  const [desiredWeek, setDesiredWeek] = useState<number>(0)
   const [selectedMenu, setSelectedMenu] = useState<Menu>()
 
   const [listItemsToInterate, setListItemsToInterate] = useState<

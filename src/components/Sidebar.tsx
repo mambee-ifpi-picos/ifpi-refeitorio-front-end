@@ -5,7 +5,7 @@ import Profile from './Profile'
 
 function Sidebar() {
   return (
-    <nav className={`position-fixed`}>
+    <nav className={`position-absolute`}>
       <div
         className={`offcanvas show ${style.BGSidebar} border border-0 offcanvas-start w-auto  `}
         tabIndex={-1}
@@ -50,7 +50,11 @@ function Sidebar() {
               >
                 <div className="accordion-body">
                   <ul className="list-group list-group-flush">
-                    <li className="list-group-item">A second item</li>
+                    <li className="list-group-item">
+                      <Link href="/student/menuStudents">
+                        <a className="nav-link">Cardápios</a>
+                      </Link>
+                    </li>
                     <li className="list-group-item">A third item</li>
                   </ul>
                 </div>
@@ -116,8 +120,8 @@ function Sidebar() {
                       </Link>
                     </li>
                     <li className="list-group-item d-flex">
-                      <Link href="/historicodemenus">
-                        <a className="nav-link">Histórico de menus</a>
+                      <Link href="/menu-history">
+                        <a className="nav-link">Histórico de Cardápios</a>
                       </Link>
                     </li>
                   </ul>

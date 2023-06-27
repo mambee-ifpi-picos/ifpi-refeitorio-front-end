@@ -7,7 +7,7 @@ const Home: NextPage = () => {
     <MainLayout title="Refeitório IFPI Picos">
       <h1 className={styles.title}>Refeitório IFPI Picos</h1>
       <p className={styles.title}>
-        Sistema de gerenciamento de refeitórios do IFPI - Picos - 2022
+        Sistema de gerenciamento de refeitórios do IFPI - Picos - 2023
       </p>
     </MainLayout>
   )

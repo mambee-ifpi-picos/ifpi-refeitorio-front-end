@@ -10,7 +10,7 @@ function Footer() {
         rel="noopener noreferrer"
         className={`flex-center ${style.linkFooter} ${style.BGFooter} p-3`}
       >
-        Copyright 2022 - Mambee | IFPI - Campus Piauí | Todos os direitos
+        Copyright 2023 - Mambee | IFPI - Campus Piauí | Todos os direitos
       </a>
     </footer>
   )
