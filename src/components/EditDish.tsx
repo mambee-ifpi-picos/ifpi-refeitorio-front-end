@@ -83,56 +83,6 @@ export default function EditDish(props: EditDisheProps) {
             </div>
           </div>
         </div>
-
-        {/* Modal-2 */}
-
-        <div
-          className="modal fade"
-          id="exampleModalToggle2Lunch"
-          aria-hidden="true"
-          aria-labelledby="exampleModalToggleLabel2Lunch"
-          tabIndex={-1}
-          data-bs-backdrop="static"
-        >
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content ">
-              <div className={`modal-header ${style.BgDanger}`}>
-                <h1
-                  className={`modal-title fw-semibold text-dark fs-5 `}
-                  id="exampleModalToggleLabel2"
-                >
-                  Atenção
-                </h1>
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div className={`modal-body fs-5 fw-semibold`}>
-                Deseja cancelar as Alterações?
-              </div>
-              <div className="modal-footer">
-                <button
-                  className="btn btn-warning"
-                  data-bs-target="#exampleModalToggleLunch"
-                  data-bs-toggle="modal"
-                >
-                  Retorna
-                </button>
-                <button
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                  type="button"
-                  className="btn btn-outline-danger"
-                >
-                  Confirmar
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   )

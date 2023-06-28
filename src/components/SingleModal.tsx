@@ -25,7 +25,7 @@ export default function SingleModal(props: SingleModalProps) {
         <div className="modal-content">
           <div className={`modal-header ${style.BG}`}>
             <h4
-              className="modal-title fw-semibold text-dark"
+              className="modal-title fw-semibold text-light"
               id="exampleModalLabel"
             >
               {props.modalTitle}

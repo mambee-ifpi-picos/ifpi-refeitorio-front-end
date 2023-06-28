@@ -6,6 +6,8 @@ import ButtonActions from './ButtonActions'
 import listDaysOfWeek from '../../utils/dates/listDaysOfWeek'
 import { format } from 'date-fns'
 import { Menu } from '../../types/Menus'
+import { useRouter } from 'next/router'
+import { useState, useEffect } from 'react'
 
 type MenuTablePropsType = {
   title: string
@@ -16,6 +18,18 @@ type MenuTablePropsType = {
 }
 
 function Table({ title, meal, loading }: MenuTablePropsType) {
+  const router = useRouter()
+  const [mostrarAcao, setMostrarAcao] = useState(true)
+
+  useEffect(() => {
+    // Verificar o caminho (URL) da página atual
+    if (router.pathname === '/student/menuStudents') {
+      setMostrarAcao(false)
+    } else {
+      setMostrarAcao(true)
+    }
+  }, [router.pathname])
+
   const { desiredWeek, listAllMenus, listNameDays, setSelectedMenu } =
     useGlobalContext()
   const listDays = listDaysOfWeek({ desiredWeek })
@@ -52,9 +66,11 @@ function Table({ title, meal, loading }: MenuTablePropsType) {
             <th className="text-center" colSpan={4}>
               Prato
             </th>
-            <th className="text-center" colSpan={1}>
-              Ação
-            </th>
+            {mostrarAcao && (
+              <th className="text-center" colSpan={1}>
+                Ação
+              </th>
+            )}
           </tr>
         </thead>
         <tbody>
@@ -64,31 +80,44 @@ function Table({ title, meal, loading }: MenuTablePropsType) {
                 <th
                   scope="row"
                   colSpan={1}
-                  className="fw-bold border border-dark text-center border-opacity-50"
+                  className="fw-bold text-nowrap border border-dark text-center border-opacity-50"
                 >
                   <p className="m-0">{listNameDays[index]}</p>
                   <p className="m-0">
                     {listDays[index].toLocaleDateString('pt-BR')}
                   </p>
                 </th>
-                <td colSpan={4} className="text-center text-wrap">
+
+                <td
+                  colSpan={4}
+                  className="text-center fs-6 text-uppercase w-100 text-wrap"
+                >
                   {loading ? (
                     <Loading />
                   ) : (
-                    finalList[index].items?.map((item) => `${item.name} `)
+                    finalList[index].items?.map((item, itemIndex) => (
+                      <span key={itemIndex}>
+                        {item.name}
+                        {itemIndex !== finalList[index].items.length - 1 &&
+                          ' - '}
+                      </span>
+                    ))
                   )}
                 </td>
-                <td
-                  scope="col"
-                  colSpan={1}
-                  className="d-md-flex text-center py-2 justify-content-evenly align-items-center"
-                >
-                  <ButtonActions
-                    onClick={() => {
-                      setSelectedMenu(finalList[index])
-                    }}
-                  />
-                </td>
+
+                {mostrarAcao && (
+                  <td
+                    scope="col"
+                    colSpan={1}
+                    className="d-md-flex w-100 text-center py-2 gap-2 justify-content-evenly align-items-center"
+                  >
+                    <ButtonActions
+                      onClick={() => {
+                        setSelectedMenu(finalList[index])
+                      }}
+                    />
+                  </td>
+                )}
               </tr>
             )
           })}

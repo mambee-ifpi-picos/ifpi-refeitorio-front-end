@@ -9,7 +9,6 @@ import { useGlobalContext } from '../store'
 export default function MainLayout(props: MainLayoutProps) {
   const { tempMessage } = useGlobalContext()
 
-  // console.log(props)
   return (
     <div>
       <Head>
@@ -41,7 +40,7 @@ export default function MainLayout(props: MainLayoutProps) {
             <div className="col-lg-2 col-xl-2">
               <Sidebar />
             </div>
-            <div className=" col-lg-10 ps-4 col-xl-10">
+            <div className=" col-lg-10 pe-lg-0 px-xl-0 col-xl-10">
               <main className="text-center">{props.children}</main>
             </div>
           </div>

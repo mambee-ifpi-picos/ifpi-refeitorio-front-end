@@ -8,6 +8,7 @@ export default function ButtonActions({ onClick }: { onClick: () => void }) {
         data-bs-target="#idModalEditMenu"
         onClick={onClick}
         className="btn shadow-sm border btn-success"
+        title="Editar Cardápio"
       >
         <i className="bi bi-pencil-square"></i>
       </button>

@@ -2,12 +2,36 @@ import 'bootstrap/dist/css/bootstrap.min.css' // Import bootstrap CSS
 import Link from 'next/link'
 import style from '../styles/Home.module.css'
 import Profile from './Profile'
+import { useState, useEffect } from 'react'
 
 function Sidebar() {
+  const [sidebarAberto, setSidebarAberto] = useState(false)
+
+  useEffect(() => {
+    function handleRedimensionamento() {
+      if (window.innerWidth >= 769) {
+        setSidebarAberto(true)
+      } else {
+        setSidebarAberto(false)
+      }
+    }
+
+    handleRedimensionamento() // Verificar tamanho da tela inicialmente
+
+    window.addEventListener('resize', handleRedimensionamento)
+
+    return () => {
+      window.removeEventListener('resize', handleRedimensionamento)
+    }
+  }, [])
+
   return (
     <nav className={`position-absolute`}>
       <div
-        className={`offcanvas show ${style.BGSidebar} border border-0 offcanvas-start w-auto  `}
+        className={`offcanvas ${sidebarAberto && 'show'} ${
+          !sidebarAberto && 'w-100'
+        }  ${style.BGSidebar} border border-0 offcanvas-start   `}
+        style={{ width: '200px' }}
         tabIndex={-1}
         data-bs-scroll="true"
         data-bs-backdrop="false"
@@ -20,14 +44,17 @@ function Sidebar() {
           </li>
           <li className="list-group-item bg-dark bg-gradient text-white">
             <Link href="./">
-              <button className="accordion-button  gap-2" type="button">
+              <button
+                className="accordion-button text-nowrap  gap-2"
+                type="button"
+              >
                 <i className="bi bi-columns fs-4 m-1"></i>
                 Painel de Controle
               </button>
             </Link>
           </li>
         </ul>
-        <div className="offcanvas-body p-0 ">
+        <div className="offcanvas-body text-start p-0 ">
           <div className="accordion">
             <div className="accordion-item ">
               <h2 className="accordion-header" id="panelsStayOpen-headingOne">
@@ -119,7 +146,7 @@ function Sidebar() {
                         <a className="nav-link">Itens</a>
                       </Link>
                     </li>
-                    <li className="list-group-item d-flex">
+                    <li className="list-group-item text-start d-flex">
                       <Link href="/menu-history">
                         <a className="nav-link">Histórico de Cardápios</a>
                       </Link>

@@ -113,7 +113,7 @@ const Items: NextPage = () => {
           </div>
         </div>
       </form>
-      <div className="d-flex pt-3 gap-3 flex-wrap">
+      <div className="d-flex fs-5 text-uppercase pt-3 gap-3 flex-wrap">
         {loading ? (
           <Loading />
         ) : listItems?.length ? (
@@ -121,7 +121,7 @@ const Items: NextPage = () => {
             return (
               <div
                 key={element.id}
-                className="text-success rounded ps-2 border border-success d-flex gap-2 align-items-center"
+                className="text-success gap-3 shadow-sm rounded ps-2 border border-success d-flex gap-2 align-items-center"
               >
                 {element.name}
                 <div
@@ -130,8 +130,9 @@ const Items: NextPage = () => {
                   aria-label="Basic mixed styles example"
                 >
                   <button
-                    className="btn shadow-sm btn-danger btn-sm"
+                    className="btn fs-5 shadow-sm btn-danger btn-sm"
                     type="button"
+                    title="Deletar item"
                     data-bs-toggle="modal"
                     data-bs-target="#idModalDeleteItem"
                     onClick={() => {
@@ -141,8 +142,9 @@ const Items: NextPage = () => {
                     <i className="bi bi-trash"></i>
                   </button>
                   <button
-                    className="btn shadow-sm btn-success btn-sm"
+                    className="btn fs-5 shadow-sm btn-success btn-sm"
                     type="button"
+                    title="Editar item"
                     data-bs-toggle="modal"
                     data-bs-target="#idModalEditItem"
                     onClick={() => {
@@ -165,7 +167,8 @@ const Items: NextPage = () => {
         action="Deletar"
         onClickSuccess={deleteItem}
       >
-        Tem certeza que deseja deletar o item? <h5>{selectedItem?.name}</h5>
+        Tem certeza que deseja deletar o item?{' '}
+        <h5 className="text-danger text-uppercase">{selectedItem?.name}</h5>
       </SingleModal>
       <SingleModal
         id="idModalEditItem"
