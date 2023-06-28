@@ -39,9 +39,24 @@ const Menu: NextPage = () => {
     setListAllMenus(response)
   }
 
+  async function createMenu() {
+    const itemsIds = listItemsToInterate
+      ?.filter((item) => item.checked && item.item.id)
+      .map((item) => item.item.id)
+    if (selectedMenu && itemsIds) {
+      await menusFunctions.createMenu(
+        selectedMenu,
+        itemsIds,
+        setLoadingMenus,
+        setTempMessage
+      )
+      await getMenus()
+    } else {
+      return
+    }
+  }
+
   async function editMenu() {
-    // setListAllMenus([])
-    // const [initialDate, finalDate] = initialAndFinalDaysOfWeek({ desiredWeek })
     await menusFunctions.editMenu(
       selectedMenu,
       listItemsToInterate
@@ -51,7 +66,6 @@ const Menu: NextPage = () => {
       setTempMessage
     )
     await getMenus()
-    // setListAllMenus(response)
   }
 
   async function getItems() {
@@ -96,7 +110,7 @@ const Menu: NextPage = () => {
         id="idModalEditMenu"
         modalTitle={selectedMenu?.meal == 'almoço' ? 'Almoço' : 'Jantar'}
         action="Editar"
-        onClickSuccess={editMenu}
+        onClickSuccess={selectedMenu?.id ? editMenu : createMenu}
         onClickCancel={() => ''}
       >
         <DishItems loading={loadingItems} />

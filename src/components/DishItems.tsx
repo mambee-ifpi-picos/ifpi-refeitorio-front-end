@@ -32,7 +32,7 @@ export default function DishItems({ loading }: { loading: boolean }) {
           })
         : undefined
     )
-  }, [listItems, selectedMenu])
+  }, [listItems, selectedMenu, setListItemsToInterate])
 
   return (
     <div>

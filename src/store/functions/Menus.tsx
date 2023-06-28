@@ -11,22 +11,18 @@ export type MenusFunctionsType = {
     finalDate: string,
     setLoading: Dispatch<SetStateAction<boolean>>
   ) => Promise<Menu[] | []>
-  // addItem: (
-  //   item: string,
-  //   setLoading: Dispatch<SetStateAction<boolean>>,
-  //   setTempMessage: Dispatch<SetStateAction<{ message: string; type: string }>>
-  // ) => void
+  createMenu: (
+    menu: Menu,
+    ids: number[],
+    setLoading: Dispatch<SetStateAction<boolean>>,
+    setTempMessage: Dispatch<SetStateAction<{ message: string; type: string }>>
+  ) => void
   editMenu: (
     menu: Menu | undefined,
     ids: number[] | undefined,
     setLoading: Dispatch<SetStateAction<boolean>>,
     setTempMessage: Dispatch<SetStateAction<{ message: string; type: string }>>
   ) => Promise<{ menu: Menu; msg: string } | void>
-  // deleteItem: (
-  //   id: number,
-  //   setLoading: Dispatch<SetStateAction<boolean>>,
-  //   setTempMessage: Dispatch<SetStateAction<{ message: string; type: string }>>
-  // ) => void
 }
 
 const MenusFunctions = () => {
@@ -58,6 +54,38 @@ const MenusFunctions = () => {
         } else {
           typeof json === 'string' &&
             setTempMessage({ message: json, type: 'alert' })
+        }
+      } catch (error) {
+        console.log(error)
+        setTempMessage({
+          message:
+            'Ocorreu um erro interno no servidor, por favor tente novamente mais tarde',
+          type: 'danger',
+        })
+      } finally {
+        setLoading(false)
+      }
+    },
+    createMenu: async (menu, ids, setLoading, setTempMessage) => {
+      console.log(menu)
+      try {
+        setLoading(true)
+        const response: Response = await fetch(`${API_URL}/${BASE_URL}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            date: menu.date,
+            meal: menu.meal,
+            items: ids,
+          }),
+        })
+        const json = await response.json()
+        if (response.status === 200) {
+          return json
+        } else {
+          setTempMessage({ message: json.msg, type: 'alert' })
         }
       } catch (error) {
         console.log(error)
@@ -103,105 +131,6 @@ const MenusFunctions = () => {
         setLoading(false)
       }
     },
-
-    //   addItem: async (item, setLoading, setTempMessage) => {
-    //     try {
-    //       setLoading(true)
-    //       const response: Response = await fetch(`${API_URL}/${BASE_URL}`, {
-    //         method: 'POST',
-    //         headers: {
-    //           'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({
-    //           name: item,
-    //         }),
-    //       })
-    //       const json = await response.json()
-    //       if (response.status === 201) {
-    //         // mensagem de sucesso
-    //         setTempMessage({
-    //           message: 'Item adicionado com sucesso.',
-    //           type: 'success',
-    //         })
-    //       } else {
-    //         // mensagem do back
-    //         setTempMessage({ message: json, type: 'danger' })
-    //       }
-    //     } catch (error) {
-    //       setTempMessage({
-    //         message:
-    //           'Ocorreu um erro interno no servidor, por favor tente novamente mais tarde',
-    //         type: 'danger',
-    //       })
-    //       console.log(error)
-    //     } finally {
-    //       setLoading(false)
-    //     }
-    //   },
-
-    //   editItem: async (id, newName, setLoading, setTempMessage) => {
-    //     try {
-    //       setLoading(true)
-    //       const response: Response = await fetch(`${API_URL}/${BASE_URL}/${id}`, {
-    //         method: 'PUT',
-    //         headers: {
-    //           'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({
-    //           name: newName,
-    //         }),
-    //       })
-    //       const json = await response.json()
-    //       if (response.status === 200) {
-    //         // mensagem de sucesso
-    //         setTempMessage({
-    //           message: 'Item editado com sucesso',
-    //           type: 'success',
-    //         })
-    //       } else {
-    //         // mensagem do back
-    //         setTempMessage({ message: json, type: 'danger' })
-    //       }
-    //     } catch (error) {
-    //       setTempMessage({
-    //         message:
-    //           'Ocorreu um erro interno no servidor, por favor tente novamente mais tarde',
-    //         type: 'danger',
-    //       })
-    //       console.log(error)
-    //     } finally {
-    //       setLoading(false)
-    //     }
-    //   },
-
-    //   deleteItem: async (id, setLoading, setTempMessage) => {
-    //     try {
-    //       setLoading(true)
-    //       const response: Response = await fetch(`${API_URL}/${BASE_URL}/${id}`, {
-    //         method: 'DELETE',
-    //       })
-    //       const json = await response.json()
-    //       if (response.status === 200) {
-    //         // mensagem de sucesso
-    //         setTempMessage({
-    //           message: 'Item deletado com sucesso',
-    //           type: 'success',
-    //         })
-    //       } else {
-    //         // mensagem do back
-    //         setTempMessage({ message: json, type: 'danger' })
-    //       }
-    //     } catch (error) {
-    //       setTempMessage({
-    //         message:
-    //           'Ocorreu um erro interno no servidor, por favor tente novamente mais tarde',
-    //         type: 'danger',
-    //       })
-    //       console.log(error)
-    //     } finally {
-    //       setLoading(false)
-    //     }
-    //   },
   }
 
   return MenusFunctions
