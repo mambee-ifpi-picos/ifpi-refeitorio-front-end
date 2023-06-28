@@ -43,7 +43,7 @@ function Sidebar() {
             <Profile />
           </li>
           <li className="list-group-item bg-dark bg-gradient text-white">
-            <Link href="./">
+            <Link href=".././">
               <button
                 className="accordion-button text-nowrap  gap-2"
                 type="button"
